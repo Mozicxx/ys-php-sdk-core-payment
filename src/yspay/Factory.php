@@ -33,8 +33,12 @@ class Factory
         if (null != $config) {
             if ($postType == "test"){
                 $config->url = 'https://openapi.ysepay.com/gateway.do';
+                $config->dfUrl = 'https://df.ysepay.com/gateway.do';
+                $config->dfOderUrl = 'https://searchdf.ysepay.com/gateway.do';
             }else if ($postType == "prd"){
                 $config->url = 'https://openapi.ysepay.com/gateway.do';
+                $config->dfUrl = 'https://df.ysepay.com/gateway.do';
+                $config->dfOderUrl = 'https://searchdf.ysepay.com/gateway.do';
             }else{
                 var_dump( "环境类型不存在");
             }

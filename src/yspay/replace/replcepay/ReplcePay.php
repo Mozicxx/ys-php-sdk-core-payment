@@ -79,9 +79,9 @@ class ReplcePay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->dfUrl;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_df_single_quick_accept_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -144,9 +144,9 @@ class ReplcePay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->dfUrl;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_df_single_quick_inner_accept_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -190,7 +190,7 @@ class ReplcePay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = '$this->kernel->dfOderUrl';
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
         } catch (Exception $e) {
@@ -235,9 +235,9 @@ class ReplcePay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = '$this->kernel->dfOderUrl';
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_df_bill_downloadurl_get_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];

@@ -37,7 +37,7 @@ class ReplcePayTest extends Base
 
         try {
             $request = new DfBillDownloadurlGetRequest();
-            $request->account_date = "2016-04-13";
+            $request->account_date = "2018-04-13";
             $request->proxy_password = "";
             $request->merchant_usercode = "";
 
@@ -155,7 +155,7 @@ class ReplcePayTest extends Base
 
     /**
      * lfk
-     * @Desc 单笔代付交易（平台内）
+     * @Desc 单笔代付查询
      * @DATA 2021年7月08日下午2:02:09
      */
     public function testDfSingleQuickQuery()
