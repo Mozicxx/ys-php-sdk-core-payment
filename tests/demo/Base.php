@@ -36,8 +36,8 @@ class Base extends TestCase
         //<-- 环境 -->;
         $options->postType = 'prd';
         //<-- 加签私钥证书文件路径 -->
-        //$options->private_key = "D:\银盛集团\smfws\yzt-php-sdk-core\yzt-gathering-sdk\src\yspay\certs\hyfz_test2.pfx";
-        $options->private_key = "D:\php\ys-php-sdk-core\src\yspay\certs\hyfz_test.pfx";
+       // $options->private_key = "D:\银盛集团\php-sdk\ys-php-sdk-core\src\yspay\certs\hyfz_test2.pfx";
+        $options->private_key = "D:\银盛集团\php-sdk\ys-php-sdk-core\src\yspay\certs\hyfz_test.pfx";
         //验签公钥证书文件路径
       //  $options->businessgatecerpath = "D:\银盛集团\smfws\yzt-php-sdk-core\yzt-gathering-sdk\src\yspay\certs\businessgate.cer";
         $options->pfxpassword = "123456";
