@@ -5,12 +5,18 @@ include_once "gather/pay/Pay.php";
 include_once "gather/fastpay/Fastpay.php";
 include_once "gather/pagepay/PagePay.php";
 include_once "replace/replcepay/ReplcePay.php";
+include_once "common/order/OrderRefund.php";
+include_once "common/division/Division.php";
+include_once "common/merchant/Merchant.php";
 
 
 use Yspay\SDK\Pay as payClass;
 use Yspay\SDK\Fastpay as fastpayClass;
 use Yspay\SDK\PagePay as pagePayClass;
 use Yspay\SDK\ReplcePay as replcePayClass;
+use Yspay\SDK\OrderRefund as orderRefundClass;
+use Yspay\SDK\Merchant as merchantClass;
+use Yspay\SDK\Division as divisionClass;
 
 
 
@@ -23,6 +29,9 @@ class Factory
     public static $fastpayClient;
     public static $pagePayClient;
     public static $replcePayClient;
+    public static $orderRefundClient;
+    public static $divisionClient;
+    public static $merchantClient;
 
 
     protected static $util;
@@ -33,8 +42,12 @@ class Factory
         if (null != $config) {
             if ($postType == "test"){
                 $config->url = 'https://openapi.ysepay.com/gateway.do';
+                $config->dfUrl = 'https://df.ysepay.com/gateway.do';
+                $config->dfOderUrl = 'https://searchdf.ysepay.com/gateway.do';
             }else if ($postType == "prd"){
                 $config->url = 'https://openapi.ysepay.com/gateway.do';
+                $config->dfUrl = 'https://df.ysepay.com/gateway.do';
+                $config->dfOderUrl = 'https://searchdf.ysepay.com/gateway.do';
             }else{
                 var_dump( "环境类型不存在");
             }
@@ -43,6 +56,9 @@ class Factory
         self::$fastpayClient = new FastpayClient($config);
         self::$pagePayClient = new PagePayClient($config);
         self::$replcePayClient = new ReplcePayClient($config);
+        self::$orderRefundClient = new OrderRefundClient($config);
+        self::$divisionClient = new DivisionClient($config);
+        self::$merchantClient = new MerchantClient($config);
 
 
     }
@@ -145,6 +161,54 @@ class ReplcePayClient
     public function replcePayClass()
     {
         return new replcePayClass($this->kernel);
+    }
+
+}
+
+class OrderRefundClient
+{
+    private $kernel;
+
+    public function __construct($kernel)
+    {
+        $this->kernel = $kernel;
+    }
+
+    public function orderRefundClass()
+    {
+        return new orderRefundClass($this->kernel);
+    }
+
+}
+
+class DivisionClient
+{
+    private $kernel;
+
+    public function __construct($kernel)
+    {
+        $this->kernel = $kernel;
+    }
+
+    public function divisionClass()
+    {
+        return new divisionClass($this->kernel);
+    }
+
+}
+
+class MerchantClient
+{
+    private $kernel;
+
+    public function __construct($kernel)
+    {
+        $this->kernel = $kernel;
+    }
+
+    public function merchantClass()
+    {
+        return new merchantClass($this->kernel);
     }
 
 }

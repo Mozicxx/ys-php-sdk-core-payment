@@ -117,11 +117,6 @@ class FastpayRequest
 
 
     /**
-     * 微信分配的子商户公众号账号ID
-     */
-    public $appid;
-
-    /**
      * 订单所属省编号（省市编号必须同时为空或者同时非空、并且需要符合层级关系）
      */
     public $province;
@@ -178,7 +173,6 @@ class FastpayRequest
             'pyerIDNo' => $model->pyerIDNo,
             'consignee_info' => $model->consignee_info,
             'cross_border_info' => $model->cross_border_info,
-            'appid' => $model->appid,
             'province' => $model->province,
             'city' => $model->city,
             'limit_credit_pay' => $model->limit_credit_pay,
