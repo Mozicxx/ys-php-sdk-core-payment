@@ -43,7 +43,7 @@ class FastpayTest extends Base
 
         try {
             $request = new FastpayRequest();
-            $request->out_trade_no = "20180525684319228064711812";
+            $request->out_trade_no = "20180525684319228064711813";
             $request->shopdate = "20210709";
             $request->subject = "测试消费";
             $request->total_amount = "0.01";
@@ -163,8 +163,7 @@ class FastpayTest extends Base
             $request = new TrusteeshipSignRequest();
             $request->out_trade_no = "20180525684319228064711813";
             $request->seller_id = "X2107061649551231243";
-            $request->seller_name = "刘志林";
-            $request->total_amount = "0.01";
+            $request->seller_name = "X2107061649551231243";
             $request->buyer_name = "刘志林";
             $request->buyer_card_number = "6217710310182456";
             $request->buyer_mobile = "18680352162";
@@ -172,8 +171,9 @@ class FastpayTest extends Base
             $request->cardExprDt = "";
             $request->pyerIDNo = "360781199608035113";
             $request->imei = "";
-            $request->actionScope = "";
+            $request->actionScope = "01";
             $request->user_id = "2021070618257832";
+            $request->total_amount = "0.02";
 
             $response = Factory::fastpayClient()->fastpayClass()->trusteeshipSign($request);
             var_dump($response, true);
@@ -202,10 +202,10 @@ class FastpayTest extends Base
 
         try {
             $request = new TrusteeshipSignConfirmRequest();
-            $request->out_trade_no = "201805256843192280647118";
+            $request->out_trade_no = "20180525684319228064711813";
             $request->mobile_verify_code = "101098";
-            $request->cardCvn2 = "";
-            $request->cardExprDt = "";
+            $request->cardCvn2 = "123";
+            $request->cardExprDt = "1019";
 
 
             $response = Factory::fastpayClient()->fastpayClass()->trusteeshipSignConfirm($request);
@@ -234,35 +234,25 @@ class FastpayTest extends Base
 
         try {
             $request = new TrusteeshipfastPayRequest();
-            $request->out_trade_no = "201805256843192280647118";
-            $request->shopdate = "20210707";
-            $request->subject = "2018052";
+            $request->out_trade_no = "201805256843192280647114";
+            $request->shopdate = "20210712";
+            $request->subject = "测试快捷协议";
             $request->total_amount = "0.01";
             $request->currency = "CNY";
-            $request->seller_id = "2018052";
-            $request->seller_name = "2018052";
-            $request->timeout_express = "96h";
-            $request->extend_params = "{
-\"cartTYpe\": \"00\",
-\"order_mode\": \"01\",
-\"seller_list\": [{
-\"seller_id\": \"123\"
-},
-{
-\"seller_id\": \"456\"
-}
-]";
-            $request->extra_common_param = "2018052";
-            $request->business_code = "2018052";
-            $request->protocol_no = "2018052";
-            $request->cardCvn2 = "2018052";
-            $request->cardExprDt = "2018052";
+            $request->seller_id = "X2107061649551231243";
+            $request->seller_name = "刘志林";
+            $request->timeout_express = "30m";
+            $request->extra_common_param = "";
+            $request->business_code = "3010002";
+            $request->protocol_no = "K2021070206180496004";
+            $request->cardCvn2 = "123";
+            $request->cardExprDt = "1019";
             $request->consignee_info = "";
-            $request->user_id = "2018052";
-            $request->province = "2018052";
-            $request->city = "2018052";
+            $request->user_id = "2021070618257832";
+            $request->province = "";
+            $request->city = "";
             $request->mccs = "5811";
-            $request->mer_no = "2018052";
+            $request->mer_no = "";
 
 
             $response = Factory::fastpayClient()->fastpayClass()->trusteeshipfastPay($request);

@@ -44,16 +44,16 @@ class PayTest extends Base
 
         try {
             $request = new BarcodepayRequest();
-            $request->out_trade_no = "201805256843192280647118";
-            $request->shopdate = "20180525";
+            $request->out_trade_no = "2018052568431922806471181";
+            $request->shopdate = "20210712";
             $request->subject = "标题";
             $request->total_amount = "0.01";
-            $request->seller_id = "Out8267321541513";
-            $request->seller_name = "Out8267321541513";
-            $request->timeout_express = "Out826";
-            $request->business_code = "Out8263";
+            $request->seller_id = "hyfz_test";
+            $request->seller_name = "银盛支付服务股份有限公司行业发展部";
+            $request->timeout_express = "30m";
+            $request->business_code = "3010002";
             $request->bank_type = "1902000";
-            $request->auth_code = "O41513";
+            $request->auth_code = "137163512684555952";
             $response = Factory::payClient()->payClass()->barcodepay($request);
             var_dump($response, true);
             $responseChecker = new ResponseChecker();
