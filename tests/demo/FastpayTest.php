@@ -43,13 +43,13 @@ class FastpayTest extends Base
 
         try {
             $request = new FastpayRequest();
-            $request->out_trade_no = "2018052568431922806471181";
+            $request->out_trade_no = "20180525684319228064711812";
             $request->shopdate = "20210709";
             $request->subject = "测试消费";
             $request->total_amount = "0.01";
             $request->currency = "CNY";
-            $request->seller_id = "826584358120112";
-            $request->seller_name = "个体户";
+            $request->seller_id = "X2107061649551231243";
+            $request->seller_name = "刘志林";
             $request->timeout_express = "30m";
             $request->extend_params = "";
             $request->extra_common_param = "";
@@ -99,11 +99,11 @@ class FastpayTest extends Base
 
         try {
             $request = new FastpayAuthorizeRequest();
-            $request->out_trade_no = "6843192280647118";
-            $request->buyer_mobile = "20180525";
-            $request->mobile_verify_code = "2018";
-            $request->cardCvn2 = "20180525";
-            $request->cardExprDt = "20180525";
+            $request->out_trade_no = "20180525684319228064711811";
+            $request->buyer_mobile = "18680352162";
+            $request->mobile_verify_code = "903707";
+            $request->cardCvn2 = "";
+            $request->cardExprDt = "";
 
 
             $response = Factory::fastpayClient()->fastpayClass()->fastpayAuthorize($request);
@@ -132,7 +132,7 @@ class FastpayTest extends Base
 
         try {
             $request = new FastpayAuthorizeMsgReq();
-            $request->out_trade_no = "6843192280647118";
+            $request->out_trade_no = "20180525684319228064711811";
 
 
             $response = Factory::fastpayClient()->fastpayClass()->fastpayAuthorizeMsg($request);
@@ -161,19 +161,19 @@ class FastpayTest extends Base
 
         try {
             $request = new TrusteeshipSignRequest();
-            $request->out_trade_no = "6843192280647118";
-            $request->seller_id = "6843192280647118";
-            $request->seller_name = "6843192280647118";
-            $request->total_amount = "6843192280647118";
-            $request->buyer_name = "6843192280647118";
-            $request->buyer_card_number = "68447118";
-            $request->buyer_mobile = "684118";
-            $request->cardCvn2 = "684317118";
-            $request->cardExprDt = "680647118";
-            $request->pyerIDNo = "682280647118";
-            $request->imei = "6843647118";
-            $request->actionScope = "68280647118";
-            $request->user_id = "6843197118";
+            $request->out_trade_no = "20180525684319228064711813";
+            $request->seller_id = "X2107061649551231243";
+            $request->seller_name = "刘志林";
+            $request->total_amount = "0.01";
+            $request->buyer_name = "刘志林";
+            $request->buyer_card_number = "6217710310182456";
+            $request->buyer_mobile = "18680352162";
+            $request->cardCvn2 = "";
+            $request->cardExprDt = "";
+            $request->pyerIDNo = "360781199608035113";
+            $request->imei = "";
+            $request->actionScope = "";
+            $request->user_id = "2021070618257832";
 
             $response = Factory::fastpayClient()->fastpayClass()->trusteeshipSign($request);
             var_dump($response, true);

@@ -42,7 +42,7 @@ class Base extends TestCase
       //  $options->businessgatecerpath = "D:\银盛集团\smfws\yzt-php-sdk-core\yzt-gathering-sdk\src\yspay\certs\businessgate.cer";
         $options->pfxpassword = "123456";
         $options->partner_id = "hyfz_test2";
-        $options->notify_url = "http://api.test.ysepay.net/atinterface/receive_notify.htm";
+        $options->notify_url = "http://wiki.easybuycloud.com:8082/ysmp-notify-ci/testnotify";
      //   $options->charset = 'UTF-8';
      //   $options->signType = 'RSA';
      //   $options->version = 'V100';
