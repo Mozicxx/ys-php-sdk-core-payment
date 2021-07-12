@@ -459,7 +459,6 @@ class Pay
                 "extra_common_param" => $model->extra_common_param,
                 "business_code" => $model->business_code,
                 "bank_type" => $model->bank_type,
-                "mrchntCertId" => $model->mrchntCertId,
                 "consignee_info" => $model->consignee_info,
                 "cross_border_info" => $model->cross_border_info,
                 "appid" => $model->appid,
@@ -467,9 +466,8 @@ class Pay
                 "city" => $model->city,
                 "limit_credit_pay" => $model->limit_credit_pay,
                 "hb_fq_num" => $model->hb_fq_num,
-                "allow_repeat_pay" => $model->allow_repeat_pay,
-                "fail_notify_url" => $model->fail_notify_url,
-
+                "tran_type" => $model->tran_type,
+                "return_url" => $model->return_url,
 
             );
             $bizReqJson = $this->common->unsetArry($bizReqJson);

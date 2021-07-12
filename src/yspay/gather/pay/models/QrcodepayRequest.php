@@ -66,10 +66,6 @@ class QrcodepayRequest
     public $bank_type;
 
     /**
-     * 身份证号
-     */
-    public $mrchntCertId;
-    /**
      * 收货人信息json格式
      */
     public $consignee_info;
@@ -105,17 +101,6 @@ class QrcodepayRequest
      */
     public $hb_fq_num;
 
-    /**
-     * 是否允许多次支付,Y：允许;N：不允许
-     */
-    public $allow_repeat_pay;
-
-    /**
-     * 失败通知地址
-     */
-    public $fail_notify_url;
-
-
 
     /**
      * 交易类型，说明：1或者空：即时到账，2：担保交易
@@ -146,7 +131,6 @@ class QrcodepayRequest
             'extra_common_param' => $model->extra_common_param,
             'business_code' => $model->business_code,
             'bank_type' => $model->bank_type,
-            'mrchntCertId' => $model->mrchntCertId,
             'consignee_info' => $model->consignee_info,
             'cross_border_info' => $model->cross_border_info,
             'appid' => $model->appid,
@@ -154,8 +138,6 @@ class QrcodepayRequest
             'city' => $model->city,
             'limit_credit_pay' => $model->limit_credit_pay,
             'hb_fq_num' => $model->hb_fq_num,
-            'allow_repeat_pay' => $model->allow_repeat_pay,
-            'fail_notify_url' => $model->fail_notify_url,
             'tran_type' => $model->tran_type,
             'return_url' => $model->return_url,
 
