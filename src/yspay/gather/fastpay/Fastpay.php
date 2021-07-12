@@ -77,7 +77,6 @@ class Fastpay
                 "pyerIDNo" => $model->pyerIDNo,
                 "consignee_info" => $model->consignee_info,
                 "cross_border_info" => $model->cross_border_info,
-                "appid" => $model->appid,
                 "province" => $model->province,
                 "city" => $model->city,
                 "limit_credit_pay" => $model->limit_credit_pay,
