@@ -90,11 +90,6 @@ class MerchantWithdrawRequest
                 'subject' => [
                     Validator::MAX_LEN => 500,
                 ],
-                'bank_account_no' => [
-                    Validator::MAX_LEN => 32,
-                ],
-
-
 
             ],
 

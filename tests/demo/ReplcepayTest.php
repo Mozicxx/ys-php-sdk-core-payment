@@ -16,7 +16,7 @@ use Yspay\SDK\Model\DfSingleQuickAcceptRequest;
 use Yspay\SDK\Model\DSingleQuickQueryRequest;
 
 
-class ReplcePayTest extends Base
+class ReplcepayTest extends Base
 {
     function __construct()
     {

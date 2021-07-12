@@ -129,6 +129,8 @@ class Fastpay
                 "out_trade_no" => $model->out_trade_no,
                 "buyer_mobile" => $model->buyer_mobile,
                 "mobile_verify_code" => $model->mobile_verify_code,
+                "cardCvn2" => $this->common->encryptDes($model->cardCvn2,$this->kernel->partner_id),
+                "cardExprDt" => $this->common->encryptDes($model->cardExprDt,$this->kernel->partner_id)
 
             );
             $bizReqJson = $this->common->unsetArry($bizReqJson);
@@ -218,9 +220,9 @@ class Fastpay
                 "seller_id" => $model->seller_id,
                 "seller_name" => $model->seller_name,
                 "total_amount" => $model->total_amount,
-                "buyer_name" => $model->buyer_name,
-                "buyer_card_number" => $model->buyer_card_number,
-                "buyer_mobile" => $model->buyer_mobile,
+                "buyer_name" => $this->common->encryptDes($model->buyer_name,$this->kernel->partner_id),
+                "buyer_card_number" => $this->common->encryptDes($model->buyer_card_number,$this->kernel->partner_id),
+                "buyer_mobile" => $this->common->encryptDes($model->buyer_mobile,$this->kernel->partner_id),
                 "cardCvn2" => $this->common->encryptDes($model->cardCvn2,$this->kernel->partner_id),
                 "cardExprDt" => $this->common->encryptDes($model->cardExprDt,$this->kernel->partner_id),
                 "pyerIDNo" => $this->common->encryptDes($model->pyerIDNo,$this->kernel->partner_id),

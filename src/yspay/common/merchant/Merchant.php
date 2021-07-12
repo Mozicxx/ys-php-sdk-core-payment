@@ -6,14 +6,9 @@ namespace Yspay\SDK;
 use Exception;
 use Yspay\SDK\Gathering\Kernel\Common;
 use Yspay\SDK\Gathering\Payment\Common\Models\Response;
-use Yspay\SDK\Model\BillDownloadurlGetRequest;
 use Yspay\SDK\Model\MerchantBalanceQueryRequest;
+use Yspay\SDK\Model\MerchantWithdrawQueryRequest;
 use Yspay\SDK\Model\MerchantWithdrawRequest;
-use Yspay\SDK\Model\TradeOrderQueryRequest;
-use Yspay\SDK\Model\TradeRefundGeneralAccountReq;
-use Yspay\SDK\Model\TradeRefundQueryRequest;
-use Yspay\SDK\Model\TradeRefundRequest;
-use Yspay\SDK\Model\TradeRefundSplitRequest;
 
 
 include_once dirname(dirname(dirname(__FILE__))) . '\Common.php';
@@ -69,9 +64,9 @@ class Merchant
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->commonUrl;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_merchant_withdraw_quick_accept_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -118,9 +113,9 @@ class Merchant
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->commonUrl;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_merchant_withdraw_d0_accept_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -132,14 +127,14 @@ class Merchant
 
     /**
      * lfk
-     * @Desc 待结算账户提现 （D0提现）
+     * @Desc 商户提现查询
      * @DATA 2021年7月01日下午2:02:09
      */
     public function merchantWithdrawQuery($model)
     {
         try {
-            $check = $this->common->checkFields(MerchantWithdrawRequest::getCheckRules()
-                , MerchantWithdrawRequest::getParam($model));//数据校验
+            $check = $this->common->checkFields(MerchantWithdrawQueryRequest::getCheckRules()
+                , MerchantWithdrawQueryRequest::getParam($model));//数据校验
             if ($check->checkFlag != true) {
                 return $check;
             }
@@ -161,9 +156,9 @@ class Merchant
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->commonUrl;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_merchant_withdraw_quick_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -203,9 +198,9 @@ class Merchant
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->commonUrl;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_merchant_balance_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];

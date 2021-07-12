@@ -27,7 +27,7 @@ class PagePayTest extends Base
      * @Desc WAP页面支付
      * @DATA 2021年7月02日下午2:02:09
      */
-    public function testBarcodepay()
+    public function testWapDirectpayCreatebyuser()
     {
 
         try {

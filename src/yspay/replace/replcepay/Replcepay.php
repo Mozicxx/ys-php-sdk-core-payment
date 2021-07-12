@@ -14,7 +14,7 @@ use Yspay\SDK\Model\WapDirectpayCreatebyuserReq;
 include_once dirname(dirname(dirname(__FILE__))) . '\Common.php';
 
 
-class ReplcePay
+class Replcepay
 {
 
 
@@ -190,7 +190,7 @@ class ReplcePay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = '$this->kernel->dfOderUrl';
+            $url = $this->kernel->dfOderUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
         } catch (Exception $e) {
@@ -235,7 +235,7 @@ class ReplcePay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = '$this->kernel->dfOderUrl';
+            $url = $this->kernel->dfOderUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_df_bill_downloadurl_get_response", false);
         } catch (Exception $e) {

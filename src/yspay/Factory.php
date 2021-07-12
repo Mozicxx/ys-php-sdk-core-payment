@@ -4,7 +4,7 @@ namespace Yspay\Gathering\SDK;
 include_once "gather/pay/Pay.php";
 include_once "gather/fastpay/Fastpay.php";
 include_once "gather/pagepay/PagePay.php";
-include_once "replace/replcepay/ReplcePay.php";
+include_once "replace/replcepay/Replcepay.php";
 include_once "common/order/OrderRefund.php";
 include_once "common/division/Division.php";
 include_once "common/merchant/Merchant.php";
@@ -13,7 +13,7 @@ include_once "common/merchant/Merchant.php";
 use Yspay\SDK\Pay as payClass;
 use Yspay\SDK\Fastpay as fastpayClass;
 use Yspay\SDK\PagePay as pagePayClass;
-use Yspay\SDK\ReplcePay as replcePayClass;
+use Yspay\SDK\Replcepay as replcePayClass;
 use Yspay\SDK\OrderRefund as orderRefundClass;
 use Yspay\SDK\Merchant as merchantClass;
 use Yspay\SDK\Division as divisionClass;
@@ -44,10 +44,12 @@ class Factory
                 $config->url = 'https://openapi.ysepay.com/gateway.do';
                 $config->dfUrl = 'https://df.ysepay.com/gateway.do';
                 $config->dfOderUrl = 'https://searchdf.ysepay.com/gateway.do';
+                $config->commonUrl = 'https://commonapi.ysepay.com/gateway.do';
             }else if ($postType == "prd"){
                 $config->url = 'https://openapi.ysepay.com/gateway.do';
                 $config->dfUrl = 'https://df.ysepay.com/gateway.do';
                 $config->dfOderUrl = 'https://searchdf.ysepay.com/gateway.do';
+                $config->commonUrl = 'https://commonapi.ysepay.com/gateway.do';
             }else{
                 var_dump( "环境类型不存在");
             }
@@ -93,6 +95,18 @@ class Factory
     public static function replcePayClient()
     {
         return self::$replcePayClient;
+    }
+    public static function orderRefundClient()
+    {
+        return self::$orderRefundClient;
+    }
+    public static function divisionClient()
+    {
+        return self::$divisionClient;
+    }
+    public static function merchantClient()
+    {
+        return self::$merchantClient;
     }
 
 

@@ -38,7 +38,7 @@ class FastpayTest extends Base
      * @Desc 快捷消费申请
      * @DATA 2021年7月02日下午2:02:09
      */
-    public function testBarcodepay()
+    public function testFastpay()
     {
 
         try {
