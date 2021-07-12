@@ -1,7 +1,9 @@
 <?php
 use PHPUnit\Framework\TestCase;
+use Yspay\SDK\Gathering\Kernel\Common;
 
 include_once "../../src/yspay/util/Validator.php";
+include_once "../../src/yspay/Common.php";
 
 class Test extends TestCase
 {
@@ -28,13 +30,133 @@ class Test extends TestCase
         return true;
     }
     function test02(){
-        function dd($a,$b,$c = '4'){
-            echo $a.$b.$c;
+      // $common = new Common("123");
+      // echo $encryptDes = $common->encryptDes(123, 123);
+      //  $jiami = $this->jiami('123', '125');
+        $encrypt = $this->encrypt(12345, 12345678);
+        $encrypt1 = $this->decrypt($encrypt, 12345678);
+        echo $encrypt;
+        echo $encrypt1;
+    }
+
+    public function encrypt($input,$key)
+    {
+        $data = openssl_encrypt($input, 'DES-ECB', $key, OPENSSL_RAW_DATA, $this->hexToStr(""));
+        $data = base64_encode($data);
+        return $data;
+    }
+
+    public function decrypt($input,$key)
+    {
+        $decrypted = openssl_decrypt(base64_decode($input), 'DES-ECB', $key, OPENSSL_RAW_DATA, $this->hexToStr(""));
+        return $decrypted;
+    }
+
+
+    function hexToStr($hex)
+    {
+
+        $string='';
+
+        for ($i=0; $i < strlen($hex)-1; $i+=2)
+
+        {
+
+            $string .= chr(hexdec($hex[$i].$hex[$i+1]));
+
         }
 
-        dd("1","2","5");
-
+        return $string;
     }
+
+
+        function jiami($key, $str)
+
+        {
+
+            /* Open module, and create IV */
+
+            $td = mcrypt_module_open('des', '', 'ecb', '');
+
+            //$td = mcrypt_module_open(MCRYPT_DES, '', MCRYPT_MODE_CBC, '');
+
+            //$td = mcrypt_module_open('des', '', 'cbc', '');
+
+            $key = substr($key, 0, mcrypt_enc_get_key_size($td));
+
+            $iv_size = mcrypt_enc_get_iv_size($td);
+
+            $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+
+            /* Initialize encryption handle */
+
+            if (mcrypt_generic_init($td, $key, $iv) === -1)
+
+            {
+
+                return FALSE;
+
+            }
+
+            /* Encrypt data */
+
+            $c_t = mcrypt_generic($td, $str);
+
+            /* Clean up */
+
+            mcrypt_generic_deinit($td);
+
+            mcrypt_module_close($td);
+
+            return $c_t;
+
+        }
+
+        function jiemi($key, $str)
+
+        {
+
+            /* Open module, and create IV */
+
+            $td = mcrypt_module_open('des', '', 'ecb', '');
+
+            //$td = mcrypt_module_open(MCRYPT_DES, '', MCRYPT_MODE_CBC, '');
+
+            //$td = mcrypt_module_open('des', '', 'cbc', '');
+
+            $key = substr($key, 0, mcrypt_enc_get_key_size($td));
+
+            $iv_size = mcrypt_enc_get_iv_size($td);
+
+            $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+
+            /* Initialize encryption handle */
+
+            if (mcrypt_generic_init($td, $key, $iv) === -1)
+
+            {
+
+                return FALSE;
+
+            }
+
+            /* Reinitialize buffers for decryption */
+
+            $p_t = mdecrypt_generic($td, $str);
+
+            /* Clean up */
+
+            mcrypt_generic_deinit($td);
+
+            mcrypt_module_close($td);
+
+            return trim($p_t);
+
+        }
+
+
+
+
 
 
 

@@ -250,4 +250,45 @@ class Common
         return $response;
     }
 
+
+
+    /**
+     * des加密函数
+     */
+    public function encryptDes($input, $key)
+    {
+        if (!isset($input) || !isset($key)) {
+            return "";
+        }
+        $key = substr($this->kernel->partner_id, 0, 8);
+        $sprintf = sprintf("% s", $key);
+
+            return $this->encrypt($input,$sprintf);
+    }
+
+
+    public function encrypt($input,$key)
+    {
+        $data = openssl_encrypt($input, 'DES-ECB', $key, OPENSSL_RAW_DATA, $this->hexToStr(""));
+        $data = base64_encode($data);
+        return $data;
+    }
+
+    public function decrypt($input,$key)
+    {
+        $decrypted = openssl_decrypt(base64_decode($input), 'DES-ECB', $key, OPENSSL_RAW_DATA, $this->hexToStr(""));
+        return $decrypted;
+    }
+
+    function hexToStr($hex)
+    {
+        $string='';
+        for ($i=0; $i < strlen($hex)-1; $i+=2)
+        {
+            $string .= chr(hexdec($hex[$i].$hex[$i+1]));
+        }
+        return $string;
+    }
+
+
 }
