@@ -403,7 +403,7 @@ class Pay
                 "hb_fq_num" => $model->hb_fq_num,
                 "allow_repeat_pay" => $model->allow_repeat_pay,
                 "fail_notify_url" => $model->fail_notify_url,
-
+                "spbill_create_ip" => $model->spbill_create_ip,
             );
             $bizReqJson = $this->common->unsetArry($bizReqJson);
             $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串

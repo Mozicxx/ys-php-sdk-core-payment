@@ -44,16 +44,17 @@ class PayTest extends Base
 
         try {
             $request = new BarcodepayRequest();
-            $request->out_trade_no = "2018052568431922806471181";
+            $request->out_trade_no = "202052568431922806471183";
             $request->shopdate = "20210712";
             $request->subject = "标题";
             $request->total_amount = "0.01";
-            $request->seller_id = "hyfz_test";
-            $request->seller_name = "银盛支付服务股份有限公司行业发展部";
+            $request->seller_id = "hyfz_test";   //hyfz_test
+            $request->seller_name = "银盛支付服务股份有限公司行业发展部";  //银盛支付服务股份有限公司行业发展部
             $request->timeout_express = "30m";
             $request->business_code = "3010002";
-            $request->bank_type = "1902000";
-            $request->auth_code = "137163512684555952";
+            $request->scene = "bar_code";
+            $request->bank_type = "1903000";
+            $request->auth_code = "288046651429814424";
             $response = Factory::payClient()->payClass()->barcodepay($request);
             var_dump($response, true);
             $responseChecker = new ResponseChecker();
@@ -78,7 +79,7 @@ class PayTest extends Base
 
         try {
             $request = new TradeDeliveredRequest();
-            $request->out_trade_no = "201805256843192280647118";
+            $request->out_trade_no = "2018052568431922806471182";
             $request->shopdate = "20180525";
             $request->trade_no = "";
             $response = Factory::payClient()->payClass()->tradeDelivered($request);
@@ -104,7 +105,7 @@ class PayTest extends Base
 
         try {
             $request = new TradeDeliveredRequest();
-            $request->out_trade_no = "201805256843192280647118";
+            $request->out_trade_no = "2018052568431922806471182";
             $request->shopdate = "20180525";
             $request->trade_no = "";
             $response = Factory::payClient()->payClass()->tradeConfirm($request);
@@ -133,25 +134,25 @@ class PayTest extends Base
 
         try {
             $request = new AlijsapiRequest();
-            $request->out_trade_no = "201805256843192280647118";
-            $request->shopdate = "20210707";
-            $request->subject = "20180525";
+            $request->out_trade_no = "202052568431922806471184";
+            $request->shopdate = "20210712";
+            $request->subject = "测试支付宝生活号";
             $request->total_amount = "0.01";
-            $request->currency = "20180525";
-            $request->seller_id = "20180525";
-            $request->seller_name = "20180525";
-            $request->timeout_express = "201805";
-            $request->extend_params = "20180525";
-            $request->extra_common_param = "20180525";
-            $request->business_code = "20180525";
-            $request->buyer_logon_id = "20180525";
-            $request->buyer_id = "20180525";
-            $request->consignee_info = "20180525";
-            $request->province = "201525";
-            $request->city = "201825";
-            $request->limit_credit_pay = "20180525";
-            $request->hb_fq_num = "20180525";
-            $request->allow_repeat_pay = "20180525";
+            $request->currency = "CNY";
+            $request->seller_id = "hyfz_test";
+            $request->seller_name = "银盛支付服务股份有限公司行业发展部";
+            $request->timeout_express = "30m";
+            $request->extend_params = "";
+            $request->extra_common_param = "";
+            $request->business_code = "3010002";
+            $request->buyer_logon_id = "";
+            $request->buyer_id = "2088702911485456";
+            $request->consignee_info = "";
+            $request->province = "";
+            $request->city = "";
+            $request->limit_credit_pay = "";
+            $request->hb_fq_num = "";
+            $request->allow_repeat_pay = "";
             $request->fail_notify_url = "";
             $response = Factory::payClient()->payClass()->alijsapi($request);
             var_dump($response, true);
@@ -177,26 +178,26 @@ class PayTest extends Base
 
         try {
             $request = new WeixinPayRequest();
-            $request->out_trade_no = "201805256843192280647118";
-            $request->shopdate = "20180525";
-            $request->subject = "20180525";
+            $request->out_trade_no = "202052568431922806471182";
+            $request->shopdate = "20210712";
+            $request->subject = "测试微信小程序";
             $request->total_amount = "0.01";
-            $request->currency = "20180525";
-            $request->seller_id = "20180525";
-            $request->seller_name = "20180525";
-            $request->timeout_express = "2018";
-            $request->extend_params = "20180525";
-            $request->extra_common_param = "20180525";
-            $request->business_code = "20180525";
-            $request->sub_openid = "20180525";
-            $request->is_minipg = "20180525";
-            $request->appid = "20180525";
-            $request->province = "20180525";
-            $request->city = "20180525";
-            $request->mer_amount = "20180525";
-            $request->limit_credit_pay = "20180525";
-            $request->allow_repeat_pay = "20180525";
-            $request->fail_notify_url = "20180525";
+            $request->currency = "CNY";
+            $request->seller_id = "hyfz_test";
+            $request->seller_name = "银盛支付服务股份有限公司行业发展部";
+            $request->timeout_express = "30m";
+            $request->extend_params = "";
+            $request->extra_common_param = "";
+            $request->business_code = "3010002";
+            $request->sub_openid = "oZLqg4ruuWXR9-p2G0YbnOYzzjWc";
+            $request->is_minipg = "1";
+            $request->appid = "wxa8197adab2013e3b";
+            $request->province = "";
+            $request->city = "";
+            $request->mer_amount = "";
+            $request->limit_credit_pay = "";
+            $request->allow_repeat_pay = "";
+            $request->fail_notify_url = "";
 
             $response = Factory::payClient()->payClass()->weixinPay($request);
             var_dump($response, true);
@@ -223,8 +224,8 @@ class PayTest extends Base
 
         try {
             $request = new CupgetmulappUseridRequest();
-            $request->userAuthCode = "201805";
-            $request->appUpIdentifier = "UnionPay/1.0ICBCeLife";
+            $request->userAuthCode = "testSameAuthCode";
+            $request->appUpIdentifier = "UnionPay/1.0 TESTPAY";
 
 
             $response = Factory::payClient()->payClass()->cupgetmulappUserid($request);
@@ -252,33 +253,23 @@ class PayTest extends Base
 
         try {
             $request = new CupmulappQrcodepayRequest();
-            $request->out_trade_no = "201805256843192280647118";
-            $request->shopdate = "20210707";
-            $request->subject = "201805";
-            $request->total_amount = "201805";
+            $request->out_trade_no = "202052568431922806471182";
+            $request->shopdate = "20210712";
+            $request->subject = "行业码支付";
+            $request->total_amount = "0.02";
             $request->currency = "CNY";
-            $request->seller_id = "201805";
-            $request->seller_name = "201805";
-            $request->timeout_express = "96h";
-            $request->extend_params = "{
-\"cartTYpe\": \"00\",
-\"order_mode\": \"01\",
-\"seller_list\": [{
-\"seller_id\": \"123\"
-},
-{
-\"seller_id\": \"456\"
-}
-]
-}";
-            $request->extra_common_param = "201805";
-            $request->business_code = "201805";
-            $request->spbill_create_ip = "123.12.12.123";
+            $request->seller_id = "hyfz_test";
+            $request->seller_name = "银盛支付服务股份有限公司行业发展部";
+            $request->timeout_express = "30m";
+            $request->extend_params = "";
+            $request->extra_common_param = "";
+            $request->business_code = "3010002";
+            $request->spbill_create_ip = "172.17.249.8";
             $request->bank_type = "9001002";
-            $request->userId = "201805";
-            $request->limit_credit_pay = "0";
-            $request->allow_repeat_pay = "0";
-            $request->fail_notify_url = "201805";
+            $request->userId = "2088702911485456";
+            $request->limit_credit_pay = "";
+            $request->allow_repeat_pay = "";
+            $request->fail_notify_url = "http://wiki.easybuycloud.com:8082/ysmp-notify-ci/testnotify";
             $request->consignee_info = "";
             $request->device_info = "";
             $request->terminal_info = "";
@@ -308,29 +299,28 @@ class PayTest extends Base
 
         try {
             $request = new QrcodepayRequest();
-            $request->out_trade_no = "201805";
-            $request->shopdate = "201805";
-            $request->subject = "201805";
-            $request->total_amount = "201805";
-            $request->currency = "201805";
-            $request->seller_id = "201805";
-            $request->seller_name = "201805";
-            $request->timeout_express = "201805";
-            $request->extend_params = "201805";
-            $request->extra_common_param = "201805";
-            $request->business_code = "201805";
-            $request->bank_type = "201805";
-            $request->mrchntCertId = "201805";
-            $request->consignee_info = "201805";
-            $request->cross_border_info = "201805";
-            $request->appid = "201805";
-            $request->province = "201805";
-            $request->city = "201805";
-            $request->limit_credit_pay = "201805";
-            $request->hb_fq_num = "201805";
-            $request->allow_repeat_pay = "201805";
-            $request->fail_notify_url = "201805";
-            $request->tran_type = "201805";
+            $request->out_trade_no = "202052568431922806471185";
+            $request->shopdate = "20210712";
+            $request->subject = "正扫支付";
+            $request->total_amount = "0.03";
+            $request->currency = "CNY";
+            $request->seller_id = "X2107061649551231243";
+            $request->seller_name = "刘志林";
+            $request->timeout_express = "30m";
+            $request->extend_params = "";
+            $request->extra_common_param = "";
+            $request->business_code = "3010002";
+            $request->bank_type = "1902000";
+            $request->consignee_info = "";
+            $request->cross_border_info = "";
+            $request->appid = "wxa8197adab2013e3b";
+            $request->province = "";
+            $request->city = "";
+            $request->limit_credit_pay = "";
+            $request->hb_fq_num = "";
+            $request->allow_repeat_pay = "";
+            $request->fail_notify_url = "";
+            $request->tran_type = "";
 
 
             $response = Factory::payClient()->payClass()->qrcodepay($request);
@@ -358,20 +348,20 @@ class PayTest extends Base
 
         try {
             $request = new MobileControlsPayRequest();
-            $request->out_trade_no = "201805";
-            $request->shopdate = "201805";
-            $request->subject = "201805";
-            $request->total_amount = "201805";
-            $request->currency = "201805";
-            $request->seller_id = "201805";
-            $request->seller_name = "201805";
-            $request->timeout_express = "96h";
-            $request->extend_params = "201805";
-            $request->extra_common_param = "201805";
-            $request->business_code = "201805";
-            $request->bank_type = "9001002";
-            $request->bank_account_type = "2";
-            $request->support_card_type = "2";
+            $request->out_trade_no = "202052568431922806471186";
+            $request->shopdate = "20210712";
+            $request->subject = "手机控件支付";
+            $request->total_amount = "0.03";
+            $request->currency = "CNY";
+            $request->seller_id = "X2107061649551231243";
+            $request->seller_name = "刘志林";
+            $request->timeout_express = "30m";
+            $request->extend_params = "";
+            $request->extra_common_param = "";
+            $request->business_code = "3010002";
+            $request->bank_type = "9001000";
+            $request->bank_account_type = "personal";
+            $request->support_card_type = "debit";
             $request->cross_border_info = "";
             $request->consignee_info = "";
 

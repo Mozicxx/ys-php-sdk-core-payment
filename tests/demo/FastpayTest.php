@@ -163,7 +163,7 @@ class FastpayTest extends Base
             $request = new TrusteeshipSignRequest();
             $request->out_trade_no = "20180525684319228064711813";
             $request->seller_id = "X2107061649551231243";
-            $request->seller_name = "X2107061649551231243";
+            $request->seller_name = "刘志林";
             $request->buyer_name = "刘志林";
             $request->buyer_card_number = "6217710310182456";
             $request->buyer_mobile = "18680352162";
