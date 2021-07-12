@@ -46,11 +46,11 @@ class Validator {
     }
 
     private static function checkMinLen($v, $len) {
-        return strlen($v) >= $len;
+        return iconv_strlen($v,"UTF-8") >= $len;
     }
 
     private static function checkMaxLen($v, $len) {
-        return strlen($v) <= $len;
+        return iconv_strlen($v,"UTF-8") <= $len;
     }
 
     private static function isInt($v, $cond) {
