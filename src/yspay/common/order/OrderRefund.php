@@ -68,7 +68,7 @@ class OrderRefund
             $myParams['sign'] = trim($sign['check']);
             $url = $this->kernel->url;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_refund_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -119,7 +119,7 @@ class OrderRefund
             $myParams['sign'] = trim($sign['check']);
             $url = $this->kernel->url;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_refund_split_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -169,7 +169,7 @@ class OrderRefund
             $myParams['sign'] = trim($sign['check']);
             $url = $this->kernel->url;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_refund_general_account_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -213,7 +213,7 @@ class OrderRefund
             $myParams['sign'] = trim($sign['check']);
             $url = $this->kernel->url;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_refund_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -257,7 +257,7 @@ class OrderRefund
             $myParams['sign'] = trim($sign['check']);
             $url = $this->kernel->url;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_order_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -270,7 +270,7 @@ class OrderRefund
 
     /**
      * lfk
-     * @Desc 订单明细查询
+     * @Desc 收款交易对账单下载
      * @DATA 2021年7月08日下午2:02:09
      */
     public function billDownloadurlGet($model)
@@ -300,7 +300,7 @@ class OrderRefund
             $myParams['sign'] = trim($sign['check']);
             $url = $this->kernel->url;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_online_bill_downloadurl_get_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
