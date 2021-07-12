@@ -1,5 +1,6 @@
 <?php
 
+
 namespace Yspay\SDK\Model;
 
 
@@ -48,7 +49,6 @@ class DivisionOnlineAcceptRequest
      * 分账商户号
      */
     public $division_mer_usercode;
-
 
 
     public static function getParam($model)

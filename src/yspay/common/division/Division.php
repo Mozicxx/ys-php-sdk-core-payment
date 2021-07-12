@@ -65,9 +65,9 @@ class Division
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->commonUrl;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_single_division_online_accept_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -112,7 +112,7 @@ class Division
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->commonUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
         } catch (Exception $e) {
