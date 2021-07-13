@@ -44,7 +44,7 @@ class PayTest extends Base
 
         try {
             $request = new BarcodepayRequest();
-            $request->out_trade_no = "20210712123114";
+            $request->out_trade_no = "20210712123115";
             $request->shopdate = "20210712";
             $request->subject = "标题";
             $request->total_amount = "0.03";
@@ -54,7 +54,7 @@ class PayTest extends Base
             $request->business_code = "3010002";
             $request->scene = "bar_code";
             $request->bank_type = "1903000";
-            $request->auth_code = "283492766875359035";
+            $request->auth_code = "288409611882850720";
             $response = Factory::payClient()->payClass()->barcodepay($request);
             var_dump($response, true);
             $responseChecker = new ResponseChecker();
