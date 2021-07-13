@@ -41,12 +41,12 @@ class OrderTest extends Base
 
         try {
             $request = new TradeRefundRequest();
-            $request->out_trade_no = "20180525684318";
-            $request->shopdate = "20180522";
-            $request->trade_no = "20180525684318";
+            $request->out_trade_no = "20210712123113";
+            $request->shopdate = "20210712";
+            $request->trade_no = "";
             $request->refund_amount = "0.01";
-            $request->refund_reason = "20180525684318";
-            $request->out_request_no = "20180525684318";
+            $request->refund_reason = "退款";
+            $request->out_request_no = "RD2021123";
 
 
             $response = Factory::orderRefundClient()->orderRefundClass()->tradeRefund($request);
@@ -75,15 +75,15 @@ class OrderTest extends Base
 
         try {
             $request = new TradeRefundSplitRequest();
-            $request->out_trade_no = "20180525684318";
-            $request->shopdate = "20180525";
-            $request->trade_no = "20180525684318";
-            $request->refund_amount = "20.0";
-            $request->refund_reason = "20180525684318";
-            $request->out_request_no = "20180525684318";
-            $request->is_division = "1";
+            $request->out_trade_no = "20210712123113";
+            $request->shopdate = "20210712";
+            $request->trade_no = "";
+            $request->refund_amount = "0.01";
+            $request->refund_reason = "退款";
+            $request->out_request_no = "RD20211231";
+            $request->is_division = "01";
             $request->refund_split_info = "";
-            $request->ori_division_mode = "20180525684318";
+            $request->ori_division_mode = "01";
             $request->order_div_list = "";
 
 
@@ -184,9 +184,9 @@ class OrderTest extends Base
 
         try {
             $request = new TradeOrderQueryRequest();
-            $request->out_trade_no = "20180525684318";
-            $request->shopdate = "20180525";
-            $request->trade_no = "20180525684318";
+            $request->out_trade_no = "20210712123112";
+            $request->shopdate = "20210712";
+            $request->trade_no = "";
 
 
             $response = Factory::orderRefundClient()->orderRefundClass()->tradeOrderQuery($request);
@@ -215,7 +215,7 @@ class OrderTest extends Base
 
         try {
             $request = new BillDownloadurlGetRequest();
-            $request->account_date = "2018-05-25";
+            $request->account_date = "2021-07-11";
 
 
             $response = Factory::orderRefundClient()->orderRefundClass()->billDownloadurlGet($request);

@@ -44,17 +44,17 @@ class PayTest extends Base
 
         try {
             $request = new BarcodepayRequest();
-            $request->out_trade_no = "202052568431922806471183";
+            $request->out_trade_no = "20210712123114";
             $request->shopdate = "20210712";
             $request->subject = "标题";
-            $request->total_amount = "0.01";
-            $request->seller_id = "hyfz_test";   //hyfz_test
-            $request->seller_name = "银盛支付服务股份有限公司行业发展部";  //银盛支付服务股份有限公司行业发展部
+            $request->total_amount = "0.03";
+            $request->seller_id = "X2107061649551231243";   //hyfz_test
+            $request->seller_name = "刘志林";  //银盛支付服务股份有限公司行业发展部
             $request->timeout_express = "30m";
             $request->business_code = "3010002";
             $request->scene = "bar_code";
             $request->bank_type = "1903000";
-            $request->auth_code = "288046651429814424";
+            $request->auth_code = "283492766875359035";
             $response = Factory::payClient()->payClass()->barcodepay($request);
             var_dump($response, true);
             $responseChecker = new ResponseChecker();
@@ -302,7 +302,7 @@ class PayTest extends Base
             $request->out_trade_no = "202052568431922806471185";
             $request->shopdate = "20210712";
             $request->subject = "正扫支付";
-            $request->total_amount = "0.03";
+            $request->total_amount = "0.01";
             $request->currency = "CNY";
             $request->seller_id = "X2107061649551231243";
             $request->seller_name = "刘志林";
@@ -318,9 +318,8 @@ class PayTest extends Base
             $request->city = "";
             $request->limit_credit_pay = "";
             $request->hb_fq_num = "";
-            $request->allow_repeat_pay = "";
-            $request->fail_notify_url = "";
-            $request->tran_type = "";
+            $request->tran_type = "1";  //交易类型，说明：1或者空：即时到账，2：担保交易
+            $request->return_url = "";  //同步通知地址
 
 
             $response = Factory::payClient()->payClass()->qrcodepay($request);

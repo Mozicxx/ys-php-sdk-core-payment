@@ -35,13 +35,13 @@ class MerchantTest extends Base
 
         try {
             $request = new MerchantWithdrawRequest();
-            $request->out_trade_no = "20180525684318";
-            $request->shopdate = "20180525";
+            $request->out_trade_no = "202107121231";
+            $request->shopdate = "20210712";
             $request->currency = "CNY";
-            $request->merchant_usercode = "";
-            $request->total_amount = "20.01";
-            $request->subject = "20180525684319228";
-            $request->bank_account_no = "1000000000000000000";
+            $request->merchant_usercode = "X2107061649551231243";
+            $request->total_amount = "2.01";
+            $request->subject = "一般消费户提现";
+            $request->bank_account_no = "6217710310182456";
 
 
             $response = Factory::merchantClient()->merchantClass()->merchantWithdraw($request);
@@ -70,13 +70,13 @@ class MerchantTest extends Base
 
         try {
             $request = new MerchantWithdrawRequest();
-            $request->out_trade_no = "20180525684318";
-            $request->shopdate = "20180525";
+            $request->out_trade_no = "202107121232";
+            $request->shopdate = "20210712";
             $request->currency = "CNY";
-            $request->merchant_usercode = "";
+            $request->merchant_usercode = "X2107061649551231243";
             $request->total_amount = "20.01";
-            $request->subject = "20180525684319228";
-            $request->bank_account_no = "1000000000000000000";
+            $request->subject = "待结算账户提现";
+            $request->bank_account_no = "6217710310182456";
 
 
             $response = Factory::merchantClient()->merchantClass()->merchantWithdrawD0($request);
@@ -106,8 +106,8 @@ class MerchantTest extends Base
 
         try {
             $request = new MerchantWithdrawRequest();
-            $request->out_trade_no = "20180525684318";
-            $request->shopdate = "20180525";
+            $request->out_trade_no = "202107121232";
+            $request->shopdate = "20210712";
 
 
             $response = Factory::merchantClient()->merchantClass()->merchantWithdrawQuery($request);

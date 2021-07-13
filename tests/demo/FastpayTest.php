@@ -43,8 +43,8 @@ class FastpayTest extends Base
 
         try {
             $request = new FastpayRequest();
-            $request->out_trade_no = "20180525684319228064711813";
-            $request->shopdate = "20210709";
+            $request->out_trade_no = "202107131231";
+            $request->shopdate = "20210713";
             $request->subject = "测试消费";
             $request->total_amount = "0.01";
             $request->currency = "CNY";
@@ -99,11 +99,11 @@ class FastpayTest extends Base
 
         try {
             $request = new FastpayAuthorizeRequest();
-            $request->out_trade_no = "20180525684319228064711811";
+            $request->out_trade_no = "202107131231";
             $request->buyer_mobile = "18680352162";
-            $request->mobile_verify_code = "903707";
-            $request->cardCvn2 = "";
-            $request->cardExprDt = "";
+            $request->mobile_verify_code = "089812";
+            $request->cardCvn2 = "123";
+            $request->cardExprDt = "1234";
 
 
             $response = Factory::fastpayClient()->fastpayClass()->fastpayAuthorize($request);
@@ -132,7 +132,7 @@ class FastpayTest extends Base
 
         try {
             $request = new FastpayAuthorizeMsgReq();
-            $request->out_trade_no = "20180525684319228064711811";
+            $request->out_trade_no = "202107131231";
 
 
             $response = Factory::fastpayClient()->fastpayClass()->fastpayAuthorizeMsg($request);
