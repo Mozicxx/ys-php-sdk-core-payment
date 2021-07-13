@@ -8,6 +8,7 @@ class Config
 	public $postType;
 	public $url;
 	public $charset = "utf-8";
+	public $charsetGBK = "GBK";
 	public $sign_type = "RSA";
 	public $partner_id;
 	public $notify_url;

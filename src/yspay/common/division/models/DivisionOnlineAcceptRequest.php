@@ -45,10 +45,7 @@ class DivisionOnlineAcceptRequest
      *  div_amount, div_ratio, is_chargeFee等4个属性
      */
     public $div_list;
-    /**
-     * 分账商户号
-     */
-    public $division_mer_usercode;
+
 
 
     public static function getParam($model)
@@ -63,7 +60,6 @@ class DivisionOnlineAcceptRequest
             'is_again_division' => $model->is_again_division,
             'division_mode' => $model->division_mode,
             'div_list' => $model->div_list,
-            'division_mer_usercode' => $model->division_mer_usercode,
 
         );
 
@@ -93,9 +89,6 @@ class DivisionOnlineAcceptRequest
                 'division_mode' => [
                     Validator::MAX_LEN => 2,
                 ],
-                'division_mer_usercode' => [
-                ],
-
 
             ],
 

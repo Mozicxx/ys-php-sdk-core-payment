@@ -8,6 +8,7 @@ include_once "replace/replcepay/Replcepay.php";
 include_once "common/order/OrderRefund.php";
 include_once "common/division/Division.php";
 include_once "common/merchant/Merchant.php";
+include_once "authenticate/wechat/WeChatAuthenticate.php";
 
 
 use Yspay\SDK\Pay as payClass;
@@ -17,6 +18,7 @@ use Yspay\SDK\Replcepay as replcePayClass;
 use Yspay\SDK\OrderRefund as orderRefundClass;
 use Yspay\SDK\Merchant as merchantClass;
 use Yspay\SDK\Division as divisionClass;
+use Yspay\SDK\WeChatAuthenticate as weChatAuthenticateClass;
 
 
 
@@ -32,6 +34,7 @@ class Factory
     public static $orderRefundClient;
     public static $divisionClient;
     public static $merchantClient;
+    public static $weChatAuthenticateClient;
 
 
     protected static $util;
@@ -61,6 +64,7 @@ class Factory
         self::$orderRefundClient = new OrderRefundClient($config);
         self::$divisionClient = new DivisionClient($config);
         self::$merchantClient = new MerchantClient($config);
+        self::$weChatAuthenticateClient = new WeChatAuthenticateClient($config);
 
 
     }
@@ -107,6 +111,10 @@ class Factory
     public static function merchantClient()
     {
         return self::$merchantClient;
+    }
+    public static function weChatAuthenticateClient()
+    {
+        return self::$weChatAuthenticateClient;
     }
 
 
@@ -223,6 +231,23 @@ class MerchantClient
     public function merchantClass()
     {
         return new merchantClass($this->kernel);
+    }
+
+}
+
+
+class WeChatAuthenticateClient
+{
+    private $kernel;
+
+    public function __construct($kernel)
+    {
+        $this->kernel = $kernel;
+    }
+
+    public function weChatAuthenticateClass()
+    {
+        return new weChatAuthenticateClass($this->kernel);
     }
 
 }

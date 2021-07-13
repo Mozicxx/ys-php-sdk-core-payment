@@ -148,7 +148,6 @@ class Common
             if ($response["sign"] != null) {
                 $sign = $response["sign"];
                 $data = stripslashes(json_encode($response[$response_name], JSON_UNESCAPED_UNICODE));
-                var_dump($data);
                 // 验证签名 仅作基础验证
                 if ($this->sign_check($sign, $data) == true) {
                     echo "验证签名成功!";
@@ -163,6 +162,19 @@ class Common
         }
     }
 
+
+    /**
+     * 转码
+     */
+    function str_to_utf8 ($str = '') {
+
+        $current_encode = mb_detect_encoding($str, array("ASCII","GB2312","GBK",'BIG5','UTF-8'));
+
+        $encoded_str = mb_convert_encoding($str, 'UTF-8', $current_encode);
+
+        return $encoded_str;
+
+    }
 
     /**
      * 验签转明码
