@@ -39,17 +39,17 @@ class WeChatAuthenticateTest extends Base
 
         try {
             $request = new WeChatAuthenticateApplyRequest();
-            $request->usercode = "2021071232318";
-            $request->cust_name = "2021071232318";
-            $request->contact_cert_type = "20";
-            $request->contact_cert_no = "2021071232318";
-            $request->legal_cert_initial = "2";
-            $request->legal_cert_expire = "28";
-            $request->bus_license_initial = "2";
-            $request->bus_license_expire = "2021071232318";
-            $request->store_type = "1";
-            $request->store_name = "2021071232318";
-            $request->token = "2021071232318";
+            $request->usercode = "X2107061649551231243";
+            $request->cust_name = "商户_刘志林";
+            $request->contact_cert_type = "00";
+            $request->contact_cert_no = "360781199608035113";
+            $request->legal_cert_initial = "20180503";
+            $request->legal_cert_expire = "20380503";
+            $request->bus_license_initial = "";
+            $request->bus_license_expire = "";
+            $request->store_type = "01";
+            $request->store_name = "01";
+            $request->token = "";
 
             $response = Factory::weChatAuthenticateClient()->weChatAuthenticateClass()->WeChatAuthenticateApply($request);
             var_dump($response, true);
@@ -102,16 +102,27 @@ class WeChatAuthenticateTest extends Base
 
         try {
             $request = new WeChatUploadPicRequest();
-            $request->superUsercode = "hyfz_test2";
+            $request->superUsercode = "X2107061649551231243";
             $request->picType = "34";
-            $request->token = "TK20210713153434486TNIrX20u";
-            $request->filePath = "D:/pic/jpg/demo.jpg";
+            $request->token = "TK20210713161519152HsP0hPnn";
+            $request->filePath = "E:/tp/jpg/34.jpg";
             $request->filename = "demo.jpg";
 
             $response = Factory::weChatAuthenticateClient()->weChatAuthenticateClass()->weChatUploadPic($request);
             var_dump($response, true);
 
-        } catch (Exception $e) {
+            $request = new WeChatUploadPicRequest();
+            $request->superUsercode = "X2107061649551231243";
+            $request->picType = "50";
+            $request->token = "TK20210713161519152HsP0hPnn";
+            $request->filePath = "E:/tp/jpg/50.jpg";
+            $request->filename = "demo.jpg";
+
+            $response = Factory::weChatAuthenticateClient()->weChatAuthenticateClass()->weChatUploadPic($request);
+            var_dump($response, true);
+
+        }
+        catch (Exception $e) {
             echo "调用失败，" . $e->getMessage() . PHP_EOL;;
         }
 

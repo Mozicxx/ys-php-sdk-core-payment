@@ -84,7 +84,7 @@ class OrderTest extends Base
             $request->is_division = "01";
             $request->refund_split_info = "";
             $request->ori_division_mode = "01";
-            $div_list = array(
+            $order_div_list = array(
                 [
                     "division_mer_usercode" => "hyfz_test2",
                     "div_amount" => "0.01",
@@ -99,6 +99,7 @@ class OrderTest extends Base
                 ]
             );
 
+            $request->order_div_list = $order_div_list;
 
             $response = Factory::orderRefundClient()->orderRefundClass()->tradeRefundSplit($request);
             var_dump($response, true);
