@@ -49,7 +49,7 @@ class WeChatAuthenticateTest extends Base
             $request->bus_license_expire = "";
             $request->store_type = "01";
             $request->store_name = "01";
-            $request->token = "";
+            $request->token = "TK20210713163354185OlsfgAkC";
 
             $response = Factory::weChatAuthenticateClient()->weChatAuthenticateClass()->WeChatAuthenticateApply($request);
             var_dump($response, true);
@@ -104,7 +104,7 @@ class WeChatAuthenticateTest extends Base
             $request = new WeChatUploadPicRequest();
             $request->superUsercode = "X2107061649551231243";
             $request->picType = "34";
-            $request->token = "TK20210713161519152HsP0hPnn";
+            $request->token = "TK20210713163354185OlsfgAkC";
             $request->filePath = "E:/tp/jpg/34.jpg";
             $request->filename = "demo.jpg";
 
@@ -114,7 +114,7 @@ class WeChatAuthenticateTest extends Base
             $request = new WeChatUploadPicRequest();
             $request->superUsercode = "X2107061649551231243";
             $request->picType = "50";
-            $request->token = "TK20210713161519152HsP0hPnn";
+            $request->token = "TK20210713163354185OlsfgAkC";
             $request->filePath = "E:/tp/jpg/50.jpg";
             $request->filename = "demo.jpg";
 
