@@ -75,31 +75,42 @@ class OrderTest extends Base
 
         try {
             $request = new TradeRefundSplitRequest();
-            $request->out_trade_no = "20210712123114";
+            $request->out_trade_no = "20210712123115";
             $request->shopdate = "20210712";
             $request->trade_no = "";
             $request->refund_amount = "0.03";
             $request->refund_reason = "退款";
             $request->out_request_no = "交易金退款";
-            $request->is_division = "01";
+            $request->is_division = "";
             $request->refund_split_info = "";
-            $request->ori_division_mode = "01";
-            $order_div_list = array(
+            $request->ori_division_mode = "02";
+            $refund_split_info = array(
                 [
-                    "division_mer_usercode" => "hyfz_test2",
-                    "div_amount" => "0.01",
-                    "div_ratio" => "",
-                    "is_chargeFee" => "02",
+                    "division_mer_id" => "hyfz_test2",
+                    "division_amount" => "0.01",
                 ],
                 [
-                    "division_mer_usercode" => "X2107061649551231243",
-                    "div_amount" => "0.02",
-                    "div_ratio" => "",
-                    "is_chargeFee" => "01",
+                    "division_mer_id" => "X2107061649551231243",
+                    "division_amount" => "0.02",
+                ]
+            );
+
+            $request->refund_split_info = $refund_split_info;
+            $order_div_list = array(
+                [
+                    "division_mer_id" => "hyfz_test2",
+                    "division_amount" => "0.01",
+                    "is_charge_fee" => "02",
+                ],
+                [
+                    "division_mer_id" => "X2107061649551231243",
+                    "division_amount" => "0.02",
+                    "is_charge_fee" => "01",
                 ]
             );
 
             $request->order_div_list = $order_div_list;
+
 
             $response = Factory::orderRefundClient()->orderRefundClass()->tradeRefundSplit($request);
             var_dump($response, true);
@@ -127,13 +138,13 @@ class OrderTest extends Base
 
         try {
             $request = new TradeRefundGeneralAccountReq();
-            $request->out_trade_no = "20180525684318";
-            $request->shopdate = "20180525";
-            $request->trade_no = "20180525684318";
-            $request->refund_amount = "0.01";
-            $request->refund_reason = "20180525684318";
-            $request->out_request_no = "20180525684318";
-            $request->is_division = "1";
+            $request->out_trade_no = "20210712123115";
+            $request->shopdate = "20210712";
+            $request->trade_no = "";
+            $request->refund_amount = "0.03";
+            $request->refund_reason = "不想买了";
+            $request->out_request_no = "RD2012061713107";
+            $request->is_division = "01";
             $request->refund_split_info = "";
 
 

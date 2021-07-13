@@ -33,7 +33,7 @@ class DivisionTest extends Base
 
         try {
             $request = new DivisionOnlineAcceptRequest();
-            $request->out_trade_no = "20210712123114";
+            $request->out_trade_no = "20210712123115";
             $request->payee_usercode = "X2107061649551231243";
             $request->total_amount = "0.03";
             $request->sys_flag = "DD";
@@ -84,7 +84,7 @@ class DivisionTest extends Base
         try {
             $request = new DivisionOnlineQueryRequest();
             $request->src_usercode = "hyfz_test2";
-            $request->out_trade_no = "20210712123114";
+            $request->out_trade_no = "20210712123115";
             $request->out_batch_no = "";
             $request->sys_flag = "";
 

@@ -39,10 +39,10 @@ class WeChatAuthenticateTest extends Base
 
         try {
             $request = new WeChatAuthenticateApplyRequest();
-            $request->usercode = "X2107061649551231243";
-            $request->cust_name = "商户_刘志林";
+            $request->usercode = "";
+            $request->cust_name = "";
             $request->contact_cert_type = "00";
-            $request->contact_cert_no = "360781199608035113";
+            $request->contact_cert_no = "";
             $request->legal_cert_initial = "20180503";
             $request->legal_cert_expire = "20380503";
             $request->bus_license_initial = "";
@@ -138,7 +138,7 @@ class WeChatAuthenticateTest extends Base
 
         try {
             $request = new WechatAuthenticateRequest();
-            $request->apply_no = "826513086510202";
+            $request->apply_no = "R0713173333527707823";
 
             $response = Factory::weChatAuthenticateClient()->weChatAuthenticateClass()->authenticateApplyCancel($request);
             var_dump($response, true);
@@ -165,7 +165,7 @@ class WeChatAuthenticateTest extends Base
 
         try {
             $request = new WechatAuthenticateRequest();
-            $request->apply_no = "826513086510202";
+            $request->apply_no = "R0713173333527707823";
 
             $response = Factory::weChatAuthenticateClient()->weChatAuthenticateClass()->authenticateQuery($request);
             var_dump($response, true);
@@ -193,7 +193,7 @@ class WeChatAuthenticateTest extends Base
 
         try {
             $request = new AuthenticateApplyQueryRequest();
-            $request->usercode = "826513086510202";
+            $request->usercode = "X2107061649551231243";
 
             $response = Factory::weChatAuthenticateClient()->weChatAuthenticateClass()->authenticateApplyQuery($request);
             var_dump($response, true);
