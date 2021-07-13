@@ -240,7 +240,7 @@ class OrderRefund
             $myParams['method'] = 'ysepay.online.trade.order.query';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
+            $myParams['charset'] = $this->kernel->charsetGBK;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;

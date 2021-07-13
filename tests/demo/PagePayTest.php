@@ -63,13 +63,7 @@ class PagePayTest extends Base
 
             $response = Factory::pagePayClient()->pagePayClass()->wapDirectpayCreatebyuser($request);
             var_dump($response, true);
-            $responseChecker = new ResponseChecker();
-            // 处理响应或异常
-            if ($responseChecker->success($response)) {
-                echo "调用成功" . PHP_EOL;
-            } else {
-                echo "调用失败,原因：" . $response->response['msg'];
-            }
+
         } catch (Exception $e) {
             echo "调用失败，" . $e->getMessage() . PHP_EOL;;
         }
@@ -110,13 +104,7 @@ class PagePayTest extends Base
 
             $response = Factory::pagePayClient()->pagePayClass()->directpayCreatebyuser($request);
             var_dump($response, true);
-            $responseChecker = new ResponseChecker();
-            // 处理响应或异常
-            if ($responseChecker->success($response)) {
-                echo "调用成功" . PHP_EOL;
-            } else {
-                echo "调用失败,原因：" . $response->response['msg'];
-            }
+
         } catch (Exception $e) {
             echo "调用失败，" . $e->getMessage() . PHP_EOL;;
         }
