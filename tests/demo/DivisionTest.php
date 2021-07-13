@@ -33,11 +33,11 @@ class DivisionTest extends Base
 
         try {
             $request = new DivisionOnlineAcceptRequest();
-            $request->out_trade_no = "20210713163114";
+            $request->out_trade_no = "20210712123114";
             $request->payee_usercode = "X2107061649551231243";
             $request->total_amount = "0.03";
             $request->sys_flag = "DD";
-            $request->is_divistion = "02";
+            $request->is_divistion = "01";
             $request->is_again_division = "N";
             $request->division_mode = "02";
 
@@ -83,15 +83,10 @@ class DivisionTest extends Base
 
         try {
             $request = new DivisionOnlineQueryRequest();
-            $request->out_trade_no = "201805256843192280647118";
-            $request->payee_usercode = "2018052568";
-            $request->total_amount = "20.00";
-            $request->sys_flag = "DD";
-            $request->is_divistion = "01";
-            $request->is_again_division = "y";
-            $request->division_mode = "01";
-            $request->div_list = "";
-            $request->division_mer_usercode = "201808";
+            $request->src_usercode = "hyfz_test2";
+            $request->out_trade_no = "20210712123114";
+            $request->out_batch_no = "";
+            $request->sys_flag = "";
 
             $response = Factory::divisionClient()->divisionClass()->divisionOnlineQuery($request);
             var_dump($response, true);
