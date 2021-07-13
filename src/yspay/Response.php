@@ -27,6 +27,22 @@ class Response  {
 
         return $model;
     }
+
+     /**
+     * @param array $map
+     * @return
+     */
+    public static function setMap($map = []) {
+        $model = new self();
+        if(isset($map)){
+            $model->response = $map;
+        }
+
+        return $model;
+    }
+
+
+
     /**
      * @description 响应原始字符串
      * @var string

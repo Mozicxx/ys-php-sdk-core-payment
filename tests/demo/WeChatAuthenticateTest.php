@@ -1,0 +1,203 @@
+<?php
+include_once "../../src/yspay/util/ResponseChecker.php";
+include_once "../../src/yspay/authenticate/wechat/models/WeChatAuthenticateApplyRequest.php";
+include_once "../../src/yspay/authenticate/wechat/models/WechatAuthenticateRequest.php";
+include_once "../../src/yspay/authenticate/wechat/models/WeChatUploadPicRequest.php";
+include_once "../../src/yspay/authenticate/wechat/models/AuthenticateApplyQueryRequest.php";
+include_once "Base.php";
+
+use Yspay\Gathering\SDK\Factory;
+use Yspay\SDK\Gathering\Base;
+use Yspay\SDK\Kernel\Gathering\Util\ResponseChecker;
+use Yspay\SDK\Model\AuthenticateApplyQueryRequest;
+use Yspay\SDK\Model\DivisionOnlineAcceptRequest;
+use Yspay\SDK\Model\MerchantBalanceQueryRequest;
+use Yspay\SDK\Model\MerchantWithdrawRequest;
+use Yspay\SDK\Model\WeChatAuthenticateApplyRequest;
+use Yspay\SDK\Model\WechatAuthenticateRequest;
+use Yspay\SDK\Model\WeChatUploadPicRequest;
+
+
+class WeChatAuthenticateTest extends Base
+{
+    function __construct()
+    {
+        parent::__construct();
+
+        Base::instance();
+
+    }
+
+
+    /**
+     * lfk
+     * @Desc 微信实名认证开户意愿申请
+     * @DATA 2021年7月12日下午2:02:09
+     */
+    public function testWeChatAuthenticateApply()
+    {
+
+        try {
+            $request = new WeChatAuthenticateApplyRequest();
+            $request->usercode = "2021071232318";
+            $request->cust_name = "2021071232318";
+            $request->contact_cert_type = "20";
+            $request->contact_cert_no = "2021071232318";
+            $request->legal_cert_initial = "2";
+            $request->legal_cert_expire = "28";
+            $request->bus_license_initial = "2";
+            $request->bus_license_expire = "2021071232318";
+            $request->store_type = "1";
+            $request->store_name = "2021071232318";
+            $request->token = "2021071232318";
+
+            $response = Factory::weChatAuthenticateClient()->weChatAuthenticateClass()->WeChatAuthenticateApply($request);
+            var_dump($response, true);
+            $responseChecker = new ResponseChecker();
+            // 处理响应或异常
+            if ($responseChecker->success($response)) {
+                echo "调用成功" . PHP_EOL;
+            } else {
+                echo "调用失败,原因：" . $response->response['msg'];
+            }
+        } catch (Exception $e) {
+            echo "调用失败，" . $e->getMessage() . PHP_EOL;;
+        }
+
+    }
+
+
+    /**
+     * lfk
+     * @Desc 图片上传口令获取
+     * @DATA 2021年7月12日下午2:02:09
+     */
+    public function testRegisterTokenGet()
+    {
+
+        try {
+
+            $response = Factory::weChatAuthenticateClient()->weChatAuthenticateClass()->registerTokenGet();
+            var_dump($response, true);
+            $responseChecker = new ResponseChecker();
+            // 处理响应或异常
+            if ($responseChecker->success($response)) {
+                echo "调用成功" . PHP_EOL;
+            } else {
+                echo "调用失败,原因：" . $response->response['msg'];
+            }
+        } catch (Exception $e) {
+            echo "调用失败，" . $e->getMessage() . PHP_EOL;;
+        }
+
+    }
+
+    /**
+     * lfk
+     * @Desc 图片上传
+     * @DATA 2021年7月12日下午2:02:09
+     */
+    public function testWeChatUploadPic()
+    {
+
+        try {
+            $request = new WeChatUploadPicRequest();
+            $request->superUsercode = "hyfz_test2";
+            $request->picType = "34";
+            $request->token = "TK20210713153434486TNIrX20u";
+            $request->filePath = "D:/pic/jpg/demo.jpg";
+            $request->filename = "demo.jpg";
+
+            $response = Factory::weChatAuthenticateClient()->weChatAuthenticateClass()->weChatUploadPic($request);
+            var_dump($response, true);
+
+        } catch (Exception $e) {
+            echo "调用失败，" . $e->getMessage() . PHP_EOL;;
+        }
+
+    }
+
+    /**
+     * lfk
+     * @Desc 微信实名认证-撤销申请单
+     * @DATA 2021年7月12日下午2:02:09
+     */
+    public function testAuthenticateApplyCancel()
+    {
+
+        try {
+            $request = new WechatAuthenticateRequest();
+            $request->apply_no = "826513086510202";
+
+            $response = Factory::weChatAuthenticateClient()->weChatAuthenticateClass()->authenticateApplyCancel($request);
+            var_dump($response, true);
+            $responseChecker = new ResponseChecker();
+            // 处理响应或异常
+            if ($responseChecker->success($response)) {
+                echo "调用成功" . PHP_EOL;
+            } else {
+                echo "调用失败,原因：" . $response->response['msg'];
+            }
+        } catch (Exception $e) {
+            echo "调用失败，" . $e->getMessage() . PHP_EOL;;
+        }
+
+    }
+
+    /**
+     * lfk
+     * @Desc 查询微信实名认证申请单状态
+     * @DATA 2021年7月12日下午2:02:09
+     */
+    public function testAuthenticateQuery()
+    {
+
+        try {
+            $request = new WechatAuthenticateRequest();
+            $request->apply_no = "826513086510202";
+
+            $response = Factory::weChatAuthenticateClient()->weChatAuthenticateClass()->authenticateQuery($request);
+            var_dump($response, true);
+            $responseChecker = new ResponseChecker();
+            // 处理响应或异常
+            if ($responseChecker->success($response)) {
+                echo "调用成功" . PHP_EOL;
+            } else {
+                echo "调用失败,原因：" . $response->response['msg'];
+            }
+        } catch (Exception $e) {
+            echo "调用失败，" . $e->getMessage() . PHP_EOL;;
+        }
+
+    }
+
+
+    /**
+     * lfk
+     * @Desc 查询微信实名认证授权状态
+     * @DATA 2021年7月12日下午2:02:09
+     */
+    public function testAuthenticateApplyQuery()
+    {
+
+        try {
+            $request = new AuthenticateApplyQueryRequest();
+            $request->usercode = "826513086510202";
+
+            $response = Factory::weChatAuthenticateClient()->weChatAuthenticateClass()->authenticateApplyQuery($request);
+            var_dump($response, true);
+            $responseChecker = new ResponseChecker();
+            // 处理响应或异常
+            if ($responseChecker->success($response)) {
+                echo "调用成功" . PHP_EOL;
+            } else {
+                echo "调用失败,原因：" . $response->response['msg'];
+            }
+        } catch (Exception $e) {
+            echo "调用失败，" . $e->getMessage() . PHP_EOL;;
+        }
+
+    }
+
+
+}
