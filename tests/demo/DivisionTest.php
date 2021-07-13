@@ -40,9 +40,7 @@ class DivisionTest extends Base
             $request->is_divistion = "02";
             $request->is_again_division = "N";
             $request->division_mode = "02";
-            $request->div_list = " [{'division_mer_usercode': 'hyfz_test2', 'div_amount': 0.01, 'div_ratio': '', 'is_chargeFee': '02'},
-             {'division_mer_usercode': 'X2107061649551231243', 'div_amount': 0.02, 'div_ratio': '', 'is_chargeFee': '01'}]";
-
+            $request->div_list = "[{\"division_mer_usercode\":\"hyfz_test2\",\"div_amount\": \"0.01\", \"div_ratio\": \"\", \"is_chargeFee\": \"02\"},{\"division_mer_usercode\": \"X2107061649551231243\", \"div_amount\": \"0.02\", \"div_ratio\": \"\", \"is_chargeFee\": \"01\"}]";
 
             $response = Factory::divisionClient()->divisionClass()->divisionOnlineAccept($request);
             var_dump($response, true);
@@ -58,7 +56,6 @@ class DivisionTest extends Base
         }
 
     }
-
 
 
     /**
@@ -95,9 +92,6 @@ class DivisionTest extends Base
         }
 
     }
-
-
-
 
 
 }
