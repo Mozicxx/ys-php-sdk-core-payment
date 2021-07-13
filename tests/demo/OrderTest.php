@@ -75,16 +75,29 @@ class OrderTest extends Base
 
         try {
             $request = new TradeRefundSplitRequest();
-            $request->out_trade_no = "20210712123113";
+            $request->out_trade_no = "20210712123114";
             $request->shopdate = "20210712";
             $request->trade_no = "";
-            $request->refund_amount = "0.01";
+            $request->refund_amount = "0.03";
             $request->refund_reason = "退款";
-            $request->out_request_no = "RD20211231";
+            $request->out_request_no = "交易金退款";
             $request->is_division = "01";
             $request->refund_split_info = "";
             $request->ori_division_mode = "01";
-            $request->order_div_list = "";
+            $div_list = array(
+                [
+                    "division_mer_usercode" => "hyfz_test2",
+                    "div_amount" => "0.01",
+                    "div_ratio" => "",
+                    "is_chargeFee" => "02",
+                ],
+                [
+                    "division_mer_usercode" => "X2107061649551231243",
+                    "div_amount" => "0.02",
+                    "div_ratio" => "",
+                    "is_chargeFee" => "01",
+                ]
+            );
 
 
             $response = Factory::orderRefundClient()->orderRefundClass()->tradeRefundSplit($request);

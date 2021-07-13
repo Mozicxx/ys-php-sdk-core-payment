@@ -347,7 +347,7 @@ class PayTest extends Base
 
         try {
             $request = new MobileControlsPayRequest();
-            $request->out_trade_no = "202052568431922806471186";
+            $request->out_trade_no = "20205261231";
             $request->shopdate = "20210712";
             $request->subject = "手机控件支付";
             $request->total_amount = "0.03";
