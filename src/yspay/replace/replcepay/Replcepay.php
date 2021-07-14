@@ -7,6 +7,7 @@ use Yspay\SDK\Gathering\Kernel\Common;
 use Yspay\SDK\Gathering\Payment\Common\Models\Response;
 use Yspay\SDK\Model\DfBillDownloadurlGetRequest;
 use Yspay\SDK\Model\DfSingleQuickAcceptRequest;
+use Yspay\SDK\Model\DfSingleQuickInnerAcceptReq;
 use Yspay\SDK\Model\DSingleQuickQueryRequest;
 use Yspay\SDK\Model\WapDirectpayCreatebyuserReq;
 
@@ -44,7 +45,7 @@ class Replcepay
             $myParams['method'] = 'ysepay.df.single.quick.accept';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
+            $myParams['charset'] = $this->kernel->charset;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
@@ -66,7 +67,7 @@ class Replcepay
                 "bank_account_type" => $model->bank_account_type,
                 "bank_account_no" => $model->bank_account_no,
                 "cert_type" => $model->cert_type,
-                "cert_no" => $model->cert_no,
+                "cert_no" => $this->common->encryptDes($model->cert_no, $this->kernel->partner_id),
                 "cert_expire" => $model->cert_expire,
                 "consignee_info" => $model->consignee_info,
                 "proxy_password" => $model->proxy_password,
@@ -99,8 +100,8 @@ class Replcepay
     public function dfSingleQuickInnerAccept($model)
     {
         try {
-            $check = $this->common->checkFields(DfSingleQuickAcceptRequest::getCheckRules()
-                , DfSingleQuickAcceptRequest::getParam($model));//数据校验
+            $check = $this->common->checkFields(DfSingleQuickInnerAcceptReq::getCheckRules()
+                , DfSingleQuickInnerAcceptReq::getParam($model));//数据校验
             if ($check->checkFlag != true) {
                 return $check;
             }
@@ -108,7 +109,7 @@ class Replcepay
             $myParams['method'] = 'ysepay.df.single.quick.inner.accept';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
+            $myParams['charset'] = $this->kernel->charset;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
@@ -119,23 +120,13 @@ class Replcepay
                 "shopdate" => $model->shopdate,
                 "total_amount" => $model->total_amount,
                 "currency" => $model->currency,
-                "bank_city" => $model->bank_city,
-                "bank_province" => $model->bank_province,
                 "business_code" => $model->business_code,
                 "subject" => $model->subject,
-                "bank_name" => $model->bank_name,
-                "bank_account_name" => $model->bank_account_name,
-                "bank_card_type" => $model->bank_card_type,
-                "bank_telephone_no" => $model->bank_telephone_no,
-                "bank_account_type" => $model->bank_account_type,
-                "bank_account_no" => $model->bank_account_no,
-                "cert_type" => $model->cert_type,
-                "cert_no" => $model->cert_no,
-                "cert_expire" => $model->cert_expire,
-                "consignee_info" => $model->consignee_info,
+                "payee_cust_name" => $model->payee_cust_name,
+                "payee_user_code" => $model->payee_user_code,
+                "telephone_no" => $model->telephone_no,
                 "proxy_password" => $model->proxy_password,
                 "merchant_usercode" => $model->merchant_usercode,
-
 
             );
             $bizReqJson = $this->common->unsetArry($bizReqJson);
@@ -174,7 +165,7 @@ class Replcepay
             $myParams['method'] = 'ysepay.df.single.query';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
+            $myParams['charset'] = $this->kernel->charset;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
@@ -192,7 +183,7 @@ class Replcepay
             $myParams['sign'] = trim($sign['check']);
             $url = $this->kernel->dfOderUrl;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_df_single_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -220,7 +211,7 @@ class Replcepay
             $myParams['method'] = 'ysepay.df.bill.downloadurl.get';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
+            $myParams['charset'] = $this->kernel->charset;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;

@@ -55,8 +55,11 @@ class PagePayTest extends Base
             $request->tran_type = "2";
 
             $response = Factory::pagePayClient()->pagePayClass()->wapDirectpayCreatebyuser($request);
+            $txt = $response->response;
+            $myfile = fopen("./pagepay/WapPayTest.html", "w") or die("Unable to open file!");
+            fwrite($myfile, $txt);
+            fclose($myfile);
             var_dump($response, true);
-
         } catch (Exception $e) {
             echo "调用失败，" . $e->getMessage() . PHP_EOL;;
         }
@@ -95,6 +98,10 @@ class PagePayTest extends Base
             $request->tran_type = "2";
 
             $response = Factory::pagePayClient()->pagePayClass()->directpayCreatebyuser($request);
+            $txt = $response->response;
+            $myfile = fopen("./pagepay/WebPayTest.html", "w") or die("Unable to open file!");
+            fwrite($myfile, $txt);
+            fclose($myfile);
             var_dump($response, true);
 
         } catch (Exception $e) {
