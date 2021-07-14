@@ -7,6 +7,7 @@ use Yspay\SDK\Gathering\Kernel\Common;
 use Yspay\SDK\Gathering\Payment\Common\Models\Response;
 use Yspay\SDK\Model\DfBillDownloadurlGetRequest;
 use Yspay\SDK\Model\DfSingleQuickAcceptRequest;
+use Yspay\SDK\Model\DfSingleQuickInnerAcceptReq;
 use Yspay\SDK\Model\DSingleQuickQueryRequest;
 use Yspay\SDK\Model\WapDirectpayCreatebyuserReq;
 
@@ -66,7 +67,7 @@ class Replcepay
                 "bank_account_type" => $model->bank_account_type,
                 "bank_account_no" => $model->bank_account_no,
                 "cert_type" => $model->cert_type,
-                "cert_no" => $model->cert_no,
+                "cert_no" => $this->common->encryptDes($model->cert_no, $this->kernel->partner_id),
                 "cert_expire" => $model->cert_expire,
                 "consignee_info" => $model->consignee_info,
                 "proxy_password" => $model->proxy_password,
@@ -99,8 +100,8 @@ class Replcepay
     public function dfSingleQuickInnerAccept($model)
     {
         try {
-            $check = $this->common->checkFields(DfSingleQuickAcceptRequest::getCheckRules()
-                , DfSingleQuickAcceptRequest::getParam($model));//数据校验
+            $check = $this->common->checkFields(DfSingleQuickInnerAcceptReq::getCheckRules()
+                , DfSingleQuickInnerAcceptReq::getParam($model));//数据校验
             if ($check->checkFlag != true) {
                 return $check;
             }
@@ -119,23 +120,13 @@ class Replcepay
                 "shopdate" => $model->shopdate,
                 "total_amount" => $model->total_amount,
                 "currency" => $model->currency,
-                "bank_city" => $model->bank_city,
-                "bank_province" => $model->bank_province,
                 "business_code" => $model->business_code,
                 "subject" => $model->subject,
-                "bank_name" => $model->bank_name,
-                "bank_account_name" => $model->bank_account_name,
-                "bank_card_type" => $model->bank_card_type,
-                "bank_telephone_no" => $model->bank_telephone_no,
-                "bank_account_type" => $model->bank_account_type,
-                "bank_account_no" => $model->bank_account_no,
-                "cert_type" => $model->cert_type,
-                "cert_no" => $model->cert_no,
-                "cert_expire" => $model->cert_expire,
-                "consignee_info" => $model->consignee_info,
+                "payee_cust_name" => $model->payee_cust_name,
+                "payee_user_code" => $model->payee_user_code,
+                "telephone_no" => $model->telephone_no,
                 "proxy_password" => $model->proxy_password,
                 "merchant_usercode" => $model->merchant_usercode,
-
 
             );
             $bizReqJson = $this->common->unsetArry($bizReqJson);
