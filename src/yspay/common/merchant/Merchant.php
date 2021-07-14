@@ -45,7 +45,7 @@ class Merchant
             $myParams['method'] = 'ysepay.merchant.withdraw.quick.accept';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
+            $myParams['charset'] = $this->kernel->charset;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
@@ -94,7 +94,7 @@ class Merchant
             $myParams['method'] = 'ysepay.merchant.withdraw.d0.accept';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
+            $myParams['charset'] = $this->kernel->charset;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
@@ -142,7 +142,7 @@ class Merchant
             $myParams['method'] = 'ysepay.merchant.withdraw.quick.query';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
+            $myParams['charset'] = $this->kernel->charset;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
@@ -185,7 +185,7 @@ class Merchant
             $myParams['method'] = 'ysepay.merchant.balance.query';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
+            $myParams['charset'] = $this->kernel->charset;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
