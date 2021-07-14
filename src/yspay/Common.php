@@ -147,7 +147,7 @@ class Common
             var_dump($response);
             if ($response["sign"] != null) {
                 $sign = $response["sign"];
-                $data = stripslashes(json_encode($response[$response_name], JSON_UNESCAPED_UNICODE));
+                $data = json_encode($response[$response_name], JSON_UNESCAPED_UNICODE);
                 // 验证签名 仅作基础验证
                 if ($this->sign_check($sign, $data) == true) {
                     echo "验证签名成功!";
