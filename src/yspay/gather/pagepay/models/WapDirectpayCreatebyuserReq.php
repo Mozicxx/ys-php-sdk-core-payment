@@ -31,10 +31,6 @@ class WapDirectpayCreatebyuserReq
      */
     public $total_amount;
 
-    /**
-     * 支持币种
-     */
-    public $currency;
 
     /**
      * 收款方银盛支付用户号
@@ -81,10 +77,6 @@ class WapDirectpayCreatebyuserReq
      * 支持卡类型
      */
     public $support_card_type;
-    /**
-     * 商户用户id
-     */
-    public $mer_outside_custid;
 
     /**
      * 卡号，当pay_mode为fastpay时必填
@@ -112,39 +104,15 @@ class WapDirectpayCreatebyuserReq
     public $fast_pay_cvv2;
 
 
-
-
-    /**
-     * 收货人信息json格式
-     */
-    public $consignee_info;
-
-    /**
-     * 跨境支付付款人信息json格式，当收款方商户为跨境商户时，此域所有字段必填。
-     */
-    public $cross_border_info;
-
-
-    /**
-     * 微信分配的子商户公众号账号ID
-     */
-    public $appid;
-
-    /**
-     * 订单所属省编号（省市编号必须同时为空或者同时非空、并且需要符合层级关系）
-     */
-    public $province;
-
-    /**
-     * 订单所属市编号（省市编号必须同时为空或者同时非空、并且需要符合层级关系）
-     */
-    public $city;
-
-
     /**
      * 同步地址
      */
     public $return_url;
+
+    /**
+     * 交易类型，说明：1或者空：即时到账，2：担保交易
+     */
+    public $tran_type;
 
 
 
@@ -160,7 +128,6 @@ class WapDirectpayCreatebyuserReq
             'shopdate' => $model->shopdate,
             'subject' => $model->subject,
             'total_amount' => $model->total_amount,
-            'currency' => $model->currency,
             'seller_id' => $model->seller_id,
             'seller_name' => $model->seller_name,
             'timeout_express' => $model->timeout_express,
@@ -171,19 +138,15 @@ class WapDirectpayCreatebyuserReq
             'bank_type' => $model->bank_type,
             'bank_account_type' => $model->bank_account_type,
             'support_card_type' => $model->support_card_type,
-            'mer_outside_custid' => $model->mer_outside_custid,
             'bank_account_no' => $model->bank_account_no,
             'fast_pay_name' => $model->fast_pay_name,
             'fast_pay_id_no' => $model->fast_pay_id_no,
             'fast_pay_validity' => $model->fast_pay_validity,
             'fast_pay_mobile' => $model->fast_pay_mobile,
             'fast_pay_cvv2' => $model->fast_pay_cvv2,
-            'consignee_info' => $model->consignee_info,
-            'cross_border_info' => $model->cross_border_info,
-            'appid' => $model->appid,
-            'province' => $model->province,
-            'city' => $model->city,
             'return_url' => $model->return_url,
+            'tran_type' => $model->tran_type,
+
 
 
         );

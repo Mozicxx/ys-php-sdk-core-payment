@@ -44,7 +44,7 @@ class Division
             $myParams['method'] = 'ysepay.single.division.online.accept';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
+            $myParams['charset'] = $this->kernel->charset;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
@@ -95,7 +95,7 @@ class Division
             $myParams['method'] = 'ysepay.single.division.online.query';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
+            $myParams['charset'] = $this->kernel->charset;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
@@ -114,7 +114,7 @@ class Division
             $myParams['sign'] = trim($sign['check']);
             $url = $this->kernel->commonUrl;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_single_division_online_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];

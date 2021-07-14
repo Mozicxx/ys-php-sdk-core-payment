@@ -54,7 +54,6 @@ class PagePay
             $myParams["shopdate"] = $model->shopdate;
             $myParams["subject"] = $model->subject;
             $myParams["total_amount"] = $model->total_amount;
-            $myParams["currency"] = $model->currency;
             $myParams["seller_id"] = $model->seller_id;
             $myParams["seller_name"] = $model->seller_name;
             $myParams["timeout_express"] = $model->timeout_express;
@@ -65,18 +64,12 @@ class PagePay
             $myParams["bank_type"] = $model->bank_type;
             $myParams["bank_account_type"] = $model->bank_account_type;
             $myParams["support_card_type"] = $model->support_card_type;
-            $myParams["mer_outside_custid"] = $model->mer_outside_custid;
             $myParams["bank_account_no"] = $model->bank_account_no;
             $myParams["fast_pay_name"] = $model->fast_pay_name;
             $myParams["fast_pay_id_no"] = $model->fast_pay_id_no;
             $myParams["fast_pay_validity"] = $model->fast_pay_validity;
             $myParams["fast_pay_mobile"] = $model->fast_pay_mobile;
             $myParams["fast_pay_cvv2"] = $model->fast_pay_cvv2;
-            $myParams["consignee_info"] = $model->consignee_info;
-            $myParams["cross_border_info"] = $model->cross_border_info;
-            $myParams["appid"] = $model->appid;
-            $myParams["province"] = $model->province;
-            $myParams["city"] = $model->city;
 
 
             // $bizReqJson = $this->common->unsetArry($bizReqJson);
@@ -86,13 +79,13 @@ class PagePay
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
             $responses = new Response();
-
+            $myParams = $this->common->unsetArry($myParams);
             var_dump($myParams);
             $action = $url = $this->kernel->url;
             var_dump('提交地址：' . $action);
             $def_url = "<br /><form style='text-align:center;' method=post action='" . $action . "' target='_blank'>";
-            while ($param = each($myParams)) {
-                $def_url .= "<input type = 'hidden' id='Pay" . $param['key'] . "' name='" . $param['key'] . "' value='" . $param['value'] . "' />";
+            foreach ($myParams as $key => $val) {
+                $def_url .= "<input type = 'hidden'  name='" . $key . "' value='" . $val . "' />";
             }
             $def_url .= "<input type=submit value='点击提交' " . @$GLOBALS['_LANG']['pay_button'] . "'>";
             $def_url .= "</form>";
@@ -158,12 +151,11 @@ class PagePay
             $myParams['sign'] = trim($sign['check']);
 
             $action = $action = $url = $this->kernel->url;
-            $def_url = "<br /><form style='text-align:center;' id='Pay' method=post action='" . $action . "' target='_blank'>";
-            while ($param = each($myParams)) {
-                $def_url .= "<input type = 'hidden' id='" . $param['key'] . "' name='" . $param['key'] . "' value='" . $param['value'] . "' />";
+            $def_url = "<br /><form style='text-align:center;' method=post action='" . $action . "' target='_blank'>";
+            foreach ($myParams as $key => $val) {
+                $def_url .= "<input type = 'hidden'  name='" . $key . "' value='" . $val . "' />";
             }
-            $def_url .= "<input type=submit id=Pay value='点击提交' " . @$GLOBALS['_LANG']['pay_button'] . "'>";
-//        $def_url .= '<script>window.onload= function(){document.getElementById("Pay").submit();}</script>';
+            $def_url .= "<input type=submit value='点击提交' " . @$GLOBALS['_LANG']['pay_button'] . "'>";
             $def_url .= "</form>";
             return $def_url;
         } catch (Exception $e) {

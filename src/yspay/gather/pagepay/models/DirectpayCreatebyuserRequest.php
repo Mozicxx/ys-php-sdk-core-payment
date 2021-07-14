@@ -84,10 +84,7 @@ class DirectpayCreatebyuserRequest
      */
     public $support_card_type;
 
-    /**
-     * 卡号，当pay_mode为fastpay时必填
-     */
-    public $bank_account_no;
+
 
 
 
@@ -111,7 +108,10 @@ class DirectpayCreatebyuserRequest
 
 
 
-
+    /**
+     * 交易类型，说明：1或者空：即时到账，2：担保交易
+     */
+    public $tran_type;
 
 
 
@@ -128,19 +128,18 @@ class DirectpayCreatebyuserRequest
             'currency' => $model->currency,
             'seller_id' => $model->seller_id,
             'seller_name' => $model->seller_name,
-            'extend_params' => $model->extend_params,
             'timeout_express' => $model->timeout_express,
+            'extend_params' => $model->extend_params,
             'extra_common_param' => $model->extra_common_param,
             'business_code' => $model->business_code,
             'pay_mode' => $model->pay_mode,
             'bank_type' => $model->bank_type,
             'bank_account_type' => $model->bank_account_type,
             'support_card_type' => $model->support_card_type,
-            'bank_account_no' => $model->bank_account_no,
             'consignee_info' => $model->consignee_info,
             'cross_border_info' => $model->cross_border_info,
             'return_url' => $model->return_url,
-
+            'tran_type' => $model->tran_type,
 
 
 
@@ -154,7 +153,7 @@ class DirectpayCreatebyuserRequest
     {
 
         $checkRules = array(
-            'wapDirectpayCreatebyuserReq' => [
+            'directpayCreatebyuserRequest' => [
                 'out_trade_no' => [
                     Validator::MAX_LEN => 32,
                 ],
@@ -184,7 +183,7 @@ class DirectpayCreatebyuserRequest
 
         );
 
-        return $checkRules['wapDirectpayCreatebyuserReq'];
+        return $checkRules['directpayCreatebyuserRequest'];
     }
 
 

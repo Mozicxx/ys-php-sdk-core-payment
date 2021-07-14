@@ -43,7 +43,7 @@ class PagePayTest extends Base
             $request->business_code = "3010002";
             $request->pay_mode = "internetbank";
             $request->bank_type = "1902000";
-            $request->bank_account_type = ";personal";
+            $request->bank_account_type = "personal";
             $request->support_card_type = "debit";
             $request->bank_account_no = "";
             $request->fast_pay_name = "";
@@ -51,8 +51,8 @@ class PagePayTest extends Base
             $request->fast_pay_validity = "";
             $request->fast_pay_mobile = "";
             $request->fast_pay_cvv2 = "";
-            $request->consignee_info = "";
             $request->return_url = "https://www.baidu.com/";
+            $request->tran_type = "2";
 
             $response = Factory::pagePayClient()->pagePayClass()->wapDirectpayCreatebyuser($request);
             var_dump($response, true);
@@ -92,7 +92,7 @@ class PagePayTest extends Base
             $request->consignee_info = "";
             $request->cross_border_info = "";
             $request->return_url = "https://www.baidu.com/";
-
+            $request->tran_type = "2";
 
             $response = Factory::pagePayClient()->pagePayClass()->directpayCreatebyuser($request);
             var_dump($response, true);

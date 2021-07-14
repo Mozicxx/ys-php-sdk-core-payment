@@ -37,15 +37,13 @@ class Base extends TestCase
         $options->postType = 'prd';
         //<-- 加签私钥证书文件路径 -->
         //$options->private_key = "D:\银盛集团\smfws\yzt-php-sdk-core\yzt-gathering-sdk\src\yspay\certs\hyfz_test2.pfx";
-        $options->private_key = "D:\php\ys-php-sdk-core\src\yspay\certs\hyfz_test2.pfx";
+        $options->private_key = "D:\银盛集团\php-sdk\ys-php-sdk-core\src\yspay\certs\hyfz_test2.pfx";
         //验签公钥证书文件路径
       //  $options->businessgatecerpath = "D:\银盛集团\smfws\yzt-php-sdk-core\yzt-gathering-sdk\src\yspay\certs\businessgate.cer";
         $options->pfxpassword = "123456";
         $options->partner_id = "hyfz_test2";
         $options->notify_url = "http://wiki.easybuycloud.com:8082/ysmp-notify-ci/testnotify";
-     //   $options->charset = 'UTF-8';
-     //   $options->signType = 'RSA';
-     //   $options->version = 'V100';
+
 
         return $options;
     }
