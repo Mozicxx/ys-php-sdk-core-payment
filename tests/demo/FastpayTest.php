@@ -43,7 +43,7 @@ class FastpayTest extends Base
 
         try {
             $request = new FastpayRequest();
-            $request->out_trade_no = "202107131231";
+            $request->out_trade_no = "202107131232";
             $request->shopdate = "20210713";
             $request->subject = "测试消费";
             $request->total_amount = "0.01";
