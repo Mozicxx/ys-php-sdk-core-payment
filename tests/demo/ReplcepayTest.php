@@ -114,17 +114,17 @@ class ReplcepayTest extends Base
 
         try {
             $request = new DfSingleQuickInnerAcceptReq();
-            $request->out_trade_no = "20210708000001";
-            $request->shopdate = "20210";
-            $request->total_amount = "200001";
+            $request->out_trade_no = "202107141231233";
+            $request->shopdate = "20210714";
+            $request->total_amount = "0.01";
             $request->currency = "CNY";
-            $request->business_code = "CNY";
-            $request->subject = "CNY";
-            $request->payee_cust_name = "CNY";
-            $request->payee_user_code = "CNY";
-            $request->telephone_no = "CNY";
-            $request->proxy_password = "CNY";
-            $request->merchant_usercode = "CNY";
+            $request->business_code = "2010002";
+            $request->subject = "单笔代付交易";
+            $request->payee_cust_name = "刘志林";
+            $request->payee_user_code = "X2107061649551231243";
+            $request->telephone_no = "18680352162";
+            $request->proxy_password = "";
+            $request->merchant_usercode = "";
 
 
 
@@ -156,7 +156,7 @@ class ReplcepayTest extends Base
 
         try {
             $request = new DSingleQuickQueryRequest();
-            $request->out_trade_no = "202107080000001";
+            $request->out_trade_no = "202107141231233";
             $request->shopdate = "20210714";
 
             $response = Factory::replcePayClient()->replcePayClass()->dfSingleQuickQuery($request);
