@@ -67,24 +67,23 @@ class ReplcepayTest extends Base
 
         try {
             $request = new DfSingleQuickAcceptRequest();
-            $request->out_trade_no = "20210708000001";
-            $request->shopdate = "20210708";
+            $request->out_trade_no = "202107141231231";
+            $request->shopdate = "20210714";
             $request->total_amount = "0.01";
             $request->currency = "CNY";
             $request->bank_city = "深圳市";
             $request->bank_province = "广东省";
-            $request->business_code = "20170828000001";
-            $request->subject = "20170828000001";
-            $request->bank_name = "中国银行深圳民治支行";
-            $request->bank_account_name = "20170828000001";
+            $request->business_code = "2010002";
+            $request->subject = "单笔代付交易";
+            $request->bank_name = "中信银行深圳分行";
+            $request->bank_account_name = "刘志林";
             $request->bank_card_type = "debit";
-            $request->bank_telephone_no = "1000000000000000000";
-            $request->bank_account_type = "corporate";
-            $request->bank_account_no = "1000000000000000000";
-            $request->cert_type = "20170828000001";
-            $request->cert_no = "20170828000001";
-            $request->cert_expire = "20170828000001";
-            $request->consignee_info = "";
+            $request->bank_telephone_no = "18680352162";
+            $request->bank_account_type = "personal";
+            $request->bank_account_no = "6217710310182456";
+            $request->cert_type = "00";
+            $request->cert_no = "360781199608035113";
+            $request->cert_expire = "20280503";
             $request->proxy_password = "";
             $request->merchant_usercode = "";
 
