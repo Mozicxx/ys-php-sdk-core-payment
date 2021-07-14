@@ -45,7 +45,7 @@ class Replcepay
             $myParams['method'] = 'ysepay.df.single.quick.accept';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
+            $myParams['charset'] = $this->kernel->charset;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
@@ -109,7 +109,7 @@ class Replcepay
             $myParams['method'] = 'ysepay.df.single.quick.inner.accept';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
+            $myParams['charset'] = $this->kernel->charset;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
@@ -165,7 +165,7 @@ class Replcepay
             $myParams['method'] = 'ysepay.df.single.query';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
+            $myParams['charset'] = $this->kernel->charset;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
@@ -183,7 +183,7 @@ class Replcepay
             $myParams['sign'] = trim($sign['check']);
             $url = $this->kernel->dfOderUrl;
             var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            return $this->common->post_Url($url, $myParams, "ysepay_df_single_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -211,7 +211,7 @@ class Replcepay
             $myParams['method'] = 'ysepay.df.bill.downloadurl.get';
             $myParams['partner_id'] = $this->kernel->partner_id;
             $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
+            $myParams['charset'] = $this->kernel->charset;
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;

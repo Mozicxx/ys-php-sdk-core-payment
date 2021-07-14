@@ -13,6 +13,7 @@ use Yspay\SDK\Gathering\Base;
 use Yspay\SDK\Kernel\Gathering\Util\ResponseChecker;
 use Yspay\SDK\Model\DfBillDownloadurlGetRequest;
 use Yspay\SDK\Model\DfSingleQuickAcceptRequest;
+use Yspay\SDK\Model\DfSingleQuickInnerAcceptReq;
 use Yspay\SDK\Model\DSingleQuickQueryRequest;
 
 
@@ -113,27 +114,20 @@ class ReplcepayTest extends Base
     {
 
         try {
-            $request = new DfSingleQuickAcceptRequest();
+            $request = new DfSingleQuickInnerAcceptReq();
             $request->out_trade_no = "20210708000001";
             $request->shopdate = "20210";
             $request->total_amount = "200001";
             $request->currency = "CNY";
-            $request->bank_city = "20001";
-            $request->bank_province = "20000001";
-            $request->business_code = "202100001";
-            $request->subject = "20201";
-            $request->bank_name = "20200001";
-            $request->bank_account_name = "200001";
-            $request->bank_card_type = "21";
-            $request->bank_telephone_no = "20200001";
-            $request->bank_account_type = "21";
-            $request->bank_account_no = "202001";
-            $request->cert_type = "2001";
-            $request->cert_no = "2020001";
-            $request->cert_expire = "202001";
-            $request->consignee_info = "";
-            $request->proxy_password = "";
-            $request->merchant_usercode = "";
+            $request->business_code = "CNY";
+            $request->subject = "CNY";
+            $request->payee_cust_name = "CNY";
+            $request->payee_user_code = "CNY";
+            $request->telephone_no = "CNY";
+            $request->proxy_password = "CNY";
+            $request->merchant_usercode = "CNY";
+
+
 
 
             $response = Factory::replcePayClient()->replcePayClass()->dfSingleQuickInnerAccept($request);
@@ -163,10 +157,8 @@ class ReplcepayTest extends Base
 
         try {
             $request = new DSingleQuickQueryRequest();
-            $request->out_trade_no = "20210708000001";
-            $request->shopdate = "20210";
-
-
+            $request->out_trade_no = "202107080000001";
+            $request->shopdate = "20210714";
 
             $response = Factory::replcePayClient()->replcePayClass()->dfSingleQuickQuery($request);
             var_dump($response, true);
