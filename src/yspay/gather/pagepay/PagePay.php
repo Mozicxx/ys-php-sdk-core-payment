@@ -146,7 +146,7 @@ class PagePay
             $myParams['sign'] = trim($sign['check']);
 
             $action = $action = $url = $this->kernel->url;
-            $def_url = PHP_EOL. "<form style='text-align:center;' method=post action='" . $action . "' target='_blank'>";
+            $def_url = "<form style='text-align:center;' method=post action='" . $action . "' target='_blank'>";
             foreach ($myParams as $key => $val) {
                 $def_url .= PHP_EOL. "<input type = 'hidden'  name='" . $key . "' value='" . $val . "' />";
             }
