@@ -237,7 +237,7 @@ class Fastpay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->trusteeshipUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_trusteeship_sign_response", false);
         } catch (Exception $e) {
@@ -284,7 +284,7 @@ class Fastpay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->trusteeshipUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_trusteeship_sign_confirm_response", false);
         } catch (Exception $e) {
@@ -348,7 +348,7 @@ class Fastpay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->trusteeshipUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_trusteeship_fastPay_response", false);
         } catch (Exception $e) {

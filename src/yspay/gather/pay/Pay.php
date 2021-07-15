@@ -177,7 +177,7 @@ class Pay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->qrcodeUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_barcodepay_response", false);
         } catch (Exception $e) {
@@ -240,7 +240,7 @@ class Pay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->qrcodeUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_alijsapi_pay_response", true);
         } catch (Exception $e) {
@@ -304,7 +304,7 @@ class Pay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->qrcodeUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_barcodepay_response", true);
         } catch (Exception $e) {
@@ -348,7 +348,7 @@ class Pay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->qrcodeUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_cupgetmulapp_userid_response", true);
         } catch (Exception $e) {
@@ -411,7 +411,7 @@ class Pay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->qrcodeUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_cupmulapp_qrcodepay_response", true);
         } catch (Exception $e) {
@@ -476,7 +476,7 @@ class Pay
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->qrcodeUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_qrcodepay_response", true);
         } catch (Exception $e) {
