@@ -59,5 +59,5 @@
 5、查询微信实名认证申请单状态：testAuthenticateQuery  
 6、查询微信实名认证授权状态：testAuthenticateApplyQuery  
 
-###项目介绍
+### 项目介绍
 此项目为php语言开发
