@@ -60,6 +60,7 @@ class PagePayTest extends Base
             fwrite($myfile, $txt);
             fclose($myfile);
             var_dump($response, true);
+            echo '用浏览器打开该页面即可 : ' . dirname(__FILE__) . '/pagepay/WapPayTest.html';
         } catch (Exception $e) {
             echo "调用失败，" . $e->getMessage() . PHP_EOL;;
         }
@@ -103,7 +104,7 @@ class PagePayTest extends Base
             fwrite($myfile, $txt);
             fclose($myfile);
             var_dump($response, true);
-
+            echo '用浏览器打开该页面即可 : ' . dirname(__FILE__) . '/pagepay/WebPayTest.html';
         } catch (Exception $e) {
             echo "调用失败，" . $e->getMessage() . PHP_EOL;;
         }
