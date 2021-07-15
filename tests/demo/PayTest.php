@@ -44,12 +44,12 @@ class PayTest extends Base
 
         try {
             $request = new BarcodepayRequest();
-            $request->out_trade_no = "20210712123115";
+            $request->out_trade_no = "20210712123116";
             $request->shopdate = "20210712";
             $request->subject = "标题";
             $request->total_amount = "0.03";
-            $request->seller_id = "X2107061649551231243";   //hyfz_test
-            $request->seller_name = "刘志林";  //银盛支付服务股份有限公司行业发展部
+            $request->seller_id = "hyfz_test";
+            $request->seller_name = "银盛支付服务股份有限公司行业发展部";
             $request->timeout_express = "30m";
             $request->business_code = "3010002";
             $request->scene = "bar_code";
