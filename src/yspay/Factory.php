@@ -48,11 +48,17 @@ class Factory
                 $config->dfUrl = 'https://df.ysepay.com/gateway.do';
                 $config->dfOderUrl = 'https://searchdf.ysepay.com/gateway.do';
                 $config->commonUrl = 'https://commonapi.ysepay.com/gateway.do';
+                $config->qrcodeUrl = 'https://qrcode.ysepay.com/gateway.do';
+                $config->trusteeshipUrl = 'https://trusteeship.ysepay.com/gateway.do';
+                $config->searchUrl = 'https://search.ysepay.com/gateway.do';
             }else if ($postType == "prd"){
                 $config->url = 'https://openapi.ysepay.com/gateway.do';
                 $config->dfUrl = 'https://df.ysepay.com/gateway.do';
                 $config->dfOderUrl = 'https://searchdf.ysepay.com/gateway.do';
                 $config->commonUrl = 'https://commonapi.ysepay.com/gateway.do';
+                $config->qrcodeUrl = 'https://qrcode.ysepay.com/gateway.do';
+                $config->trusteeshipUrl = 'https://trusteeship.ysepay.com/gateway.do';
+                $config->searchUrl = 'https://search.ysepay.com/gateway.do';
             }else{
                 var_dump( "环境类型不存在");
             }

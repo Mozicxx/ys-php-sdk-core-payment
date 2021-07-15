@@ -12,6 +12,12 @@ class Config
 	public $sign_type = "RSA";
 	public $partner_id;
 	public $notify_url;
+	public $dfUrl;
+	public $dfOderUrl;
+	public $commonUrl;
+	public $qrcodeUrl;
+	public $trusteeshipUrl;
+	public $searchUrl;
 	public $version = "3.0";
     public $private_key;
     public $pfxpassword;

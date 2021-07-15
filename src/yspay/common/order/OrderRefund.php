@@ -255,7 +255,7 @@ class OrderRefund
             $signStr = $this->common->signSort($myParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
             $myParams['sign'] = trim($sign['check']);
-            $url = $this->kernel->url;
+            $url = $this->kernel->searchUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_trade_order_query_response", false);
         } catch (Exception $e) {
