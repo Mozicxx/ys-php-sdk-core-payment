@@ -39,10 +39,10 @@ class WeChatAuthenticateTest extends Base
 
         try {
             $request = new WeChatAuthenticateApplyRequest();
-            $request->usercode = "";
-            $request->cust_name = "";
+            $request->usercode = "X2107061649551231243";
+            $request->cust_name = "商户_刘志林";
             $request->contact_cert_type = "00";
-            $request->contact_cert_no = "";
+            $request->contact_cert_no = "360781199608035113";
             $request->legal_cert_initial = "20180503";
             $request->legal_cert_expire = "20380503";
             $request->bus_license_initial = "";

@@ -80,7 +80,7 @@ class PagePayTest extends Base
             $request->out_trade_no = "2021071412311";
             $request->shopdate = "20210714";
             $request->subject = "WEB页面支付";
-            $request->total_amount = "0.01";
+            $request->total_amount = "0.02";
             $request->timeout_express = "30m";
             $request->currency = "CNY";
             $request->seller_id = "hyfz_test";

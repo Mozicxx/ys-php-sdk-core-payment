@@ -34,7 +34,7 @@ class DivisionTest extends Base
         try {
             $request = new DivisionOnlineAcceptRequest();
             $request->out_trade_no = "20210712123115";
-            $request->payee_usercode = "X2107061649551231243";
+            $request->payee_usercode = "hyfz_test2";//收款商户号
             $request->total_amount = "0.03";
             $request->sys_flag = "DD";
             $request->is_divistion = "01";
@@ -43,13 +43,13 @@ class DivisionTest extends Base
 
             $div_list = array(
                 [
-                    "division_mer_usercode" => "hyfz_test2",
+                    "division_mer_usercode" => "hyfz_test2",//收款商户号
                     "div_amount" => "0.01",
                     "div_ratio" => "",
                     "is_chargeFee" => "02",
                 ],
                 [
-                    "division_mer_usercode" => "X2107061649551231243",
+                    "division_mer_usercode" => "",//分账子商户号
                     "div_amount" => "0.02",
                     "div_ratio" => "",
                     "is_chargeFee" => "01",

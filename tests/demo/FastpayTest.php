@@ -162,17 +162,17 @@ class FastpayTest extends Base
         try {
             $request = new TrusteeshipSignRequest();
             $request->out_trade_no = "20180525684319228064711813";
-            $request->seller_id = "X2107061649551231243";
-            $request->seller_name = "刘志林";
-            $request->buyer_name = "刘志林";
-            $request->buyer_card_number = "6217710310182456";
-            $request->buyer_mobile = "18680352162";
+            $request->seller_id = "hyfz_test";
+            $request->seller_name = "银盛支付服务股份有限公司行业发展部";
+            $request->buyer_name = "";
+            $request->buyer_card_number = "";
+            $request->buyer_mobile = "";
             $request->cardCvn2 = "";
             $request->cardExprDt = "";
-            $request->pyerIDNo = "360781199608035113";
+            $request->pyerIDNo = "";
             $request->imei = "";
             $request->actionScope = "01";
-            $request->user_id = "2021070618257832";
+            $request->user_id = "2021072";
             $request->total_amount = "0.02";
 
             $response = Factory::fastpayClient()->fastpayClass()->trusteeshipSign($request);
@@ -202,7 +202,7 @@ class FastpayTest extends Base
 
         try {
             $request = new TrusteeshipSignConfirmRequest();
-            $request->out_trade_no = "20180525684319228064711813";
+            $request->out_trade_no = "20180525683";
             $request->mobile_verify_code = "101098";
             $request->cardCvn2 = "123";
             $request->cardExprDt = "1019";
@@ -234,21 +234,21 @@ class FastpayTest extends Base
 
         try {
             $request = new TrusteeshipfastPayRequest();
-            $request->out_trade_no = "201805256843192280647114";
+            $request->out_trade_no = "201805257114";
             $request->shopdate = "20210712";
             $request->subject = "测试快捷协议";
             $request->total_amount = "0.01";
             $request->currency = "CNY";
-            $request->seller_id = "X2107061649551231243";
-            $request->seller_name = "刘志林";
+            $request->seller_id = "hyfz_test";
+            $request->seller_name = "银盛支付服务股份有限公司行业发展部";
             $request->timeout_express = "30m";
             $request->extra_common_param = "";
             $request->business_code = "3010002";
-            $request->protocol_no = "K2021070206180496004";
+            $request->protocol_no = "";
             $request->cardCvn2 = "123";
             $request->cardExprDt = "1019";
             $request->consignee_info = "";
-            $request->user_id = "2021070618257832";
+            $request->user_id = "";
             $request->province = "";
             $request->city = "";
             $request->mccs = "5811";
