@@ -74,17 +74,17 @@ class ReplcepayTest extends Base
             $request->currency = "CNY";
             $request->bank_city = "深圳市";
             $request->bank_province = "广东省";
-            $request->business_code = "2010002";
+            $request->business_code = "2010002";  //业务代码
             $request->subject = "单笔代付交易";
-            $request->bank_name = "中信银行深圳分行";
-            $request->bank_account_name = "刘志林";
+            $request->bank_name = "中信银行深圳分行";  //支行名称
+            $request->bank_account_name = "";
             $request->bank_card_type = "debit";
-            $request->bank_telephone_no = "18680352162";
+            $request->bank_telephone_no = "";
             $request->bank_account_type = "personal";
-            $request->bank_account_no = "6217710310182456";
+            $request->bank_account_no = "";
             $request->cert_type = "00";
-            $request->cert_no = "360781199608035113";
-            $request->cert_expire = "20280503";
+            $request->cert_no = "";
+            $request->cert_expire = "";
             $request->proxy_password = "";
             $request->merchant_usercode = "";
 
@@ -120,9 +120,9 @@ class ReplcepayTest extends Base
             $request->currency = "CNY";
             $request->business_code = "2010002";
             $request->subject = "单笔代付交易";
-            $request->payee_cust_name = "刘志林";
-            $request->payee_user_code = "X2107061649551231243";
-            $request->telephone_no = "18680352162";
+            $request->payee_cust_name = "";
+            $request->payee_user_code = "";
+            $request->telephone_no = "";
             $request->proxy_password = "";
             $request->merchant_usercode = "";
 

@@ -137,7 +137,7 @@ class MerchantTest extends Base
 
         try {
             $request = new MerchantBalanceQueryRequest();
-            $request->merchant_usercode = "X2107061649551231243";
+            $request->merchant_usercode = "hyfz_test";
 
 
             $response = Factory::merchantClient()->merchantClass()->merchantBalanceQuery($request);

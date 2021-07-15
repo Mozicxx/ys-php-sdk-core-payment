@@ -134,7 +134,7 @@ class PayTest extends Base
 
         try {
             $request = new AlijsapiRequest();
-            $request->out_trade_no = "202052568431922806471184";
+            $request->out_trade_no = "2020525684371184";
             $request->shopdate = "20210712";
             $request->subject = "测试支付宝生活号";
             $request->total_amount = "0.01";
@@ -304,7 +304,7 @@ class PayTest extends Base
             $request->subject = "正扫支付";
             $request->total_amount = "0.01";
             $request->currency = "CNY";
-            $request->seller_id = "hyfz_test";  //X2107061649551231243
+            $request->seller_id = "hyfz_test";
             $request->seller_name = "银盛支付服务股份有限公司行业发展部";
             $request->timeout_express = "30m";
             $request->extend_params = "";
@@ -313,7 +313,7 @@ class PayTest extends Base
             $request->bank_type = "1902000";
             $request->consignee_info = "";
             $request->cross_border_info = "";
-            $request->appid = "wxa8197adab2013e3b";
+            $request->appid = "";
             $request->province = "";
             $request->city = "";
             $request->limit_credit_pay = "";

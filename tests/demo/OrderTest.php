@@ -86,11 +86,11 @@ class OrderTest extends Base
             $request->ori_division_mode = "02";
             $refund_split_info = array(
                 [
-                    "division_mer_id" => "hyfz_test2",
+                    "division_mer_id" => "hyfz_test",
                     "division_amount" => "0.01",
                 ],
                 [
-                    "division_mer_id" => "X2107061649551231243",
+                    "division_mer_id" => "",
                     "division_amount" => "0.02",
                 ]
             );
@@ -98,12 +98,12 @@ class OrderTest extends Base
             $request->refund_split_info = $refund_split_info;
             $order_div_list = array(
                 [
-                    "division_mer_id" => "hyfz_test2",
+                    "division_mer_id" => "",
                     "division_amount" => "0.01",
                     "is_charge_fee" => "02",
                 ],
                 [
-                    "division_mer_id" => "X2107061649551231243",
+                    "division_mer_id" => "",
                     "division_amount" => "0.02",
                     "is_charge_fee" => "01",
                 ]
@@ -209,7 +209,7 @@ class OrderTest extends Base
 
         try {
             $request = new TradeOrderQueryRequest();
-            $request->out_trade_no = "20210712123112";
+            $request->out_trade_no = "2021071212311212";
             $request->shopdate = "20210712";
             $request->trade_no = "";
 
