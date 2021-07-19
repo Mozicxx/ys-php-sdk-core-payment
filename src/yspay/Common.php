@@ -82,7 +82,7 @@ class Common
         return rtrim($signStr, '&');
     }
 
-    //加签排序
+    //过滤值为空的参数
     public function unsetArry($bizReqJson)
     {
         foreach( $bizReqJson as $k=>$v){
@@ -117,6 +117,7 @@ class Common
      */
     function post_url($url, $myParams, $response_name, $flag = false)
     {
+        echo PHP_EOL. "渠道请求参数" . json_encode($myParams);
         $responses = new Response();
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -144,6 +145,8 @@ class Common
         } else {
             curl_close($ch);
             $response = json_decode($response, true);
+            echo PHP_EOL. "渠道响应报文" . json_encode($response) . PHP_EOL;
+
             var_dump($response);
             if ($response["sign"] != null) {
                 $sign = $response["sign"];
