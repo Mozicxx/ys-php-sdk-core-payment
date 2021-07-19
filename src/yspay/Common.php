@@ -117,7 +117,7 @@ class Common
      */
     function post_url($url, $myParams, $response_name, $flag = false)
     {
-        echo PHP_EOL. "渠道请求参数" . json_encode($myParams);
+        echo PHP_EOL. "渠道请求参数" . json_encode($myParams,JSON_UNESCAPED_UNICODE);
         $responses = new Response();
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -145,7 +145,7 @@ class Common
         } else {
             curl_close($ch);
             $response = json_decode($response, true);
-            echo PHP_EOL. "渠道响应报文" . json_encode($response) . PHP_EOL;
+            echo PHP_EOL. "渠道响应报文" . json_encode($response,JSON_UNESCAPED_UNICODE) . PHP_EOL;
 
             var_dump($response);
             if ($response["sign"] != null) {
