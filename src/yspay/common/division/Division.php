@@ -40,14 +40,8 @@ class Division
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.single.division.online.accept';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+            
+            $myParams = $this->common->commonHeads('ysepay.single.division.online.accept', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "payee_usercode" => $model->payee_usercode,
@@ -59,12 +53,7 @@ class Division
                 "div_list" => $model->div_list,
                 "division_mer_usercode" => $model->division_mer_usercode,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->commonUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, 'ysepay_single_division_online_accept_response', false);
@@ -91,14 +80,8 @@ class Division
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.single.division.online.query';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+            
+            $myParams = $this->common->commonHeads('ysepay.single.division.online.query', $this->kernel, $model);
             $bizReqJson = array(
                 "src_usercode" => $model->src_usercode,
                 "out_trade_no" => $model->out_trade_no,
@@ -106,12 +89,7 @@ class Division
                 "sys_flag" => $model->sys_flag,
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->commonUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_single_division_online_query_response", false);

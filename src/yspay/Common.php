@@ -117,7 +117,7 @@ class Common
      */
     function post_url($url, $myParams, $response_name, $flag = false)
     {
-        echo PHP_EOL. "渠道请求参数" . stripslashes(json_encode($myParams,JSON_UNESCAPED_UNICODE));
+        echo PHP_EOL. "渠道请求参数" . stripslashes(json_encode($myParams,JSON_UNESCAPED_UNICODE)).PHP_EOL;
         $responses = new Response();
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -128,18 +128,18 @@ class Common
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         $response = curl_exec($ch);
-        var_dump($response);
+        var_dump(PHP_EOL."POST请求响应信息".$response.PHP_EOL);
 
         if (curl_errno($ch)) {
            $curl_errno = curl_errno($ch);
            var_dump($curl_errno);
             curl_close($ch);
             if ($flag) {
-                $responses->responseCode = $this->param['unknow'];
+              //  $responses->responseCode = $this->param['unknow'];
                 $responses->responseMeg = $this->param['unknowMsg'];
                 return $responses;
             }
-            $responses->responseCode = $this->param['fail'];
+            //$responses->responseCode = $this->param['fail'];
             $responses->responseMeg = $this->param['failMsg'];
             return $responses;
         } else {
@@ -159,7 +159,8 @@ class Common
                     echo '验证签名失败!';
                    // $responses->responseCode = $this->param['errorCode'];
                    // $responses->responseMeg = $this->param['verify_sign_fail'];
-                    return $responses;
+                    // return $responses;
+                    return Response::fromMap($response,$response_name);
                 }
             }
         }
@@ -242,7 +243,7 @@ class Common
         $response = new Response();
         foreach ($rules as $field => $fieldRules) {
             if (!isset($data[$field]) || iconv_strlen($data[$field],"UTF-8") <= 0) {
-                $response->responseCode = "error";
+              //  $response->responseCode = "error";
                 $response->responseMeg = "$field 不能为空";
                 $response->checkFlag = false;
                 return $response;
@@ -254,7 +255,7 @@ class Common
                 $ret = Validator::check($type, $data[$field], $rule);
                 if ($ret == false) {
 
-                    $response->responseCode = "error";
+                //    $response->responseCode = "error";
                     $response->responseMeg = "param : $field 参数错误";
                     $response->checkFlag = false;
                     return $response;
@@ -306,4 +307,38 @@ class Common
     }
 
 
+    /**
+     * http Heads参数组装
+     */
+    public function commonHeads($method,$kernel,$model)
+    {
+        $myParams = array();
+        $myParams['method'] = $method;
+        $myParams['partner_id'] = $kernel->partner_id;
+        $myParams['timestamp'] = date('Y-m-d H:i:s');;
+        $myParams['charset'] = $kernel->charset;
+        $myParams['sign_type'] = $kernel->sign_type;
+        $myParams['notify_url'] = $kernel->notify_url;
+        $myParams['version'] = $kernel->version;
+        $myParams['tran_type'] = $model->tran_type;
+        $myParams['return_url'] = $model->return_url;
+        $myParams['proxy_password'] = $model->proxy_password;
+        $myParams['merchant_usercode'] = $model->merchant_usercode;
+        return $this->unsetArry($myParams);
+    }
+
+
+    /**
+     * 加密参数组装
+     */
+    public function encodeParams($myParams,$bizReqJson)
+    {
+        $bizReqJson = $this->unsetArry($bizReqJson);
+        $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
+        ksort($myParams);
+        $signStr = $this->signSort($myParams);
+        $sign = $this->sign_encrypt(array('data' => $signStr));
+        $myParams['sign'] = trim($sign['check']);
+        return $myParams;
+    }
 }

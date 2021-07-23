@@ -43,15 +43,7 @@ class Fastpay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.fastpay';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['tran_type'] = $model->tran_type;
+            $myParams = $this->common->commonHeads('ysepay.online.fastpay', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
@@ -85,12 +77,7 @@ class Fastpay
 
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_fastpay_response", false);
@@ -116,15 +103,7 @@ class Fastpay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.fastpay.authorize';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['tran_type'] = $model->tran_type;
+            $myParams = $this->common->commonHeads('ysepay.online.fastpay.authorize', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "buyer_mobile" => $model->buyer_mobile,
@@ -133,12 +112,7 @@ class Fastpay
                 "cardExprDt" => $this->common->encryptDes($model->cardExprDt,$this->kernel->partner_id)
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_fastpay_authorize_response", false);
@@ -163,25 +137,12 @@ class Fastpay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.fastpay.authorize.msg';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['tran_type'] = $model->tran_type;
+            $myParams = $this->common->commonHeads('ysepay.online.fastpay.authorize.msg', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_fastpay_authorize_msg_response", false);
@@ -206,15 +167,7 @@ class Fastpay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.trusteeship.sign';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['tran_type'] = $model->tran_type;
+            $myParams = $this->common->commonHeads('ysepay.trusteeship.sign', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "seller_id" => $model->seller_id,
@@ -231,12 +184,7 @@ class Fastpay
                 "user_id" => $model->user_id,
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->trusteeshipUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_trusteeship_sign_response", false);
@@ -262,15 +210,7 @@ class Fastpay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.trusteeship.sign.confirm';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['tran_type'] = $model->tran_type;
+            $myParams = $this->common->commonHeads('ysepay.trusteeship.sign.confirm', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "mobile_verify_code" => $model->mobile_verify_code,
@@ -278,12 +218,7 @@ class Fastpay
                 "cardExprDt" => $this->common->encryptDes($model->cardExprDt,$this->kernel->partner_id),
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->trusteeshipUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_trusteeship_sign_confirm_response", false);
@@ -309,15 +244,7 @@ class Fastpay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.trusteeship.fastPay';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['tran_type'] = $model->tran_type;
+            $myParams = $this->common->commonHeads('ysepay.trusteeship.fastPay', $this->kernel, $model);
             $myParams['return_url'] = $model->return_url;
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
@@ -342,12 +269,7 @@ class Fastpay
                 "mer_no" => $model->mer_no,
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->trusteeshipUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_trusteeship_fastPay_response", false);

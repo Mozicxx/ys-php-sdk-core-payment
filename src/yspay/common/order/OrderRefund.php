@@ -44,14 +44,8 @@ class OrderRefund
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.trade.refund';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+            $myParams = $this->common->commonHeads('ysepay.online.trade.refund', $this->kernel, $model);
+
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
@@ -60,12 +54,7 @@ class OrderRefund
                 "refund_reason" => $model->refund_reason,
                 "out_request_no" => $model->out_request_no,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_trade_refund_response", false);
@@ -90,14 +79,8 @@ class OrderRefund
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.trade.refund.split';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+            $myParams = $this->common->commonHeads('ysepay.online.trade.refund.split', $this->kernel, $model);
+
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
@@ -111,12 +94,7 @@ class OrderRefund
                 "order_div_list" => $model->order_div_list,
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_trade_refund_split_response", false);
@@ -142,14 +120,8 @@ class OrderRefund
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.trade.refund.general.account';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+            $myParams = $this->common->commonHeads('ysepay.online.trade.refund.general.account', $this->kernel, $model);
+
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
@@ -161,12 +133,7 @@ class OrderRefund
                 "refund_split_info" => $model->refund_split_info,
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_trade_refund_general_account_response", false);
@@ -192,25 +159,14 @@ class OrderRefund
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.trade.refund.query';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+            $myParams = $this->common->commonHeads('ysepay.online.trade.refund.query', $this->kernel, $model);
+
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "out_request_no" => $model->out_request_no,
                 "trade_no" => $model->trade_no,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_trade_refund_query_response", false);
@@ -236,25 +192,14 @@ class OrderRefund
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.trade.order.query';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+            $myParams = $this->common->commonHeads('ysepay.online.trade.order.query', $this->kernel, $model);
+
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
                 "trade_no" => $model->trade_no,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
             $url = $this->kernel->searchUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_trade_order_query_response", false);
@@ -265,7 +210,6 @@ class OrderRefund
             return $responses;
         }
     }
-
 
 
     /**
@@ -281,23 +225,12 @@ class OrderRefund
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.bill.downloadurl.get';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+            $myParams = $this->common->commonHeads('ysepay.online.bill.downloadurl.get', $this->kernel, $model);
+
             $bizReqJson = array(
                 "account_date" => $model->account_date,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_bill_downloadurl_get_response", false);

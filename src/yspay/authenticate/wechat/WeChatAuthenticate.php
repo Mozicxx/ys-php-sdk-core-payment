@@ -48,7 +48,7 @@ class WeChatAuthenticate
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
-            
+
             $bizReqJson = array(
                 "usercode" => $model->usercode,
                 "cust_name" => $model->cust_name,
@@ -63,12 +63,7 @@ class WeChatAuthenticate
                 "contact_cert_no" => $this->common->encryptDes($model->contact_cert_no, $this->kernel->partner_id),
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_authenticate_wx_apply_response", false);
@@ -97,10 +92,9 @@ class WeChatAuthenticate
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
-            
-            $bizReqJson = array(
-            );
-          //  $bizReqJson = $this->common->unsetArry($bizReqJson);
+
+            $bizReqJson = array();
+            //  $bizReqJson = $this->common->unsetArry($bizReqJson);
             $myParams['biz_content'] = "{}";//构造字符串
             ksort($myParams);
             $signStr = $this->common->signSort($myParams);
@@ -141,7 +135,7 @@ class WeChatAuthenticate
 
             var_dump($filePath);
             var_dump($filename);
-            $curl_file = curl_file_create(iconv('utf-8', 'gbk', $filePath),'image/jpeg',$filename);
+            $curl_file = curl_file_create(iconv('utf-8', 'gbk', $filePath), 'image/jpeg', $filename);
             $myParams['picFile'] = $curl_file;
             $url = 'https://uploadApi.ysepay.com:2443/yspay-upload-service?method=upload';
             $responses = new Response();
@@ -162,7 +156,7 @@ class WeChatAuthenticate
             $response = json_decode($response, true);
 
             return Response::setMap($response);
-          //  return $this->common->post_Url($url, $myParams, "ysepay_online_fastpay_response", false);
+            //  return $this->common->post_Url($url, $myParams, "ysepay_online_fastpay_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -170,7 +164,6 @@ class WeChatAuthenticate
             return $responses;
         }
     }
-
 
 
     /**
@@ -194,16 +187,11 @@ class WeChatAuthenticate
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
-            
+
             $bizReqJson = array(
                 "apply_no" => $model->apply_no,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_authenticate_wx_query_response", false);
@@ -237,16 +225,11 @@ class WeChatAuthenticate
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
-            
+
             $bizReqJson = array(
                 "apply_no" => $model->apply_no,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_authenticate_wx_apply_cancel_response", false);
@@ -279,16 +262,11 @@ class WeChatAuthenticate
             $myParams['sign_type'] = $this->kernel->sign_type;
             $myParams['notify_url'] = $this->kernel->notify_url;
             $myParams['version'] = $this->kernel->version;
-            
+
             $bizReqJson = array(
                 "usercode" => $model->usercode,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_authenticate_wx_authorized_query_response", false);

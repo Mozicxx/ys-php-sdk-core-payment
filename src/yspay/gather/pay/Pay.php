@@ -46,25 +46,13 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.trade.delivered';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+         $myParams = $this->common->commonHeads('ysepay.online.trade.delivered', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
                 "trade_no" => $model->trade_no,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
@@ -89,25 +77,13 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.trade.confirm';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+         $myParams = $this->common->commonHeads('ysepay.online.trade.confirm', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
                 "trade_no" => $model->trade_no,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_trade_confirm_response", false);
@@ -133,15 +109,7 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.barcodepay';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['tran_type'] = $model->tran_type;
+            $myParams = $this->common->commonHeads('ysepay.online.barcodepay', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
@@ -171,12 +139,7 @@ class Pay
                 "fail_notify_url" => $model->fail_notify_url
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->qrcodeUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_barcodepay_response", false);
@@ -201,15 +164,7 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.alijsapi.pay';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['tran_type'] = $model->tran_type;
+            $myParams = $this->common->commonHeads('ysepay.online.alijsapi.pay', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
@@ -234,12 +189,7 @@ class Pay
 
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->qrcodeUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_alijsapi_pay_response", true);
@@ -265,15 +215,7 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.weixin.pay';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['tran_type'] = $model->tran_type;
+            $myParams = $this->common->commonHeads('ysepay.online.weixin.pay', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
@@ -298,12 +240,7 @@ class Pay
 
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->qrcodeUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_barcodepay_response", true);
@@ -328,26 +265,13 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.cupgetmulapp.userid';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['tran_type'] = $model->tran_type;
+            $myParams = $this->common->commonHeads('ysepay.online.cupgetmulapp.userid', $this->kernel, $model);
             $bizReqJson = array(
                 "userAuthCode" => $model->userAuthCode,
                 "appUpIdentifier" => $model->appUpIdentifier,
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->qrcodeUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_cupgetmulapp_userid_response", true);
@@ -373,15 +297,7 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.cupmulapp.qrcodepay';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['tran_type'] = $model->tran_type;
+            $myParams = $this->common->commonHeads('ysepay.online.cupmulapp.qrcodepay', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
@@ -405,12 +321,7 @@ class Pay
                 "fail_notify_url" => $model->fail_notify_url,
                 "spbill_create_ip" => $model->spbill_create_ip,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->qrcodeUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_cupmulapp_qrcodepay_response", true);
@@ -436,16 +347,7 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.qrcodepay';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['tran_type'] = $model->tran_type;
-            $myParams['return_url'] = $model->return_url;
+            $myParams = $this->common->commonHeads('ysepay.online.qrcodepay', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
@@ -470,12 +372,7 @@ class Pay
                 "return_url" => $model->return_url,
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->qrcodeUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_qrcodepay_response", true);
@@ -501,16 +398,7 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.online.mobile.controls.pay';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['tran_type'] = $model->tran_type;
-            $myParams['return_url'] = $model->return_url;
+            $myParams = $this->common->commonHeads('ysepay.online.mobile.controls.pay', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
@@ -530,13 +418,7 @@ class Pay
                 "consignee_info" => $model->consignee_info,
 
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
             $url = $this->kernel->url;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_online_mobile_controls_pay_response", true);

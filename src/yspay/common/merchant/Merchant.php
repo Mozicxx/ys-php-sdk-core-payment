@@ -41,14 +41,7 @@ class Merchant
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.merchant.withdraw.quick.accept';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+            $myParams = $this->common->commonHeads('ysepay.merchant.withdraw.quick.accept', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
@@ -58,12 +51,7 @@ class Merchant
                 "subject" => $model->subject,
                 "bank_account_no" => $model->bank_account_no,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
             $url = $this->kernel->commonUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_merchant_withdraw_quick_accept_response", false);
@@ -74,7 +62,6 @@ class Merchant
             return $responses;
         }
     }
-
 
 
     /**
@@ -90,14 +77,8 @@ class Merchant
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.merchant.withdraw.d0.accept';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+
+            $myParams = $this->common->commonHeads('ysepay.merchant.withdraw.d0.accept', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
@@ -107,12 +88,7 @@ class Merchant
                 "subject" => $model->subject,
                 "bank_account_no" => $model->bank_account_no,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
             $url = $this->kernel->commonUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_merchant_withdraw_d0_accept_response", false);
@@ -138,24 +114,13 @@ class Merchant
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.merchant.withdraw.quick.query';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+
+            $myParams = $this->common->commonHeads('ysepay.merchant.withdraw.quick.query', $this->kernel, $model);
             $bizReqJson = array(
                 "out_trade_no" => $model->out_trade_no,
                 "shopdate" => $model->shopdate,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
             $url = $this->kernel->commonUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_merchant_withdraw_quick_query_response", false);
@@ -181,23 +146,12 @@ class Merchant
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.merchant.balance.query';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+
+            $myParams = $this->common->commonHeads('ysepay.merchant.balance.query', $this->kernel, $model);
             $bizReqJson = array(
                 "merchant_usercode" => $model->merchant_usercode,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
             $url = $this->kernel->commonUrl;
             var_dump($myParams);
             return $this->common->post_Url($url, $myParams, "ysepay_merchant_balance_query_response", false);
