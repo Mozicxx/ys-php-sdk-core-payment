@@ -241,7 +241,7 @@ class Common
     {
         $response = new Response();
         foreach ($rules as $field => $fieldRules) {
-            if (!isset($data[$field])) {
+            if (!isset($data[$field]) || iconv_strlen($data[$field],"UTF-8") <= 0) {
                 $response->responseCode = "error";
                 $response->responseMeg = "$field 不能为空";
                 $response->checkFlag = false;
