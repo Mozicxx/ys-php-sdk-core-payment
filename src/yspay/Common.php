@@ -38,7 +38,7 @@ class Common
         $this->param['fail'] = 'fail';
         $this->param['failMsg'] = '网络异常，此请求为失败';
 
-        $this->param['verify_sign_fail'] = '验签失败';
+        $this->param['verify_sign_fail'] = '渠道响应，验签失败';
         $this->param['sign_fail'] = '签名失败，请检查证书文件是否存在，密码是否正确';
         $this->param['errorCode'] = 'error';
         $this->param['successCode'] = 'success';
@@ -51,7 +51,6 @@ class Common
         $this->param['authSubmitApply'] = '/gateway/merchant/wxAuthSubmitApply';
 
 
-
     }
 
     //加签排序
@@ -59,7 +58,7 @@ class Common
     {
         $signStr = "";
         foreach ($headParams as $key => $val) {
-            if (!empty($val)){
+            if (!empty($val)) {
                 $signStr .= $key . '=' . $val . '&';
             }
         }
@@ -69,9 +68,9 @@ class Common
     //过滤值为空的参数
     public function unsetArry($bizReqJson)
     {
-        foreach( $bizReqJson as $k=>$v){
-            if( !$v )
-                unset( $bizReqJson[$k] );
+        foreach ($bizReqJson as $k => $v) {
+            if (!$v)
+                unset($bizReqJson[$k]);
         }
         return $bizReqJson;
     }
@@ -101,7 +100,7 @@ class Common
      */
     function post_url($url, $headParams, $response_name, $flag = false)
     {
-        echo PHP_EOL. "渠道请求参数" . stripslashes(json_encode($headParams,JSON_UNESCAPED_UNICODE)).PHP_EOL;
+        echo PHP_EOL . "渠道请求参数" . stripslashes(json_encode($headParams, JSON_UNESCAPED_UNICODE)) . PHP_EOL;
         $responses = new Response();
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -112,14 +111,14 @@ class Common
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         $response = curl_exec($ch);
-        var_dump(PHP_EOL."POST请求响应信息".$response.PHP_EOL);
+        var_dump(PHP_EOL . "POST请求响应信息" . $response . PHP_EOL);
 
         if (curl_errno($ch)) {
-           $curl_errno = curl_errno($ch);
-           var_dump($curl_errno);
+            $curl_errno = curl_errno($ch);
+            var_dump($curl_errno);
             curl_close($ch);
             if ($flag) {
-              //  $responses->responseCode = $this->param['unknow'];
+                //  $responses->responseCode = $this->param['unknow'];
                 $responses->responseMeg = $this->param['unknowMsg'];
                 return $responses;
             }
@@ -129,22 +128,21 @@ class Common
         } else {
             curl_close($ch);
             $response = json_decode($response, true);
-            echo PHP_EOL. "渠道响应报文" . stripslashes(json_encode($response,JSON_UNESCAPED_UNICODE)) . PHP_EOL;
+            echo PHP_EOL . "渠道响应报文" . stripslashes(json_encode($response, JSON_UNESCAPED_UNICODE)) . PHP_EOL;
 
             var_dump($response);
             if ($response["sign"] != null) {
                 $sign = $response["sign"];
-                $data = json_encode($response[$response_name], JSON_UNESCAPED_UNICODE);
+                $data = stripslashes(json_encode($response[$response_name], JSON_UNESCAPED_UNICODE));
                 // 验证签名 仅作基础验证
                 if ($this->sign_check($sign, $data) == true) {
                     echo "验证签名成功!";
-                    return Response::fromMap($response,$response_name);
+                    return Response::fromMap($response, $response_name);
                 } else {
                     echo '验证签名失败!';
-                   // $responses->responseCode = $this->param['errorCode'];
-                   // $responses->responseMeg = $this->param['verify_sign_fail'];
-                    // return $responses;
-                    return Response::fromMap($response,$response_name);
+                    $responses->responseMeg = $this->param['verify_sign_fail'];
+                    return $responses;
+                    //  return Response::fromMap($response,$response_name);
                 }
             }
         }
@@ -154,9 +152,10 @@ class Common
     /**
      * 转码
      */
-    function str_to_utf8 ($str = '') {
+    function str_to_utf8($str = '')
+    {
 
-        $current_encode = mb_detect_encoding($str, array("ASCII","GB2312","GBK",'BIG5','UTF-8'));
+        $current_encode = mb_detect_encoding($str, array("ASCII", "GB2312", "GBK", 'BIG5', 'UTF-8'));
 
         $encoded_str = mb_convert_encoding($str, 'UTF-8', $current_encode);
 
@@ -173,16 +172,14 @@ class Common
      */
     function sign_check($sign, $data)
     {
-    //  $publickeyFile = $this->kernel->businessgatecerpath; //公钥
-    //  $certificateCAcerContent = file_get_contents($publickeyFile);
-    //   $certificateCApemContent = '-----BEGIN CERTIFICATE-----' . PHP_EOL . chunk_split(base64_encode($certificateCAcerContent), 64, PHP_EOL) . '-----END CERTIFICATE-----' . PHP_EOL;
-   //  print_r($certificateCApemContent);
+        //  $publickeyFile = $this->kernel->businessgatecerpath; //公钥
+        //  $certificateCAcerContent = file_get_contents($publickeyFile);
+        //   $certificateCApemContent = '-----BEGIN CERTIFICATE-----' . PHP_EOL . chunk_split(base64_encode($certificateCAcerContent), 64, PHP_EOL) . '-----END CERTIFICATE-----' . PHP_EOL;
+        //  print_r($certificateCApemContent);
         // 签名验证
         $success = openssl_verify($data, base64_decode($sign), openssl_get_publickey($this->kernel->publicKey), OPENSSL_ALGO_SHA1);
         return $success;
     }
-
-
 
 
     /**
@@ -226,8 +223,8 @@ class Common
     {
         $response = new Response();
         foreach ($rules as $field => $fieldRules) {
-            if (!isset($data[$field]) || iconv_strlen($data[$field],"UTF-8") <= 0) {
-              //  $response->responseCode = "error";
+            if (!isset($data[$field]) || iconv_strlen($data[$field], "UTF-8") <= 0) {
+                //  $response->responseCode = "error";
                 $response->responseMeg = "$field 不能为空";
                 $response->checkFlag = false;
                 return $response;
@@ -239,7 +236,7 @@ class Common
                 $ret = Validator::check($type, $data[$field], $rule);
                 if ($ret == false) {
 
-                //    $response->responseCode = "error";
+                    //    $response->responseCode = "error";
                     $response->responseMeg = "param : $field 参数错误";
                     $response->checkFlag = false;
                     return $response;
@@ -251,33 +248,32 @@ class Common
     }
 
 
-
     /**
      * des加密函数
      */
-    public  function encryptDes($input, $key)
+    public function encryptDes($input, $key)
     {
         if (!isset($input) || !isset($key)) {
             return "";
         }
         $key = substr($this->kernel->partner_id, 0, 8);
-        if (iconv_strlen($key,"UTF-8") < 8) {
+        if (iconv_strlen($key, "UTF-8") < 8) {
             $key = sprintf("% s", $key);
         }
 
 
-            return $this->encrypt($input,$key);
+        return $this->encrypt($input, $key);
     }
 
 
-    public function encrypt($input,$key)
+    public function encrypt($input, $key)
     {
         $data = openssl_encrypt($input, 'DES-ECB', $key, OPENSSL_RAW_DATA, $this->hexToStr(""));
         $data = base64_encode($data);
         return $data;
     }
 
-    public function decrypt($input,$key)
+    public function decrypt($input, $key)
     {
         $decrypted = openssl_decrypt(base64_decode($input), 'DES-ECB', $key, OPENSSL_RAW_DATA, $this->hexToStr(""));
         return $decrypted;
@@ -285,10 +281,9 @@ class Common
 
     function hexToStr($hex)
     {
-        $string='';
-        for ($i=0; $i < strlen($hex)-1; $i+=2)
-        {
-            $string .= chr(hexdec($hex[$i].$hex[$i+1]));
+        $string = '';
+        for ($i = 0; $i < strlen($hex) - 1; $i += 2) {
+            $string .= chr(hexdec($hex[$i] . $hex[$i + 1]));
         }
         return $string;
     }
@@ -297,7 +292,7 @@ class Common
     /**
      * http Heads参数组装
      */
-    public function commonHeads($method,$kernel,$model)
+    public function commonHeads($method, $kernel, $model)
     {
         $headParams = array();
         $headParams['method'] = $method;
@@ -318,7 +313,7 @@ class Common
     /**
      * 加密参数组装
      */
-    public function encodeParams($headParams,$bizReqJson)
+    public function encodeParams($headParams, $bizReqJson)
     {
         $bizReqJson = $this->unsetArry($bizReqJson);
         $headParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
