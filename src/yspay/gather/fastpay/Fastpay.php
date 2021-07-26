@@ -43,44 +43,13 @@ class Fastpay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.fastpay', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "subject" => $model->subject,
-                "total_amount" => $model->total_amount,
-                "currency" => $model->currency,
-                "seller_id" => $model->seller_id,
-                "seller_name" => $model->seller_name,
-                "timeout_express" => $model->timeout_express,
-                "extend_params" => $model->extend_params,
-                "extra_common_param" => $model->extra_common_param,
-                "business_code" => $model->business_code,
-                "buyer_name" => $model->buyer_name,
-                "buyer_card_number" => $model->buyer_card_number,
-                "buyer_mobile" => $model->buyer_mobile,
-                "bank_type" => $model->bank_type,
-                "bank_account_type" => $model->bank_account_type,
-                "support_card_type" => $model->support_card_type,
-                "bank_name" => $model->bank_name,
-                "cardCvn2" => $this->common->encryptDes($model->cardCvn2,$this->kernel->partner_id),
-                "cardExprDt" => $this->common->encryptDes($model->cardExprDt,$this->kernel->partner_id),
-                "pyerIDTp" => $this->common->encryptDes($model->pyerIDTp,$this->kernel->partner_id),
-                "pyerIDNo" => $this->common->encryptDes($model->pyerIDNo,$this->kernel->partner_id),
-                "consignee_info" => $model->consignee_info,
-                "cross_border_info" => $model->cross_border_info,
-                "province" => $model->province,
-                "city" => $model->city,
-                "limit_credit_pay" => $model->limit_credit_pay,
-                "mccs" => $model->mccs,
-                "mer_no" => $model->mer_no,
+            $headParams = $this->common->commonHeads('ysepay.online.fastpay', $this->kernel, $model);
+            $bizReqJson = FastpayRequest::build($this->kernel, $model);
 
-
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->encodeParams($headParams,$bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_fastpay_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_fastpay_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -103,19 +72,13 @@ class Fastpay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.fastpay.authorize', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "buyer_mobile" => $model->buyer_mobile,
-                "mobile_verify_code" => $model->mobile_verify_code,
-                "cardCvn2" => $this->common->encryptDes($model->cardCvn2,$this->kernel->partner_id),
-                "cardExprDt" => $this->common->encryptDes($model->cardExprDt,$this->kernel->partner_id)
+            $headParams = $this->common->commonHeads('ysepay.online.fastpay.authorize', $this->kernel, $model);
+            $bizReqJson = FastpayAuthorizeRequest::build($this->kernel, $model);
 
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->encodeParams($headParams,$bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_fastpay_authorize_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_fastpay_authorize_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -137,15 +100,13 @@ class Fastpay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.fastpay.authorize.msg', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
+            $headParams = $this->common->commonHeads('ysepay.online.fastpay.authorize.msg', $this->kernel, $model);
+            $bizReqJson = FastpayAuthorizeMsgReq::build($this->kernel, $model);
 
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->encodeParams($headParams,$bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_fastpay_authorize_msg_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_fastpay_authorize_msg_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -167,27 +128,13 @@ class Fastpay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.trusteeship.sign', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "seller_id" => $model->seller_id,
-                "seller_name" => $model->seller_name,
-                "total_amount" => $model->total_amount,
-                "buyer_name" => $this->common->encryptDes($model->buyer_name,$this->kernel->partner_id),
-                "buyer_card_number" => $this->common->encryptDes($model->buyer_card_number,$this->kernel->partner_id),
-                "buyer_mobile" => $this->common->encryptDes($model->buyer_mobile,$this->kernel->partner_id),
-                "cardCvn2" => $this->common->encryptDes($model->cardCvn2,$this->kernel->partner_id),
-                "cardExprDt" => $this->common->encryptDes($model->cardExprDt,$this->kernel->partner_id),
-                "pyerIDNo" => $this->common->encryptDes($model->pyerIDNo,$this->kernel->partner_id),
-                "imei" => $model->imei,
-                "actionScope" => $model->actionScope,
-                "user_id" => $model->user_id,
+            $headParams = $this->common->commonHeads('ysepay.trusteeship.sign', $this->kernel, $model);
+            $bizReqJson = TrusteeshipSignRequest::build($this->kernel, $model);
 
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->encodeParams($headParams,$bizReqJson);
             $url = $this->kernel->trusteeshipUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_trusteeship_sign_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_trusteeship_sign_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -210,18 +157,13 @@ class Fastpay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.trusteeship.sign.confirm', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "mobile_verify_code" => $model->mobile_verify_code,
-                "cardCvn2" => $this->common->encryptDes($model->cardCvn2,$this->kernel->partner_id),
-                "cardExprDt" => $this->common->encryptDes($model->cardExprDt,$this->kernel->partner_id),
+            $headParams = $this->common->commonHeads('ysepay.trusteeship.sign.confirm', $this->kernel, $model);
+            $bizReqJson = TrusteeshipSignConfirmRequest::build($this->kernel, $model);
 
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->encodeParams($headParams,$bizReqJson);
             $url = $this->kernel->trusteeshipUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_trusteeship_sign_confirm_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_trusteeship_sign_confirm_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -244,35 +186,13 @@ class Fastpay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.trusteeship.fastPay', $this->kernel, $model);
-            $myParams['return_url'] = $model->return_url;
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "subject" => $model->subject,
-                "total_amount" => $model->total_amount,
-                "currency" => $model->currency,
-                "seller_id" => $model->seller_id,
-                "seller_name" => $model->seller_name,
-                "timeout_express" => $model->timeout_express,
-                "extend_params" => $model->extend_params,
-                "extra_common_param" => $model->extra_common_param,
-                "business_code" => $model->business_code,
-                "protocol_no" => $model->protocol_no,
-                "cardCvn2" => $this->common->encryptDes($model->cardCvn2,$this->kernel->partner_id),
-                "cardExprDt" => $this->common->encryptDes($model->cardExprDt,$this->kernel->partner_id),
-                "consignee_info" => $model->consignee_info,
-                "user_id" => $model->user_id,
-                "province" => $model->province,
-                "city" => $model->city,
-                "mccs" => $model->mccs,
-                "mer_no" => $model->mer_no,
+            $headParams = $this->common->commonHeads('ysepay.trusteeship.fastPay', $this->kernel, $model);
+            $bizReqJson = TrusteeshipfastPayRequest::build($this->kernel, $model);
 
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->encodeParams($headParams,$bizReqJson);
             $url = $this->kernel->trusteeshipUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_trusteeship_fastPay_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_trusteeship_fastPay_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];

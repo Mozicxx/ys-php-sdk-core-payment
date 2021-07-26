@@ -40,33 +40,13 @@ class WeChatAuthenticate
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.authenticate.wx.apply';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+            $headParams = $this->common->commonHeads('ysepay.authenticate.wx.apply', $this->kernel, $model);
+            $bizReqJson = WeChatAuthenticateApplyRequest::build($this->kernel, $model);
 
-            $bizReqJson = array(
-                "usercode" => $model->usercode,
-                "cust_name" => $model->cust_name,
-                "contact_cert_type" => $model->contact_cert_type,
-                "legal_cert_initial" => $model->legal_cert_initial,
-                "legal_cert_expire" => $model->legal_cert_expire,
-                "bus_license_initial" => $model->bus_license_initial,
-                "bus_license_expire" => $model->bus_license_expire,
-                "store_type" => $model->store_type,
-                "store_name" => $model->store_name,
-                "token" => $model->token,
-                "contact_cert_no" => $this->common->encryptDes($model->contact_cert_no, $this->kernel->partner_id),
-
-            );
-            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_authenticate_wx_apply_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_authenticate_wx_apply_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -83,26 +63,16 @@ class WeChatAuthenticate
     public function registerTokenGet()
     {
         try {
+            $headParams = $this->common->commonHeads('ysepay.merchant.register.token.get', $this->kernel, $model);
 
-            $myParams = array();
-            $myParams['method'] = 'ysepay.merchant.register.token.get';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-
-            $bizReqJson = array();
-            //  $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = "{}";//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
+            $headParams['biz_content'] = "{}";//构造字符串
+            ksort($headParams);
+            $signStr = $this->common->signSort($headParams);
             $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $headParams['sign'] = trim($sign['check']);
             $url = 'https://register.ysepay.com:2443/register_gateway/gateway.do';
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_merchant_register_token_get_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_merchant_register_token_get_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -125,10 +95,10 @@ class WeChatAuthenticate
                 return $check;
             }
 
-            $myParams = array();
-            $myParams['superUsercode'] = $model->superUsercode;
-            $myParams['picType'] = $model->picType;
-            $myParams['token'] = $model->token;
+            $headParams = array();
+            $headParams['superUsercode'] = $model->superUsercode;
+            $headParams['picType'] = $model->picType;
+            $headParams['token'] = $model->token;
 
             $filePath = $this->common->str_to_utf8($model->filePath);
             $filename = $this->common->str_to_utf8($model->filename);
@@ -136,12 +106,12 @@ class WeChatAuthenticate
             var_dump($filePath);
             var_dump($filename);
             $curl_file = curl_file_create(iconv('utf-8', 'gbk', $filePath), 'image/jpeg', $filename);
-            $myParams['picFile'] = $curl_file;
+            $headParams['picFile'] = $curl_file;
             $url = 'https://uploadApi.ysepay.com:2443/yspay-upload-service?method=upload';
             $responses = new Response();
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $myParams);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $headParams);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -156,7 +126,7 @@ class WeChatAuthenticate
             $response = json_decode($response, true);
 
             return Response::setMap($response);
-            //  return $this->common->post_Url($url, $myParams, "ysepay_online_fastpay_response", false);
+            //  return $this->common->post_Url($url, $headParams, "ysepay_online_fastpay_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -179,22 +149,15 @@ class WeChatAuthenticate
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.authenticate.wx.query';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+            $headParams = $this->common->commonHeads('ysepay.authenticate.wx.query', $this->kernel, $model);
 
             $bizReqJson = array(
                 "apply_no" => $model->apply_no,
             );
-            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_authenticate_wx_query_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_authenticate_wx_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -217,22 +180,15 @@ class WeChatAuthenticate
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.authenticate.wx.apply.cancel';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+            $headParams = $this->common->commonHeads('ysepay.authenticate.wx.apply.cancel', $this->kernel, $model);
 
             $bizReqJson = array(
                 "apply_no" => $model->apply_no,
             );
-            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_authenticate_wx_apply_cancel_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_authenticate_wx_apply_cancel_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -254,22 +210,16 @@ class WeChatAuthenticate
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.authenticate.wx.authorized.query';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charsetGBK;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
+            $headParams = $this->common->commonHeads('ysepay.authenticate.wx.authorized.query', $this->kernel, $model);
 
             $bizReqJson = array(
                 "usercode" => $model->usercode,
             );
-            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
+            $bizReqJson = AuthenticateApplyQueryRequest::build($this->kernel, $model);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_authenticate_wx_authorized_query_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_authenticate_wx_authorized_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];

@@ -46,4 +46,12 @@ class MerchantBalanceQueryRequest
     }
 
 
+    public static function build($kernel, $model)
+    {
+        $bizReqJson = array(
+            "merchant_usercode" => $model->merchant_usercode,
+        );
+
+        return $bizReqJson;
+    }
 }

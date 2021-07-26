@@ -189,4 +189,34 @@ class QrcodepayRequest
     }
 
 
+    public static function build($kernel, $model)
+    {
+
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "shopdate" => $model->shopdate,
+            "subject" => $model->subject,
+            "total_amount" => $model->total_amount,
+            "currency" => $model->currency,
+            "seller_id" => $model->seller_id,
+            "seller_name" => $model->seller_name,
+            "timeout_express" => $model->timeout_express,
+            "extend_params" => $model->extend_params,
+            "extra_common_param" => $model->extra_common_param,
+            "business_code" => $model->business_code,
+            "bank_type" => $model->bank_type,
+            "consignee_info" => $model->consignee_info,
+            "cross_border_info" => $model->cross_border_info,
+            "appid" => $model->appid,
+            "province" => $model->province,
+            "city" => $model->city,
+            "limit_credit_pay" => $model->limit_credit_pay,
+            "hb_fq_num" => $model->hb_fq_num,
+            "tran_type" => $model->tran_type,
+            "return_url" => $model->return_url,
+
+        );
+
+        return $bizReqJson;
+    }
 }

@@ -41,22 +41,13 @@ class Division
                 return $check;
             }
             
-            $myParams = $this->common->commonHeads('ysepay.single.division.online.accept', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "payee_usercode" => $model->payee_usercode,
-                "total_amount" => $model->total_amount,
-                "sys_flag" => $model->sys_flag,
-                "is_divistion" => $model->is_divistion,
-                "is_again_division" => $model->is_again_division,
-                "division_mode" => $model->division_mode,
-                "div_list" => $model->div_list,
-                "division_mer_usercode" => $model->division_mer_usercode,
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->commonHeads('ysepay.single.division.online.accept', $this->kernel, $model);
+            $bizReqJson = DivisionOnlineAcceptRequest::build($this->kernel, $model);
+
+            $headParams = $this->common->encodeParams($headParams,$bizReqJson);
             $url = $this->kernel->commonUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, 'ysepay_single_division_online_accept_response', false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, 'ysepay_single_division_online_accept_response', false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -81,18 +72,13 @@ class Division
                 return $check;
             }
             
-            $myParams = $this->common->commonHeads('ysepay.single.division.online.query', $this->kernel, $model);
-            $bizReqJson = array(
-                "src_usercode" => $model->src_usercode,
-                "out_trade_no" => $model->out_trade_no,
-                "out_batch_no" => $model->out_batch_no,
-                "sys_flag" => $model->sys_flag,
+            $headParams = $this->common->commonHeads('ysepay.single.division.online.query', $this->kernel, $model);
+            $bizReqJson = DivisionOnlineQueryRequest::build($this->kernel, $model);
 
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->encodeParams($headParams,$bizReqJson);
             $url = $this->kernel->commonUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_single_division_online_query_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_single_division_online_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];

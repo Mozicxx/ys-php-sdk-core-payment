@@ -44,20 +44,13 @@ class OrderRefund
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.trade.refund', $this->kernel, $model);
+            $headParams = $this->common->commonHeads('ysepay.online.trade.refund', $this->kernel, $model);
+            $bizReqJson = TradeRefundRequest::build($this->kernel, $model);
 
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "trade_no" => $model->trade_no,
-                "refund_amount" => $model->refund_amount,
-                "refund_reason" => $model->refund_reason,
-                "out_request_no" => $model->out_request_no,
-            );
-            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_refund_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_trade_refund_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -79,25 +72,13 @@ class OrderRefund
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.trade.refund.split', $this->kernel, $model);
+            $headParams = $this->common->commonHeads('ysepay.online.trade.refund.split', $this->kernel, $model);
+            $bizReqJson = TradeRefundSplitRequest::build($this->kernel, $model);
 
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "trade_no" => $model->trade_no,
-                "refund_amount" => $model->refund_amount,
-                "refund_reason" => $model->refund_reason,
-                "out_request_no" => $model->out_request_no,
-                "is_division" => $model->is_division,
-                "refund_split_info" => $model->refund_split_info,
-                "ori_division_mode" => $model->ori_division_mode,
-                "order_div_list" => $model->order_div_list,
-
-            );
-            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_refund_split_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_trade_refund_split_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -120,23 +101,13 @@ class OrderRefund
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.trade.refund.general.account', $this->kernel, $model);
+            $headParams = $this->common->commonHeads('ysepay.online.trade.refund.general.account', $this->kernel, $model);
+            $bizReqJson = TradeRefundGeneralAccountReq::build($this->kernel, $model);
 
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "trade_no" => $model->trade_no,
-                "refund_amount" => $model->refund_amount,
-                "refund_reason" => $model->refund_reason,
-                "out_request_no" => $model->out_request_no,
-                "is_division" => $model->is_division,
-                "refund_split_info" => $model->refund_split_info,
-
-            );
-            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_refund_general_account_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_trade_refund_general_account_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -159,17 +130,13 @@ class OrderRefund
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.trade.refund.query', $this->kernel, $model);
+            $headParams = $this->common->commonHeads('ysepay.online.trade.refund.query', $this->kernel, $model);
+            $bizReqJson = TradeRefundQueryRequest::build($this->kernel, $model);
 
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "out_request_no" => $model->out_request_no,
-                "trade_no" => $model->trade_no,
-            );
-            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_refund_query_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_trade_refund_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -192,17 +159,13 @@ class OrderRefund
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.trade.order.query', $this->kernel, $model);
+            $headParams = $this->common->commonHeads('ysepay.online.trade.order.query', $this->kernel, $model);
+            $bizReqJson = TradeOrderQueryRequest::build($this->kernel, $model);
 
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "trade_no" => $model->trade_no,
-            );
-            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->searchUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_order_query_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_trade_order_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -225,15 +188,13 @@ class OrderRefund
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.bill.downloadurl.get', $this->kernel, $model);
+            $headParams = $this->common->commonHeads('ysepay.online.bill.downloadurl.get', $this->kernel, $model);
+            $bizReqJson = BillDownloadurlGetRequest::build($this->kernel, $model);
 
-            $bizReqJson = array(
-                "account_date" => $model->account_date,
-            );
-            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_bill_downloadurl_get_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_bill_downloadurl_get_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];

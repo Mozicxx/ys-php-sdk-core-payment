@@ -76,5 +76,36 @@ class FastpayAuthorizeRequest
         return $checkRules['fastpayAuthorizeRequest'];
     }
 
+    public static function build($kernel, $model)
+    {
 
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "buyer_mobile" => $model->buyer_mobile,
+            "mobile_verify_code" => $model->mobile_verify_code,
+            "cardCvn2" => FastpayAuthorizeRequest::encryptDes($model->cardCvn2,$kernel->partner_id),
+            "cardExprDt" => FastpayAuthorizeRequest::encryptDes($model->cardExprDt,$kernel->partner_id)
+
+        );
+
+        return $bizReqJson;
+    }
+
+    /**
+     * des加密函数
+     */
+    public static function encryptDes($input, $key)
+    {
+        if (!isset($input) || !isset($key)) {
+            return "";
+        }
+        $key = substr($key, 0, 8);
+        if (iconv_strlen($key,"UTF-8") < 8) {
+            $key = sprintf("%+8s", $key);
+        }
+
+        $data = openssl_encrypt($input, 'DES-ECB', $key, OPENSSL_RAW_DATA, "");
+        $data = base64_encode($data);
+        return $data;
+    }
 }

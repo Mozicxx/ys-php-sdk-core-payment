@@ -67,4 +67,15 @@ class TradeDeliveredRequest
     }
 
 
+    public static function build($kernel, $model)
+    {
+
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "shopdate" => $model->shopdate,
+            "trade_no" => $model->trade_no,
+        );
+
+        return $bizReqJson;
+    }
 }

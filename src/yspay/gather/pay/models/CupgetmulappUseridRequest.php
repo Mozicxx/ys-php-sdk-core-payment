@@ -64,4 +64,14 @@ class CupgetmulappUseridRequest
     }
 
 
+    public static function build($kernel, $model)
+    {
+        $bizReqJson = array(
+            "userAuthCode" => $model->userAuthCode,
+            "appUpIdentifier" => $model->appUpIdentifier,
+
+        );
+
+        return $bizReqJson;
+    }
 }

@@ -68,5 +68,15 @@ class TradeRefundQueryRequest
         return $checkRules['tradeRefundQueryRequest'];
     }
 
+    public static function build($kernel, $model)
+    {
 
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "out_request_no" => $model->out_request_no,
+            "trade_no" => $model->trade_no,
+        );
+
+        return $bizReqJson;
+    }
 }

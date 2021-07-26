@@ -107,5 +107,21 @@ class TradeRefundGeneralAccountReq
         return $checkRules['tradeRefundGeneralAccountReq'];
     }
 
+    public static function build($kernel, $model)
+    {
 
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "shopdate" => $model->shopdate,
+            "trade_no" => $model->trade_no,
+            "refund_amount" => $model->refund_amount,
+            "refund_reason" => $model->refund_reason,
+            "out_request_no" => $model->out_request_no,
+            "is_division" => $model->is_division,
+            "refund_split_info" => $model->refund_split_info,
+
+        );
+
+        return $bizReqJson;
+    }
 }

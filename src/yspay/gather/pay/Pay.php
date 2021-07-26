@@ -46,16 +46,13 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-         $myParams = $this->common->commonHeads('ysepay.online.trade.delivered', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "trade_no" => $model->trade_no,
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->commonHeads('ysepay.online.trade.delivered', $this->kernel, $model);
+            $bizReqJson = TradeDeliveredRequest::build($this->kernel, $model);
+
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_delivered_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_trade_delivered_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -77,16 +74,13 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-         $myParams = $this->common->commonHeads('ysepay.online.trade.confirm', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "trade_no" => $model->trade_no,
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->commonHeads('ysepay.online.trade.confirm', $this->kernel, $model);
+            $bizReqJson = TradeDeliveredRequest::build($this->kernel, $model);
+
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_trade_confirm_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_trade_confirm_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -109,40 +103,13 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.barcodepay', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "subject" => $model->subject,
-                "total_amount" => $model->total_amount,
-                "currency" => $model->currency,
-                "seller_id" => $model->seller_id,
-                "seller_name" => $model->seller_name,
-                "timeout_express" => $model->timeout_express,
-                "extend_params" => $model->extend_params,
-                "extra_common_param" => $model->extra_common_param,
-                "business_code" => $model->business_code,
-                "bank_type" => $model->bank_type,
-                "scene" => $model->scene,
-                "auth_code" => $model->auth_code,
-                "device_info" => $model->device_info,
-                "category" => $model->category,
-                "mrchntCertId" => $model->mrchntCertId,
-                "consignee_info" => $model->consignee_info,
-                "cross_border_info" => $model->cross_border_info,
-                "appid" => $model->appid,
-                "province" => $model->province,
-                "city" => $model->city,
-                "limit_credit_pay" => $model->limit_credit_pay,
-                "hb_fq_num" => $model->hb_fq_num,
-                "allow_repeat_pay" => $model->allow_repeat_pay,
-                "fail_notify_url" => $model->fail_notify_url
+            $headParams = $this->common->commonHeads('ysepay.online.barcodepay', $this->kernel, $model);
+            $bizReqJson = BarcodepayRequest::build($this->kernel, $model);
 
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->qrcodeUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_barcodepay_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_barcodepay_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -164,35 +131,13 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.alijsapi.pay', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "subject" => $model->subject,
-                "total_amount" => $model->total_amount,
-                "currency" => $model->currency,
-                "seller_id" => $model->seller_id,
-                "seller_name" => $model->seller_name,
-                "timeout_express" => $model->timeout_express,
-                "extend_params" => $model->extend_params,
-                "extra_common_param" => $model->extra_common_param,
-                "business_code" => $model->business_code,
-                "buyer_logon_id" => $model->buyer_logon_id,
-                "buyer_id" => $model->buyer_id,
-                "consignee_info" => $model->consignee_info,
-                "province" => $model->province,
-                "city" => $model->city,
-                "limit_credit_pay" => $model->limit_credit_pay,
-                "hb_fq_num" => $model->hb_fq_num,
-                "allow_repeat_pay" => $model->allow_repeat_pay,
-                "fail_notify_url" => $model->fail_notify_url,
+            $headParams = $this->common->commonHeads('ysepay.online.alijsapi.pay', $this->kernel, $model);
+            $bizReqJson = AlijsapiRequest::build($this->kernel, $model);
 
-
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->qrcodeUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_alijsapi_pay_response", true);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_alijsapi_pay_response", true);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -215,35 +160,13 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.weixin.pay', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "subject" => $model->subject,
-                "total_amount" => $model->total_amount,
-                "currency" => $model->currency,
-                "seller_id" => $model->seller_id,
-                "seller_name" => $model->seller_name,
-                "timeout_express" => $model->timeout_express,
-                "extend_params" => $model->extend_params,
-                "extra_common_param" => $model->extra_common_param,
-                "business_code" => $model->business_code,
-                "sub_openid" => $model->sub_openid,
-                "is_minipg" => $model->is_minipg,
-                "appid" => $model->appid,
-                "province" => $model->province,
-                "city" => $model->city,
-                "mer_amount" => $model->mer_amount,
-                "limit_credit_pay" => $model->limit_credit_pay,
-                "allow_repeat_pay" => $model->allow_repeat_pay,
-                "fail_notify_url" => $model->fail_notify_url,
+            $headParams = $this->common->commonHeads('ysepay.online.weixin.pay', $this->kernel, $model);
+            $bizReqJson = WeixinPayRequest::build($this->kernel, $model);
 
-
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->qrcodeUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_barcodepay_response", true);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_weixin_pay_response", true);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -265,16 +188,13 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.cupgetmulapp.userid', $this->kernel, $model);
-            $bizReqJson = array(
-                "userAuthCode" => $model->userAuthCode,
-                "appUpIdentifier" => $model->appUpIdentifier,
+            $headParams = $this->common->commonHeads('ysepay.online.cupgetmulapp.userid', $this->kernel, $model);
+            $bizReqJson = CupgetmulappUseridRequest::build($this->kernel, $model);
 
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->qrcodeUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_cupgetmulapp_userid_response", true);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_cupgetmulapp_userid_response", true);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -297,34 +217,13 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.cupmulapp.qrcodepay', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "subject" => $model->subject,
-                "total_amount" => $model->total_amount,
-                "currency" => $model->currency,
-                "seller_id" => $model->seller_id,
-                "seller_name" => $model->seller_name,
-                "timeout_express" => $model->timeout_express,
-                "extend_params" => $model->extend_params,
-                "extra_common_param" => $model->extra_common_param,
-                "business_code" => $model->business_code,
-                "bank_type" => $model->bank_type,
-                "consignee_info" => $model->consignee_info,
-                "userId" => $model->userId,
-                "device_info" => $model->device_info,
-                "terminal_info" => $model->terminal_info,
-                "limit_credit_pay" => $model->limit_credit_pay,
-                "hb_fq_num" => $model->hb_fq_num,
-                "allow_repeat_pay" => $model->allow_repeat_pay,
-                "fail_notify_url" => $model->fail_notify_url,
-                "spbill_create_ip" => $model->spbill_create_ip,
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->commonHeads('ysepay.online.cupmulapp.qrcodepay', $this->kernel, $model);
+            $bizReqJson = CupmulappQrcodepayRequest::build($this->kernel, $model);
+
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->qrcodeUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_cupmulapp_qrcodepay_response", true);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_cupmulapp_qrcodepay_response", true);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -347,35 +246,13 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.qrcodepay', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "subject" => $model->subject,
-                "total_amount" => $model->total_amount,
-                "currency" => $model->currency,
-                "seller_id" => $model->seller_id,
-                "seller_name" => $model->seller_name,
-                "timeout_express" => $model->timeout_express,
-                "extend_params" => $model->extend_params,
-                "extra_common_param" => $model->extra_common_param,
-                "business_code" => $model->business_code,
-                "bank_type" => $model->bank_type,
-                "consignee_info" => $model->consignee_info,
-                "cross_border_info" => $model->cross_border_info,
-                "appid" => $model->appid,
-                "province" => $model->province,
-                "city" => $model->city,
-                "limit_credit_pay" => $model->limit_credit_pay,
-                "hb_fq_num" => $model->hb_fq_num,
-                "tran_type" => $model->tran_type,
-                "return_url" => $model->return_url,
+            $headParams = $this->common->commonHeads('ysepay.online.qrcodepay', $this->kernel, $model);
+            $bizReqJson = QrcodepayRequest::build($this->kernel, $model);
 
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->qrcodeUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_qrcodepay_response", true);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_qrcodepay_response", true);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -398,30 +275,13 @@ class Pay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.online.mobile.controls.pay', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "subject" => $model->subject,
-                "total_amount" => $model->total_amount,
-                "currency" => $model->currency,
-                "seller_id" => $model->seller_id,
-                "seller_name" => $model->seller_name,
-                "timeout_express" => $model->timeout_express,
-                "extend_params" => $model->extend_params,
-                "extra_common_param" => $model->extra_common_param,
-                "business_code" => $model->business_code,
-                "bank_type" => $model->bank_type,
-                "bank_account_type" => $model->bank_account_type,
-                "support_card_type" => $model->support_card_type,
-                "cross_border_info" => $model->cross_border_info,
-                "consignee_info" => $model->consignee_info,
+            $headParams = $this->common->commonHeads('ysepay.online.mobile.controls.pay', $this->kernel, $model);
+            $bizReqJson = MobileControlsPayRequest::build($this->kernel, $model);
 
-            );
-            $myParams = $this->common->encodeParams($myParams,$bizReqJson);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->url;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_online_mobile_controls_pay_response", true);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_online_mobile_controls_pay_response", true);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];

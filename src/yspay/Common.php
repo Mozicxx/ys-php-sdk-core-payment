@@ -32,22 +32,6 @@ class Common
     {
 
         $this->param = array();
-        // $this->param['businessgatecerpath'] = dirname(dirname(__FILE__)) ."\yspay\certs\ys_test.cer";
-
-        // $this->param['private_key'] = dirname(dirname(__FILE__)) ."\yspay\certs\merchant_test.pfx";
-        //  $this->param['pfxpassword'] = 'ysyun';
-        //  $this->param['charset'] = 'UTF-8';
-        //  $this->param['signType'] = 'RSA';
-        //  $this->param['version'] = 'V100';
-
-        //商户网关
-        // $this->param['mchUrl'] = 'http://wiki.easybuycloud.com:8082/ysmp-merchant-gateway-ci';
-        // $this->param['prodMchUrl'] = 'https://mpfpmerchantapi.ysepay.com';
-
-        // //支付网关
-        // $this->param['url'] = 'http://wiki.easybuycloud.com:8082/ysmp-gateway-ci';
-        // $this->param['prodUrl'] = 'https://mpfptradeapi.ysepay.com';
-
         $this->param['unknow'] = 'unknow';
         $this->param['unknowMsg'] = '网络异常，状态未知';
 
@@ -71,10 +55,10 @@ class Common
     }
 
     //加签排序
-    public function signSort($myParams)
+    public function signSort($headParams)
     {
         $signStr = "";
-        foreach ($myParams as $key => $val) {
+        foreach ($headParams as $key => $val) {
             if (!empty($val)){
                 $signStr .= $key . '=' . $val . '&';
             }
@@ -94,10 +78,10 @@ class Common
 
 
     //验签排序
-    public function attestationSignSort($myParams)
+    public function attestationSignSort($headParams)
     {
         $signStr = "";
-        foreach ($myParams as $key => $val) {
+        foreach ($headParams as $key => $val) {
             if ($key == "ysepay_df_single_quick_accept_response") {
                 $val = substr($val, 1, -1);
             }
@@ -111,17 +95,17 @@ class Common
      * post发送请求
      *
      * @param $url
-     * @param $myParams
+     * @param $headParams
      * @param $response_name
      * @return Response
      */
-    function post_url($url, $myParams, $response_name, $flag = false)
+    function post_url($url, $headParams, $response_name, $flag = false)
     {
-        echo PHP_EOL. "渠道请求参数" . stripslashes(json_encode($myParams,JSON_UNESCAPED_UNICODE)).PHP_EOL;
+        echo PHP_EOL. "渠道请求参数" . stripslashes(json_encode($headParams,JSON_UNESCAPED_UNICODE)).PHP_EOL;
         $responses = new Response();
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($myParams));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($headParams));
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -271,15 +255,18 @@ class Common
     /**
      * des加密函数
      */
-    public function encryptDes($input, $key)
+    public  function encryptDes($input, $key)
     {
         if (!isset($input) || !isset($key)) {
             return "";
         }
         $key = substr($this->kernel->partner_id, 0, 8);
-        $sprintf = sprintf("% s", $key);
+        if (iconv_strlen($key,"UTF-8") < 8) {
+            $key = sprintf("% s", $key);
+        }
 
-            return $this->encrypt($input,$sprintf);
+
+            return $this->encrypt($input,$key);
     }
 
 
@@ -312,33 +299,33 @@ class Common
      */
     public function commonHeads($method,$kernel,$model)
     {
-        $myParams = array();
-        $myParams['method'] = $method;
-        $myParams['partner_id'] = $kernel->partner_id;
-        $myParams['timestamp'] = date('Y-m-d H:i:s');;
-        $myParams['charset'] = $kernel->charset;
-        $myParams['sign_type'] = $kernel->sign_type;
-        $myParams['notify_url'] = $kernel->notify_url;
-        $myParams['version'] = $kernel->version;
-        $myParams['tran_type'] = $model->tran_type;
-        $myParams['return_url'] = $model->return_url;
-        $myParams['proxy_password'] = $model->proxy_password;
-        $myParams['merchant_usercode'] = $model->merchant_usercode;
-        return $this->unsetArry($myParams);
+        $headParams = array();
+        $headParams['method'] = $method;
+        $headParams['partner_id'] = $kernel->partner_id;
+        $headParams['timestamp'] = date('Y-m-d H:i:s');;
+        $headParams['charset'] = $kernel->charset;
+        $headParams['sign_type'] = $kernel->sign_type;
+        $headParams['notify_url'] = $kernel->notify_url;
+        $headParams['version'] = $kernel->version;
+        $headParams['tran_type'] = $model->tran_type;
+        $headParams['return_url'] = $model->return_url;
+        $headParams['proxy_password'] = $model->proxy_password;
+        $headParams['merchant_usercode'] = $model->merchant_usercode;
+        return $this->unsetArry($headParams);
     }
 
 
     /**
      * 加密参数组装
      */
-    public function encodeParams($myParams,$bizReqJson)
+    public function encodeParams($headParams,$bizReqJson)
     {
         $bizReqJson = $this->unsetArry($bizReqJson);
-        $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-        ksort($myParams);
-        $signStr = $this->signSort($myParams);
+        $headParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
+        ksort($headParams);
+        $signStr = $this->signSort($headParams);
         $sign = $this->sign_encrypt(array('data' => $signStr));
-        $myParams['sign'] = trim($sign['check']);
-        return $myParams;
+        $headParams['sign'] = trim($sign['check']);
+        return $headParams;
     }
 }

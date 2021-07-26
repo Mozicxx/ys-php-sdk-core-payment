@@ -41,20 +41,13 @@ class Merchant
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = $this->common->commonHeads('ysepay.merchant.withdraw.quick.accept', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "currency" => $model->currency,
-                "merchant_usercode" => $model->merchant_usercode,
-                "total_amount" => $model->total_amount,
-                "subject" => $model->subject,
-                "bank_account_no" => $model->bank_account_no,
-            );
-            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
+            $headParams = $this->common->commonHeads('ysepay.merchant.withdraw.quick.accept', $this->kernel, $model);
+            $bizReqJson = MerchantWithdrawRequest::build($this->kernel, $model);
+
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->commonUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_merchant_withdraw_quick_accept_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_merchant_withdraw_quick_accept_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -78,20 +71,13 @@ class Merchant
                 return $check;
             }
 
-            $myParams = $this->common->commonHeads('ysepay.merchant.withdraw.d0.accept', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "currency" => $model->currency,
-                "merchant_usercode" => $model->merchant_usercode,
-                "total_amount" => $model->total_amount,
-                "subject" => $model->subject,
-                "bank_account_no" => $model->bank_account_no,
-            );
-            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
+            $headParams = $this->common->commonHeads('ysepay.merchant.withdraw.d0.accept', $this->kernel, $model);
+            $bizReqJson = MerchantWithdrawRequest::build($this->kernel, $model);
+
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->commonUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_merchant_withdraw_d0_accept_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_merchant_withdraw_d0_accept_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -115,15 +101,13 @@ class Merchant
                 return $check;
             }
 
-            $myParams = $this->common->commonHeads('ysepay.merchant.withdraw.quick.query', $this->kernel, $model);
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-            );
-            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
+            $headParams = $this->common->commonHeads('ysepay.merchant.withdraw.quick.query', $this->kernel, $model);
+
+            $bizReqJson = MerchantWithdrawQueryRequest::build($this->kernel, $model);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->commonUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_merchant_withdraw_quick_query_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_merchant_withdraw_quick_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -147,14 +131,12 @@ class Merchant
                 return $check;
             }
 
-            $myParams = $this->common->commonHeads('ysepay.merchant.balance.query', $this->kernel, $model);
-            $bizReqJson = array(
-                "merchant_usercode" => $model->merchant_usercode,
-            );
-            $myParams = $this->common->encodeParams($myParams, $bizReqJson);
+            $headParams = $this->common->commonHeads('ysepay.merchant.balance.query', $this->kernel, $model);
+            $bizReqJson = MerchantBalanceQueryRequest::build($this->kernel, $model);
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->commonUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_merchant_balance_query_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_merchant_balance_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
