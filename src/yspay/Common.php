@@ -43,14 +43,6 @@ class Common
         $this->param['errorCode'] = 'error';
         $this->param['successCode'] = 'success';
 
-        //商户
-        $this->param['merchantQuery'] = '/gateway/merchant/query';
-        $this->param['merchantAdd'] = '/gateway/merchant/add';
-        $this->param['merchantPicUpload'] = '/gateway/file/merchantPic';
-        $this->param['updateBindAppId'] = '/gateway/merchant/updateBindAppId';
-        $this->param['authSubmitApply'] = '/gateway/merchant/wxAuthSubmitApply';
-
-
     }
 
     //加签排序
@@ -142,7 +134,6 @@ class Common
                     echo '验证签名失败!';
                     $responses->responseMeg = $this->param['verify_sign_fail'];
                     return $responses;
-                    //  return Response::fromMap($response,$response_name);
                 }
             }
         }
