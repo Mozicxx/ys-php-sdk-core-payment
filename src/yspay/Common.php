@@ -38,7 +38,7 @@ class Common
         $this->param['fail'] = 'fail';
         $this->param['failMsg'] = '网络异常，此请求为失败';
 
-        $this->param['verify_sign_fail'] = '渠道响应，验签失败';
+        $this->param['verify_sign_fail'] = '验证渠道响应签名失败';
         $this->param['sign_fail'] = '签名失败，请检查证书文件是否存在，密码是否正确';
         $this->param['errorCode'] = 'error';
         $this->param['successCode'] = 'success';
@@ -100,7 +100,7 @@ class Common
      */
     function post_url($url, $headParams, $response_name, $flag = false)
     {
-        echo PHP_EOL . "渠道请求参数" . stripslashes(json_encode($headParams, JSON_UNESCAPED_UNICODE)) . PHP_EOL;
+        echo PHP_EOL . "渠道请求参数" . json_encode($headParams, JSON_UNESCAPED_UNICODE + JSON_UNESCAPED_SLASHES) . PHP_EOL;
         $responses = new Response();
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -128,12 +128,12 @@ class Common
         } else {
             curl_close($ch);
             $response = json_decode($response, true);
-            echo PHP_EOL . "渠道响应报文" . stripslashes(json_encode($response, JSON_UNESCAPED_UNICODE)) . PHP_EOL;
+            echo PHP_EOL . "渠道响应报文" . json_encode($response, JSON_UNESCAPED_UNICODE + JSON_UNESCAPED_SLASHES) . PHP_EOL;
 
             var_dump($response);
             if ($response["sign"] != null) {
-                $sign = stripslashes($response["sign"]);
-                $data = stripslashes(json_encode($response[$response_name], JSON_UNESCAPED_UNICODE));
+                $sign = $response["sign"];
+                $data = json_encode($response[$response_name], JSON_UNESCAPED_UNICODE + JSON_UNESCAPED_SLASHES);
                 // 验证签名 仅作基础验证
                 if ($this->sign_check($sign, $data) == true) {
                     echo "验证签名成功!";
