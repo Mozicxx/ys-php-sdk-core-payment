@@ -212,9 +212,6 @@ class WeChatAuthenticate
             }
             $headParams = $this->common->commonHeads('ysepay.authenticate.wx.authorized.query', $this->kernel, $model);
 
-            $bizReqJson = array(
-                "usercode" => $model->usercode,
-            );
             $bizReqJson = AuthenticateApplyQueryRequest::build($this->kernel, $model);
             $headParams = $this->common->encodeParams($headParams, $bizReqJson);
             $url = $this->kernel->url;

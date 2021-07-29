@@ -27,17 +27,6 @@ class TradeRefundQueryRequest
     public $trade_no;
 
 
-
-
-
-
-
-
-
-
-
-
-
     public static function getParam($model)
     {
 
