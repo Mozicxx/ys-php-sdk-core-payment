@@ -32,7 +32,7 @@ class PagePayTest extends Base
 
         try {
             $request = new WapDirectpayCreatebyuserReq();
-            $request->out_trade_no = "202107141231";
+            $request->out_trade_no = $this->generateOrderNumber(); // "202107141231";
             $request->shopdate = "20210714";
             $request->subject = "WAP页面支付";
             $request->total_amount = "0.02";
@@ -78,7 +78,7 @@ class PagePayTest extends Base
 
         try {
             $request = new DirectpayCreatebyuserRequest();
-            $request->out_trade_no = "2021071412311";
+            $request->out_trade_no = $this->generateOrderNumber(); // "2021071412311";
             $request->shopdate = "20210714";
             $request->subject = "WEB页面支付";
             $request->total_amount = "0.02";

@@ -41,7 +41,7 @@ class OrderTest extends Base
 
         try {
             $request = new TradeRefundRequest();
-            $request->out_trade_no = "20210712123113";
+            $request->out_trade_no = $this->generateOrderNumber(); // "20210712123113";
             $request->shopdate = "20210712";
             $request->trade_no = "";
             $request->refund_amount = "0.01";
@@ -75,7 +75,7 @@ class OrderTest extends Base
 
         try {
             $request = new TradeRefundSplitRequest();
-            $request->out_trade_no = "20210712123115";
+            $request->out_trade_no = $this->generateOrderNumber(); // "20210712123115";
             $request->shopdate = "20210712";
             $request->trade_no = "";
             $request->refund_amount = "0.03";
@@ -138,7 +138,7 @@ class OrderTest extends Base
 
         try {
             $request = new TradeRefundGeneralAccountReq();
-            $request->out_trade_no = "20210712123115";
+            $request->out_trade_no = $this->generateOrderNumber(); // "20210712123115";
             $request->shopdate = "20210712";
             $request->trade_no = "";
             $request->refund_amount = "0.03";
@@ -176,7 +176,7 @@ class OrderTest extends Base
 
         try {
             $request = new TradeRefundQueryRequest();
-            $request->out_trade_no = "20180525684318";
+            $request->out_trade_no = $this->generateOrderNumber(); // "20180525684318";
             $request->out_request_no = "20180525684318";
             $request->trade_no = "20180525684318";
 
@@ -209,7 +209,7 @@ class OrderTest extends Base
 
         try {
             $request = new TradeOrderQueryRequest();
-            $request->out_trade_no = "2021071212311212";
+            $request->out_trade_no = $this->generateOrderNumber(); // "2021071212311212";
             $request->shopdate = "20210712";
             $request->trade_no = "";
 
