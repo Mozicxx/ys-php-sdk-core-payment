@@ -98,5 +98,18 @@ class MerchantWithdrawRequest
         return $checkRules['merchantWithdrawRequest'];
     }
 
+    public static function build($kernel, $model)
+    {
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "shopdate" => $model->shopdate,
+            "currency" => $model->currency,
+            "merchant_usercode" => $model->merchant_usercode,
+            "total_amount" => $model->total_amount,
+            "subject" => $model->subject,
+            "bank_account_no" => $model->bank_account_no,
+        );
 
+        return $bizReqJson;
+    }
 }

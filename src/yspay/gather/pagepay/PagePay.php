@@ -84,8 +84,9 @@ class PagePay
             foreach ($myParams as $key => $val) {
                 $def_url .= PHP_EOL. "<input type = 'hidden'  name='" . $key . "' value='" . $val . "' />";
             }
-            $def_url .= "<input type=submit value='点击提交' " . @$GLOBALS['_LANG']['pay_button'] . "'>";
+            $def_url .= "<input type=\"submit\" value=\"pay...\" style=\"display:none\" >";
             $def_url .= "</form>";
+            $def_url .= "<script>document.forms[0].submit();</script>";
             return Response::setMap($def_url);
 
         } catch (Exception $e) {
@@ -150,8 +151,9 @@ class PagePay
             foreach ($myParams as $key => $val) {
                 $def_url .= PHP_EOL. "<input type = 'hidden'  name='" . $key . "' value='" . $val . "' />";
             }
-            $def_url .= "<input type=submit value='点击提交' " . @$GLOBALS['_LANG']['pay_button'] . "'>";
+            $def_url .= "<input type=\"submit\" value=\"pay...\" style=\"display:none\" >";
             $def_url .= "</form>";
+            $def_url .= "<script>document.forms[0].submit();</script>";
             return Response::setMap($def_url);
         } catch (Exception $e) {
             $responses = new Response();

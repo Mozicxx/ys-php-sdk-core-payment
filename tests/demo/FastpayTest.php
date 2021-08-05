@@ -43,7 +43,7 @@ class FastpayTest extends Base
 
         try {
             $request = new FastpayRequest();
-            $request->out_trade_no = "202107131232";
+            $request->out_trade_no = $this->generateOrderNumber(); // $this->generateOrderNumber();
             $request->shopdate = "20210713";
             $request->subject = "测试消费";
             $request->total_amount = "0.01";
@@ -99,7 +99,7 @@ class FastpayTest extends Base
 
         try {
             $request = new FastpayAuthorizeRequest();
-            $request->out_trade_no = "202107131231";
+            $request->out_trade_no = $this->generateOrderNumber(); // "202107131231";
             $request->buyer_mobile = "18680352162";
             $request->mobile_verify_code = "089812";
             $request->cardCvn2 = "123";
@@ -132,7 +132,7 @@ class FastpayTest extends Base
 
         try {
             $request = new FastpayAuthorizeMsgReq();
-            $request->out_trade_no = "202107131231";
+            $request->out_trade_no = $this->generateOrderNumber(); // "202107131231";
 
 
             $response = Factory::fastpayClient()->fastpayClass()->fastpayAuthorizeMsg($request);
@@ -161,7 +161,7 @@ class FastpayTest extends Base
 
         try {
             $request = new TrusteeshipSignRequest();
-            $request->out_trade_no = "20180525684319228064711813";
+            $request->out_trade_no = $this->generateOrderNumber(); // "20180525684319228064711813";
             $request->seller_id = "hyfz_test";
             $request->seller_name = "银盛支付服务股份有限公司行业发展部";
             $request->buyer_name = "";
@@ -202,7 +202,7 @@ class FastpayTest extends Base
 
         try {
             $request = new TrusteeshipSignConfirmRequest();
-            $request->out_trade_no = "20180525683";
+            $request->out_trade_no = $this->generateOrderNumber(); // "20180525683";
             $request->mobile_verify_code = "101098";
             $request->cardCvn2 = "123";
             $request->cardExprDt = "1019";
@@ -234,7 +234,7 @@ class FastpayTest extends Base
 
         try {
             $request = new TrusteeshipfastPayRequest();
-            $request->out_trade_no = "201805257114";
+            $request->out_trade_no = $this->generateOrderNumber(); // "201805257114";
             $request->shopdate = "20210712";
             $request->subject = "测试快捷协议";
             $request->total_amount = "0.01";

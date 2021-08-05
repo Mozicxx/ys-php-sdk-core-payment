@@ -68,7 +68,7 @@ class ReplcepayTest extends Base
 
         try {
             $request = new DfSingleQuickAcceptRequest();
-            $request->out_trade_no = "202107141231231";
+            $request->out_trade_no = $this->generateOrderNumber(); // "202107141231231";
             $request->shopdate = "20210714";
             $request->total_amount = "0.01";
             $request->currency = "CNY";
@@ -114,7 +114,7 @@ class ReplcepayTest extends Base
 
         try {
             $request = new DfSingleQuickInnerAcceptReq();
-            $request->out_trade_no = "202107141231233";
+            $request->out_trade_no = $this->generateOrderNumber(); // "202107141231233";
             $request->shopdate = "20210714";
             $request->total_amount = "0.01";
             $request->currency = "CNY";
@@ -156,7 +156,7 @@ class ReplcepayTest extends Base
 
         try {
             $request = new DSingleQuickQueryRequest();
-            $request->out_trade_no = "202107141231233";
+            $request->out_trade_no = $this->generateOrderNumber(); // "202107141231233";
             $request->shopdate = "20210714";
 
             $response = Factory::replcePayClient()->replcePayClass()->dfSingleQuickQuery($request);

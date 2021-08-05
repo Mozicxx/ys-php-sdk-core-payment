@@ -74,5 +74,14 @@ class DSingleQuickQueryRequest
         return $checkRules['dSingleQuickQueryRequest'];
     }
 
+    public static function build($kernel, $model)
+    {
 
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "shopdate" => $model->shopdate,
+        );
+
+        return $bizReqJson;
+    }
 }

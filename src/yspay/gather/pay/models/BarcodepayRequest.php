@@ -223,4 +223,38 @@ class BarcodepayRequest
     }
 
 
+    public static function build($kernel, $model)
+    {
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "shopdate" => $model->shopdate,
+            "subject" => $model->subject,
+            "total_amount" => $model->total_amount,
+            "currency" => $model->currency,
+            "seller_id" => $model->seller_id,
+            "seller_name" => $model->seller_name,
+            "timeout_express" => $model->timeout_express,
+            "extend_params" => $model->extend_params,
+            "extra_common_param" => $model->extra_common_param,
+            "business_code" => $model->business_code,
+            "bank_type" => $model->bank_type,
+            "scene" => $model->scene,
+            "auth_code" => $model->auth_code,
+            "device_info" => $model->device_info,
+            "category" => $model->category,
+            "mrchntCertId" => $model->mrchntCertId,
+            "consignee_info" => $model->consignee_info,
+            "cross_border_info" => $model->cross_border_info,
+            "appid" => $model->appid,
+            "province" => $model->province,
+            "city" => $model->city,
+            "limit_credit_pay" => $model->limit_credit_pay,
+            "hb_fq_num" => $model->hb_fq_num,
+            "allow_repeat_pay" => $model->allow_repeat_pay,
+            "fail_notify_url" => $model->fail_notify_url
+
+        );
+
+        return $bizReqJson;
+    }
 }

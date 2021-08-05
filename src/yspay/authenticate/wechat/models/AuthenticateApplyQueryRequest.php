@@ -48,5 +48,12 @@ class AuthenticateApplyQueryRequest
         return $checkRules['authenticateApplyQueryRequest'];
     }
 
+    public static function build($kernel, $model)
+    {
+        $bizReqJson = array(
+            "usercode" => $model->usercode,
+        );
 
+        return $bizReqJson;
+    }
 }

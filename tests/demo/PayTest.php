@@ -44,7 +44,7 @@ class PayTest extends Base
 
         try {
             $request = new BarcodepayRequest();
-            $request->out_trade_no = "20210712123116";
+            $request->out_trade_no = $this->generateOrderNumber(); // "20210712123116";
             $request->shopdate = "20210712";
             $request->subject = "标题";
             $request->total_amount = "0.03";
@@ -79,7 +79,7 @@ class PayTest extends Base
 
         try {
             $request = new TradeDeliveredRequest();
-            $request->out_trade_no = "2018052568431922806471182";
+            $request->out_trade_no = $this->generateOrderNumber(); // "2018052568431922806471182";
             $request->shopdate = "20180525";
             $request->trade_no = "";
             $response = Factory::payClient()->payClass()->tradeDelivered($request);
@@ -105,7 +105,7 @@ class PayTest extends Base
 
         try {
             $request = new TradeDeliveredRequest();
-            $request->out_trade_no = "2018052568431922806471182";
+            $request->out_trade_no = $this->generateOrderNumber(); // "2018052568431922806471182";
             $request->shopdate = "20180525";
             $request->trade_no = "";
             $response = Factory::payClient()->payClass()->tradeConfirm($request);
@@ -134,7 +134,7 @@ class PayTest extends Base
 
         try {
             $request = new AlijsapiRequest();
-            $request->out_trade_no = "2020525684371184";
+            $request->out_trade_no = $this->generateOrderNumber(); // "2020525684371184";
             $request->shopdate = "20210712";
             $request->subject = "测试支付宝生活号";
             $request->total_amount = "0.01";
@@ -178,20 +178,20 @@ class PayTest extends Base
 
         try {
             $request = new WeixinPayRequest();
-            $request->out_trade_no = "202052568431922806471182";
-            $request->shopdate = "20210712";
+            $request->out_trade_no = $this->generateOrderNumber(); // "2021072421111";
+            $request->shopdate = "20210724";
             $request->subject = "测试微信小程序";
             $request->total_amount = "0.01";
             $request->currency = "CNY";
-            $request->seller_id = "hyfz_test";
-            $request->seller_name = "银盛支付服务股份有限公司行业发展部";
+            $request->seller_id = "yangjie";
+            $request->seller_name = "汕头市宜麦有道供应链有限公司";
             $request->timeout_express = "30m";
             $request->extend_params = "";
-            $request->extra_common_param = "";
+            $request->extra_common_param = "extra_common_param";
             $request->business_code = "3010002";
-            $request->sub_openid = "oZLqg4ruuWXR9-p2G0YbnOYzzjWc";
+            $request->sub_openid = "oNHjy5AQ32qz7-7-oWVgP9vlyehlQ";
             $request->is_minipg = "1";
-            $request->appid = "wxa8197adab2013e3b";
+            $request->appid = "wx1529d89448f9985e";
             $request->province = "";
             $request->city = "";
             $request->mer_amount = "";
@@ -253,7 +253,7 @@ class PayTest extends Base
 
         try {
             $request = new CupmulappQrcodepayRequest();
-            $request->out_trade_no = "202052568431922806471182";
+            $request->out_trade_no = $this->generateOrderNumber(); // "202052568431922806471182";
             $request->shopdate = "20210712";
             $request->subject = "行业码支付";
             $request->total_amount = "0.02";
@@ -299,7 +299,7 @@ class PayTest extends Base
 
         try {
             $request = new QrcodepayRequest();
-            $request->out_trade_no = "202052568431922806471185";
+            $request->out_trade_no = $this->generateOrderNumber(); // "202052568431922806471185";
             $request->shopdate = "20210712";
             $request->subject = "正扫支付";
             $request->total_amount = "0.01";
@@ -347,7 +347,7 @@ class PayTest extends Base
 
         try {
             $request = new MobileControlsPayRequest();
-            $request->out_trade_no = "20205261231";
+            $request->out_trade_no = $this->generateOrderNumber(); // "20205261231";
             $request->shopdate = "20210712";
             $request->subject = "手机控件支付";
             $request->total_amount = "0.03";

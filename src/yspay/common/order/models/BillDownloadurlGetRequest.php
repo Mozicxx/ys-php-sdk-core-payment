@@ -47,5 +47,13 @@ class BillDownloadurlGetRequest
         return $checkRules['billDownloadurlGetRequest'];
     }
 
+    public static function build($kernel, $model)
+    {
 
+        $bizReqJson = array(
+            "account_date" => $model->account_date,
+        );
+
+        return $bizReqJson;
+    }
 }

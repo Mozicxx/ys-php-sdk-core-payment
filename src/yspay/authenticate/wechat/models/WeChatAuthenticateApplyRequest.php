@@ -113,5 +113,46 @@ class WeChatAuthenticateApplyRequest
         return $checkRules['weChatAuthenticateApplyRequest'];
     }
 
+    public static function build($kernel, $model)
+    {
+
+        $bizReqJson = array(
+            "usercode" => $model->usercode,
+            "cust_name" => $model->cust_name,
+            "contact_cert_type" => $model->contact_cert_type,
+            "legal_cert_initial" => $model->legal_cert_initial,
+            "legal_cert_expire" => $model->legal_cert_expire,
+            "bus_license_initial" => $model->bus_license_initial,
+            "bus_license_expire" => $model->bus_license_expire,
+            "store_type" => $model->store_type,
+            "store_name" => $model->store_name,
+            "token" => $model->token,
+            "contact_cert_no" => WeChatAuthenticateApplyRequest::encryptDes($model->contact_cert_no, $kernel->partner_id),
+
+        );
+
+        return $bizReqJson;
+    }
+
+
+    /**
+     * des加密函数
+     */
+    public static function encryptDes($input, $key)
+    {
+        if (!isset($input) || !isset($key)) {
+            return "";
+        }
+        $key = substr($key, 0, 8);
+        if (iconv_strlen($key,"UTF-8") < 8) {
+            $key = sprintf("%+8s", $key);
+        }
+
+        $data = openssl_encrypt($input, 'DES-ECB', $key, OPENSSL_RAW_DATA, "");
+        $data = base64_encode($data);
+        return $data;
+    }
+
+
 
 }

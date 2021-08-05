@@ -191,5 +191,51 @@ class TrusteeshipfastPayRequest
         return $checkRules['trusteeshipfastPayRequest'];
     }
 
+    public static function build($kernel, $model)
+    {
 
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "shopdate" => $model->shopdate,
+            "subject" => $model->subject,
+            "total_amount" => $model->total_amount,
+            "currency" => $model->currency,
+            "seller_id" => $model->seller_id,
+            "seller_name" => $model->seller_name,
+            "timeout_express" => $model->timeout_express,
+            "extend_params" => $model->extend_params,
+            "extra_common_param" => $model->extra_common_param,
+            "business_code" => $model->business_code,
+            "protocol_no" => $model->protocol_no,
+            "cardCvn2" => TrusteeshipfastPayRequest::encryptDes($model->cardCvn2,$kernel->partner_id),
+            "cardExprDt" => TrusteeshipfastPayRequest::encryptDes($model->cardExprDt,$kernel->partner_id),
+            "consignee_info" => $model->consignee_info,
+            "user_id" => $model->user_id,
+            "province" => $model->province,
+            "city" => $model->city,
+            "mccs" => $model->mccs,
+            "mer_no" => $model->mer_no,
+
+        );
+
+        return $bizReqJson;
+    }
+
+    /**
+     * des加密函数
+     */
+    public static function encryptDes($input, $key)
+    {
+        if (!isset($input) || !isset($key)) {
+            return "";
+        }
+        $key = substr($key, 0, 8);
+        if (iconv_strlen($key,"UTF-8") < 8) {
+            $key = sprintf("%+8s", $key);
+        }
+
+        $data = openssl_encrypt($input, 'DES-ECB', $key, OPENSSL_RAW_DATA, "");
+        $data = base64_encode($data);
+        return $data;
+    }
 }

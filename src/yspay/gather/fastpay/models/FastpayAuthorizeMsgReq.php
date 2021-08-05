@@ -45,5 +45,13 @@ class FastpayAuthorizeMsgReq
         return $checkRules['fastpayAuthorizeMsgReq'];
     }
 
+    public static function build($kernel, $model)
+    {
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
 
+        );
+
+        return $bizReqJson;
+    }
 }

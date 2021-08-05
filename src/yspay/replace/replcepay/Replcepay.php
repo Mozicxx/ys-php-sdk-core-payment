@@ -41,48 +41,13 @@ class Replcepay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.df.single.quick.accept';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['proxy_password'] = $model->proxy_password;
-            $myParams['merchant_usercode'] = $model->merchant_usercode;
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "total_amount" => $model->total_amount,
-                "currency" => $model->currency,
-                "bank_city" => $model->bank_city,
-                "bank_province" => $model->bank_province,
-                "business_code" => $model->business_code,
-                "subject" => $model->subject,
-                "bank_name" => $model->bank_name,
-                "bank_account_name" => $model->bank_account_name,
-                "bank_card_type" => $model->bank_card_type,
-                "bank_telephone_no" => $model->bank_telephone_no,
-                "bank_account_type" => $model->bank_account_type,
-                "bank_account_no" => $model->bank_account_no,
-                "cert_type" => $model->cert_type,
-                "cert_no" => $this->common->encryptDes($model->cert_no, $this->kernel->partner_id),
-                "cert_expire" => $model->cert_expire,
-                "consignee_info" => $model->consignee_info,
-                "proxy_password" => $model->proxy_password,
-                "merchant_usercode" => $model->merchant_usercode,
+            $headParams = $this->common->commonHeads('ysepay.df.single.quick.accept', $this->kernel, $model);
+            $bizReqJson = DfSingleQuickAcceptRequest::build($this->kernel, $model);
 
-            );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $headParams = $this->common->encodeParams($headParams,$bizReqJson);
             $url = $this->kernel->dfUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_df_single_quick_accept_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_df_single_quick_accept_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -105,39 +70,13 @@ class Replcepay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.df.single.quick.inner.accept';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['proxy_password'] = $model->proxy_password;
-            $myParams['merchant_usercode'] = $model->merchant_usercode;
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-                "total_amount" => $model->total_amount,
-                "currency" => $model->currency,
-                "business_code" => $model->business_code,
-                "subject" => $model->subject,
-                "payee_cust_name" => $model->payee_cust_name,
-                "payee_user_code" => $model->payee_user_code,
-                "telephone_no" => $model->telephone_no,
-                "proxy_password" => $model->proxy_password,
-                "merchant_usercode" => $model->merchant_usercode,
+            $headParams = $this->common->commonHeads('ysepay.df.single.quick.inner.accept', $this->kernel, $model);
+            $bizReqJson = DfSingleQuickInnerAcceptReq::build($this->kernel, $model);
 
-            );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $headParams = $this->common->encodeParams($headParams,$bizReqJson);
             $url = $this->kernel->dfUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_df_single_quick_inner_accept_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_df_single_quick_inner_accept_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -161,29 +100,13 @@ class Replcepay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.df.single.query';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['proxy_password'] = $model->proxy_password;
-            $myParams['merchant_usercode'] = $model->merchant_usercode;
-            $bizReqJson = array(
-                "out_trade_no" => $model->out_trade_no,
-                "shopdate" => $model->shopdate,
-            );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $headParams = $this->common->commonHeads('ysepay.df.single.query', $this->kernel, $model);
+            $bizReqJson = DSingleQuickQueryRequest::build($this->kernel, $model);
+
+            $headParams = $this->common->encodeParams($headParams,$bizReqJson);
             $url = $this->kernel->dfOderUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_df_single_query_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_df_single_query_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];
@@ -207,28 +130,16 @@ class Replcepay
             if ($check->checkFlag != true) {
                 return $check;
             }
-            $myParams = array();
-            $myParams['method'] = 'ysepay.df.bill.downloadurl.get';
-            $myParams['partner_id'] = $this->kernel->partner_id;
-            $myParams['timestamp'] = date('Y-m-d H:i:s');;
-            $myParams['charset'] = $this->kernel->charset;
-            $myParams['sign_type'] = $this->kernel->sign_type;
-            $myParams['notify_url'] = $this->kernel->notify_url;
-            $myParams['version'] = $this->kernel->version;
-            $myParams['proxy_password'] = $model->proxy_password;
-            $myParams['merchant_usercode'] = $model->merchant_usercode;
+            $headParams = $this->common->commonHeads('ysepay.df.bill.downloadurl.get', $this->kernel, $model);
             $bizReqJson = array(
                 "account_date" => $model->account_date,
             );
-            $bizReqJson = $this->common->unsetArry($bizReqJson);
-            $myParams['biz_content'] = json_encode($bizReqJson, 320);//构造字符串
-            ksort($myParams);
-            $signStr = $this->common->signSort($myParams);
-            $sign = $this->common->sign_encrypt(array('data' => $signStr));
-            $myParams['sign'] = trim($sign['check']);
+            $bizReqJson = DfBillDownloadurlGetRequest::build($this->kernel, $model);
+
+            $headParams = $this->common->encodeParams($headParams,$bizReqJson);
             $url = $this->kernel->dfOderUrl;
-            var_dump($myParams);
-            return $this->common->post_Url($url, $myParams, "ysepay_df_bill_downloadurl_get_response", false);
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_df_bill_downloadurl_get_response", false);
         } catch (Exception $e) {
             $responses = new Response();
             //  $responses->responseCode = $this->common->param['errorCode'];

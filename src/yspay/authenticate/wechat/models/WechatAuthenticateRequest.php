@@ -48,5 +48,14 @@ class WechatAuthenticateRequest
         return $checkRules['wechatAuthenticateRequest'];
     }
 
+    public static function build($kernel, $model)
+    {
+        $bizReqJson = array(
+            "appSecret" => $kernel->appSecret,
+            "appUserCode" => $model->appUserCode,
+            "orderId" => $model->orderId,
+        );
 
+        return $bizReqJson;
+    }
 }

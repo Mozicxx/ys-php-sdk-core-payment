@@ -66,4 +66,15 @@ class DivisionOnlineQueryRequest
     }
 
 
+    public static function build($kernel, $model)
+    {
+        $bizReqJson = array(
+            "src_usercode" => $model->src_usercode,
+            "out_trade_no" => $model->out_trade_no,
+            "out_batch_no" => $model->out_batch_no,
+            "sys_flag" => $model->sys_flag,
+        );
+
+        return $bizReqJson;
+    }
 }

@@ -199,5 +199,51 @@ class DfSingleQuickAcceptRequest
         return $checkRules['directpayCreatebyuserRequest'];
     }
 
+    public static function build($kernel, $model)
+    {
 
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "shopdate" => $model->shopdate,
+            "total_amount" => $model->total_amount,
+            "currency" => $model->currency,
+            "bank_city" => $model->bank_city,
+            "bank_province" => $model->bank_province,
+            "business_code" => $model->business_code,
+            "subject" => $model->subject,
+            "bank_name" => $model->bank_name,
+            "bank_account_name" => $model->bank_account_name,
+            "bank_card_type" => $model->bank_card_type,
+            "bank_telephone_no" => $model->bank_telephone_no,
+            "bank_account_type" => $model->bank_account_type,
+            "bank_account_no" => $model->bank_account_no,
+            "cert_type" => $model->cert_type,
+            "cert_no" => DfSingleQuickAcceptRequest::encryptDes($model->cert_no, $kernel->partner_id),
+            "cert_expire" => $model->cert_expire,
+            "consignee_info" => $model->consignee_info,
+            "proxy_password" => $model->proxy_password,
+            "merchant_usercode" => $model->merchant_usercode,
+
+        );
+
+        return $bizReqJson;
+    }
+
+    /**
+     * des加密函数
+     */
+    public static function encryptDes($input, $key)
+    {
+        if (!isset($input) || !isset($key)) {
+            return "";
+        }
+        $key = substr($key, 0, 8);
+        if (iconv_strlen($key,"UTF-8") < 8) {
+            $key = sprintf("%+8s", $key);
+        }
+
+        $data = openssl_encrypt($input, 'DES-ECB', $key, OPENSSL_RAW_DATA, "");
+        $data = base64_encode($data);
+        return $data;
+    }
 }

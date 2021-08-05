@@ -65,5 +65,13 @@ class DfBillDownloadurlGetRequest
         return $checkRules['dfBillDownloadurlGetRequest'];
     }
 
+    public static function build($kernel, $model)
+    {
 
+        $bizReqJson = array(
+            "account_date" => $model->account_date,
+        );
+
+        return $bizReqJson;
+    }
 }

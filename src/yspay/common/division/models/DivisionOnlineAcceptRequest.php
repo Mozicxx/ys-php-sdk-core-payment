@@ -97,5 +97,20 @@ class DivisionOnlineAcceptRequest
         return $checkRules['divisionOnlineAcceptRequest'];
     }
 
+    public static function build($kernel, $model)
+    {
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "payee_usercode" => $model->payee_usercode,
+            "total_amount" => $model->total_amount,
+            "sys_flag" => $model->sys_flag,
+            "is_divistion" => $model->is_divistion,
+            "is_again_division" => $model->is_again_division,
+            "division_mode" => $model->division_mode,
+            "div_list" => $model->div_list,
+            "division_mer_usercode" => $model->division_mer_usercode,
+        );
 
+        return $bizReqJson;
+    }
 }

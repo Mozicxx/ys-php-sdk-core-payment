@@ -150,5 +150,45 @@ class TrusteeshipSignRequest
         return $checkRules['trusteeshipSignRequest'];
     }
 
+    public static function build($kernel, $model)
+    {
 
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "seller_id" => $model->seller_id,
+            "seller_name" => $model->seller_name,
+            "total_amount" => $model->total_amount,
+            "buyer_name" => TrusteeshipSignRequest::encryptDes($model->buyer_name,$kernel->partner_id),
+            "buyer_card_number" => TrusteeshipSignRequest::encryptDes($model->buyer_card_number,$kernel->partner_id),
+            "buyer_mobile" => TrusteeshipSignRequest::encryptDes($model->buyer_mobile,$kernel->partner_id),
+            "cardCvn2" => TrusteeshipSignRequest::encryptDes($model->cardCvn2,$kernel->partner_id),
+            "cardExprDt" => TrusteeshipSignRequest::encryptDes($model->cardExprDt,$kernel->partner_id),
+            "pyerIDNo" => TrusteeshipSignRequest::encryptDes($model->pyerIDNo,$kernel->partner_id),
+            "imei" => $model->imei,
+            "actionScope" => $model->actionScope,
+            "user_id" => $model->user_id,
+
+        );
+
+        return $bizReqJson;
+    }
+
+
+    /**
+     * des加密函数
+     */
+    public static function encryptDes($input, $key)
+    {
+        if (!isset($input) || !isset($key)) {
+            return "";
+        }
+        $key = substr($key, 0, 8);
+        if (iconv_strlen($key,"UTF-8") < 8) {
+            $key = sprintf("%+8s", $key);
+        }
+
+        $data = openssl_encrypt($input, 'DES-ECB', $key, OPENSSL_RAW_DATA, "");
+        $data = base64_encode($data);
+        return $data;
+    }
 }

@@ -246,5 +246,60 @@ class FastpayRequest
         return $checkRules['barcodepayRequest'];
     }
 
+    public static function build($kernel, $model)
+    {
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "shopdate" => $model->shopdate,
+            "subject" => $model->subject,
+            "total_amount" => $model->total_amount,
+            "currency" => $model->currency,
+            "seller_id" => $model->seller_id,
+            "seller_name" => $model->seller_name,
+            "timeout_express" => $model->timeout_express,
+            "extend_params" => $model->extend_params,
+            "extra_common_param" => $model->extra_common_param,
+            "business_code" => $model->business_code,
+            "buyer_name" => $model->buyer_name,
+            "buyer_card_number" => $model->buyer_card_number,
+            "buyer_mobile" => $model->buyer_mobile,
+            "bank_type" => $model->bank_type,
+            "bank_account_type" => $model->bank_account_type,
+            "support_card_type" => $model->support_card_type,
+            "bank_name" => $model->bank_name,
+            "cardCvn2" => FastpayRequest::encryptDes($model->cardCvn2,$kernel->partner_id),
+            "cardExprDt" => FastpayRequest::encryptDes($model->cardExprDt,$kernel->partner_id),
+            "pyerIDTp" => FastpayRequest::encryptDes($model->pyerIDTp,$kernel->partner_id),
+            "pyerIDNo" => FastpayRequest::encryptDes($model->pyerIDNo,$kernel->partner_id),
+            "consignee_info" => $model->consignee_info,
+            "cross_border_info" => $model->cross_border_info,
+            "province" => $model->province,
+            "city" => $model->city,
+            "limit_credit_pay" => $model->limit_credit_pay,
+            "mccs" => $model->mccs,
+            "mer_no" => $model->mer_no,
 
+
+        );
+
+        return $bizReqJson;
+    }
+
+    /**
+     * des加密函数
+     */
+    public static function encryptDes($input, $key)
+    {
+        if (!isset($input) || !isset($key)) {
+            return "";
+        }
+        $key = substr($key, 0, 8);
+        if (iconv_strlen($key,"UTF-8") < 8) {
+            $key = sprintf("%+8s", $key);
+        }
+
+        $data = openssl_encrypt($input, 'DES-ECB', $key, OPENSSL_RAW_DATA, "");
+        $data = base64_encode($data);
+        return $data;
+    }
 }

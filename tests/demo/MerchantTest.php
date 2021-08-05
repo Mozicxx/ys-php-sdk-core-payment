@@ -35,7 +35,7 @@ class MerchantTest extends Base
 
         try {
             $request = new MerchantWithdrawRequest();
-            $request->out_trade_no = "202107121231";
+            $request->out_trade_no = $this->generateOrderNumber(); // "202107121231";
             $request->shopdate = "20210712";
             $request->currency = "CNY";
             $request->merchant_usercode = "X2107061649551231243";
@@ -70,7 +70,7 @@ class MerchantTest extends Base
 
         try {
             $request = new MerchantWithdrawRequest();
-            $request->out_trade_no = "202107121232";
+            $request->out_trade_no = $this->generateOrderNumber(); // "202107121232";
             $request->shopdate = "20210712";
             $request->currency = "CNY";
             $request->merchant_usercode = "X2107061649551231243";
@@ -106,7 +106,7 @@ class MerchantTest extends Base
 
         try {
             $request = new MerchantWithdrawRequest();
-            $request->out_trade_no = "202107121232";
+            $request->out_trade_no = $this->generateOrderNumber(); // "202107121232";
             $request->shopdate = "20210712";
 
 

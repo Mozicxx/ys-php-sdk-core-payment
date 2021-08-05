@@ -133,5 +133,24 @@ class DfSingleQuickInnerAcceptReq
         return $checkRules['dfSingleQuickInnerAcceptReq'];
     }
 
+    public static function build($kernel, $model)
+    {
 
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "shopdate" => $model->shopdate,
+            "total_amount" => $model->total_amount,
+            "currency" => $model->currency,
+            "business_code" => $model->business_code,
+            "subject" => $model->subject,
+            "payee_cust_name" => $model->payee_cust_name,
+            "payee_user_code" => $model->payee_user_code,
+            "telephone_no" => $model->telephone_no,
+            "proxy_password" => $model->proxy_password,
+            "merchant_usercode" => $model->merchant_usercode,
+
+        );
+
+        return $bizReqJson;
+    }
 }

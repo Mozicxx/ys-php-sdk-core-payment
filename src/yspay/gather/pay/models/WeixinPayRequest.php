@@ -186,4 +186,34 @@ class WeixinPayRequest
     }
 
 
+    public static function build($kernel, $model)
+    {
+
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "shopdate" => $model->shopdate,
+            "subject" => $model->subject,
+            "total_amount" => $model->total_amount,
+            "currency" => $model->currency,
+            "seller_id" => $model->seller_id,
+            "seller_name" => $model->seller_name,
+            "timeout_express" => $model->timeout_express,
+            "extend_params" => $model->extend_params,
+            "extra_common_param" => $model->extra_common_param,
+            "business_code" => $model->business_code,
+            "sub_openid" => $model->sub_openid,
+            "is_minipg" => $model->is_minipg,
+            "appid" => $model->appid,
+            "province" => $model->province,
+            "city" => $model->city,
+            "mer_amount" => $model->mer_amount,
+            "limit_credit_pay" => $model->limit_credit_pay,
+            "allow_repeat_pay" => $model->allow_repeat_pay,
+            "fail_notify_url" => $model->fail_notify_url,
+
+
+        );
+
+        return $bizReqJson;
+    }
 }

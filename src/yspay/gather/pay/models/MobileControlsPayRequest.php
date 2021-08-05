@@ -172,4 +172,28 @@ class MobileControlsPayRequest
     }
 
 
+    public static function build($kernel, $model)
+    {
+        $bizReqJson = array(
+            "out_trade_no" => $model->out_trade_no,
+            "shopdate" => $model->shopdate,
+            "subject" => $model->subject,
+            "total_amount" => $model->total_amount,
+            "currency" => $model->currency,
+            "seller_id" => $model->seller_id,
+            "seller_name" => $model->seller_name,
+            "timeout_express" => $model->timeout_express,
+            "extend_params" => $model->extend_params,
+            "extra_common_param" => $model->extra_common_param,
+            "business_code" => $model->business_code,
+            "bank_type" => $model->bank_type,
+            "bank_account_type" => $model->bank_account_type,
+            "support_card_type" => $model->support_card_type,
+            "cross_border_info" => $model->cross_border_info,
+            "consignee_info" => $model->consignee_info,
+
+        );
+
+        return $bizReqJson;
+    }
 }
