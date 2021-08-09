@@ -1,0 +1,10 @@
+{
+  "name": "ys-yzt-sdk/ys-php-sdk-core",
+  "description": "ys-php-sdk-core",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "require": {
+
+  }
+}
