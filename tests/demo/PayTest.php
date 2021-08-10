@@ -1,16 +1,6 @@
 <?php
 
-include_once "../../src/yspay/util/ResponseChecker.php";
-include_once "../../src/yspay/gather/pay/models/BarcodepayRequest.php";
-include_once "../../src/yspay/gather/pay/models/TradeDeliveredRequest.php";
-include_once "../../src/yspay/gather/pay/models/AlijsapiRequest.php";
-include_once "../../src/yspay/gather/pay/models/CupgetmulappUseridRequest.php";
-include_once "../../src/yspay/gather/pay/models/CupmulappQrcodepayRequest.php";
-include_once "../../src/yspay/gather/pay/models/WeixinPayRequest.php";
-include_once "../../src/yspay/gather/pay/models/QrcodepayRequest.php";
-include_once "../../src/yspay/gather/pay/models/MobileControlsPayRequest.php";
-include_once "../../src/yspay/gather/pay/Pay.php";
-include_once "Base.php";
+include_once "../../vendor/autoload.php";
 
 use Yspay\Gathering\SDK\Factory;
 use Yspay\SDK\Gathering\Base;

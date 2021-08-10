@@ -1,14 +1,6 @@
 <?php
-include_once "../../src/yspay/util/ResponseChecker.php";
-include_once "../../src/yspay/gather/fastpay/models/FastpayAuthorizeMsgReq.php";
-include_once "../../src/yspay/gather/fastpay/models/FastpayAuthorizeRequest.php";
-include_once "../../src/yspay/gather/fastpay/models/FastpayRequest.php";
-include_once "../../src/yspay/gather/fastpay/models/TrusteeshipfastPayRequest.php";
-include_once "../../src/yspay/gather/fastpay/models/TrusteeshipSignConfirmRequest.php";
-include_once "../../src/yspay/gather/fastpay/models/TrusteeshipSignRequest.php";
+include_once "../../vendor/autoload.php";
 
-include_once "../../src/yspay/gather/pay/Pay.php";
-include_once "Base.php";
 
 use Yspay\Gathering\SDK\Factory;
 use Yspay\SDK\Gathering\Base;

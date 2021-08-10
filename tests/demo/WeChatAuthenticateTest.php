@@ -1,10 +1,5 @@
 <?php
-include_once "../../src/yspay/util/ResponseChecker.php";
-include_once "../../src/yspay/authenticate/wechat/models/WeChatAuthenticateApplyRequest.php";
-include_once "../../src/yspay/authenticate/wechat/models/WechatAuthenticateRequest.php";
-include_once "../../src/yspay/authenticate/wechat/models/WeChatUploadPicRequest.php";
-include_once "../../src/yspay/authenticate/wechat/models/AuthenticateApplyQueryRequest.php";
-include_once "Base.php";
+include_once "../../vendor/autoload.php";
 
 use Yspay\Gathering\SDK\Factory;
 use Yspay\SDK\Gathering\Base;

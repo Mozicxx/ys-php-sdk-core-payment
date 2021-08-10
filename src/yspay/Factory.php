@@ -1,14 +1,7 @@
 <?php
 
 namespace Yspay\Gathering\SDK;
-include_once "gather/pay/Pay.php";
-include_once "gather/fastpay/Fastpay.php";
-include_once "gather/pagepay/PagePay.php";
-include_once "replace/replcepay/Replcepay.php";
-include_once "common/order/OrderRefund.php";
-include_once "common/division/Division.php";
-include_once "common/merchant/Merchant.php";
-include_once "authenticate/wechat/WeChatAuthenticate.php";
+
 
 
 use Yspay\SDK\Pay as payClass;

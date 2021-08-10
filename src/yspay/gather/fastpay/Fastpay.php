@@ -14,7 +14,6 @@ use Yspay\SDK\Model\TrusteeshipSignConfirmRequest;
 use Yspay\SDK\Model\TrusteeshipSignRequest;
 
 
-include_once dirname(dirname(dirname(__FILE__))) . '\Common.php';
 
 
 class Fastpay

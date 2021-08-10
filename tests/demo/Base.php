@@ -1,8 +1,9 @@
 <?php
 namespace Yspay\SDK\Gathering;
-include_once "../../src/yspay/Factory.php";
+/*include_once "../../vendor/autoload.php";*/
+/*include_once "../../src/yspay/Factory.php";
 include_once "../../src/yspay/util/ResponseChecker.php";
-include_once "../../src/yspay/Config.php";
+include_once "../../src/yspay/Config.php";*/
 
 
 use PHPUnit\Framework\TestCase;

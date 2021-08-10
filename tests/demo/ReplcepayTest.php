@@ -1,12 +1,5 @@
 <?php
-include_once "../../src/yspay/util/ResponseChecker.php";
-include_once "../../src/yspay/replace/replcepay/models/DfBillDownloadurlGetRequest.php";
-include_once "../../src/yspay/replace/replcepay/models/DSingleQuickQueryRequest.php";
-include_once "../../src/yspay/replace/replcepay/models/DfSingleQuickAcceptRequest.php";
-include_once "../../src/yspay/replace/replcepay/models/DfSingleQuickInnerAcceptReq.php";
-
-include_once "../../src/yspay/gather/pay/Pay.php";
-include_once "Base.php";
+include_once "../../vendor/autoload.php";
 
 use Yspay\Gathering\SDK\Factory;
 use Yspay\SDK\Gathering\Base;

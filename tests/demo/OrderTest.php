@@ -1,13 +1,5 @@
 <?php
-include_once "../../src/yspay/util/ResponseChecker.php";
-include_once "../../src/yspay/common/order/models/BillDownloadurlGetRequest.php";
-include_once "../../src/yspay/common/order/models/TradeRefundRequest.php";
-include_once "../../src/yspay/common/order/models/TradeOrderQueryRequest.php";
-include_once "../../src/yspay/common/order/models/TradeRefundGeneralAccountReq.php";
-include_once "../../src/yspay/common/order/models/TradeRefundQueryRequest.php";
-include_once "../../src/yspay/common/order/models/TradeRefundSplitRequest.php";
-include_once "../../src/yspay/gather/pay/Pay.php";
-include_once "Base.php";
+include_once "../../vendor/autoload.php";
 
 use Yspay\Gathering\SDK\Factory;
 use Yspay\SDK\Gathering\Base;
