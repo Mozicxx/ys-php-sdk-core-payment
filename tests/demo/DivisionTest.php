@@ -1,9 +1,6 @@
 <?php
-include_once "../../src/yspay/util/ResponseChecker.php";
-include_once "../../src/yspay/common/division/models/DivisionOnlineAcceptRequest.php";
-include_once "../../src/yspay/common/division/models/DivisionOnlineQueryRequest.php";
-include_once "../../src/yspay/gather/pay/Pay.php";
-include_once "Base.php";
+include_once "../../vendor/autoload.php";
+
 
 use Yspay\Gathering\SDK\Factory;
 use Yspay\SDK\Gathering\Base;

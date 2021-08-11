@@ -1,10 +1,6 @@
 <?php
-include_once "../../src/yspay/util/ResponseChecker.php";
-include_once "../../src/yspay/common/merchant/models/MerchantBalanceQueryRequest.php";
-include_once "../../src/yspay/common/merchant/models/MerchantWithdrawQueryRequest.php";
-include_once "../../src/yspay/common/merchant/models/MerchantWithdrawRequest.php";
-include_once "../../src/yspay/gather/pay/Pay.php";
-include_once "Base.php";
+include_once "../../vendor/autoload.php";
+
 
 use Yspay\Gathering\SDK\Factory;
 use Yspay\SDK\Gathering\Base;

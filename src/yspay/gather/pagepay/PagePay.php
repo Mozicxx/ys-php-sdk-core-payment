@@ -10,7 +10,6 @@ use Yspay\SDK\Model\DirectpayCreatebyuserRequest;
 use Yspay\SDK\Model\WapDirectpayCreatebyuserReq;
 
 
-include_once dirname(dirname(dirname(__FILE__))) . '\Common.php';
 
 
 class PagePay

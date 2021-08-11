@@ -1,0 +1,17 @@
+{
+  "name": "ys-yzt-sdk/ys-php-sdk-core",
+  "description": "ys-php-sdk-core",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "dev",
+
+  "autoload": {
+    "classmap": [
+      "./"
+    ]
+  },
+
+  "require": {
+    "phpunit/phpunit": "9.*"
+  }
+}

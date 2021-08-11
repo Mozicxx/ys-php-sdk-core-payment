@@ -16,9 +16,6 @@ use Yspay\SDK\Model\TradeDeliveredRequest;
 use Yspay\SDK\Model\WeixinPayRequest;
 
 
-include_once dirname(dirname(dirname(__FILE__))) . '\Common.php';
-
-
 class Pay
 {
 

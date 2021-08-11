@@ -17,6 +17,7 @@ class Test extends TestCase
             }
         }
 
+
         foreach ($rules as $field => $fieldRules) {
             foreach ($fieldRules as $type => $rule) {
                 $ret = Validator::check($type, $data[$field], $rule);
@@ -29,14 +30,16 @@ class Test extends TestCase
 
         return true;
     }
+
+
+
+
     function test02(){
       // $common = new Common("123");
       // echo $encryptDes = $common->encryptDes(123, 123);
       //  $jiami = $this->jiami('123', '125');
-        $encrypt = $this->encrypt(12345, 12345678);
-        $encrypt1 = $this->decrypt($encrypt, 12345678);
-        echo $encrypt;
-        echo $encrypt1;
+        $generateOrderNumber = $this->generateOrderNumber();
+        echo $generateOrderNumber;
     }
 
     public function encrypt($input,$key)

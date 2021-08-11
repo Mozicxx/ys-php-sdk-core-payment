@@ -1,8 +1,5 @@
 <?php
-include_once "../../src/yspay/util/ResponseChecker.php";
-include_once "../../src/yspay/gather/pagepay/models/WapDirectpayCreatebyuserReq.php";
-include_once "../../src/yspay/gather/pagepay/models/DirectpayCreatebyuserRequest.php";
-include_once "Base.php";
+include_once "../../vendor/autoload.php";
 
 use Yspay\Gathering\SDK\Factory;
 use Yspay\SDK\Gathering\Base;
