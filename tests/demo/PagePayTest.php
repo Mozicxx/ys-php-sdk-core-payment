@@ -93,7 +93,7 @@ class PagePayTest extends Base
             $request->consignee_info = "";
             $request->cross_border_info = "";
             $request->return_url = "https://www.baidu.com/";
-            $request->tran_type = "2";
+            $request->tran_type = "1";
 
             $response = Factory::pagePayClient()->pagePayClass()->directpayCreatebyuser($request);
             $txt = $response->response;
