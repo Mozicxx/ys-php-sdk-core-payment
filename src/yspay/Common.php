@@ -3,6 +3,7 @@
 namespace Yspay\SDK\Gathering\Kernel;
 
 use Exception;
+use Yspay\SDK\Exception\YSNetworkException;
 use Yspay\SDK\Gathering\Payment\Common\Models\Response;
 
 include_once "Response.php";
@@ -11,6 +12,13 @@ class Common
 {
     public $param;
     private $kernel;
+
+    //*****************************************************
+    //bank_type 二维码行别，
+    const WE_CHAT = "1902000";
+    const ALIPAY = "1903000";
+    const UNIONPAY = "9001002";
+    //*****************************************************
 
     /**
      * 构造函数
@@ -102,30 +110,28 @@ class Common
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
         $response = curl_exec($ch);
         var_dump(PHP_EOL . "POST请求响应信息" . $response . PHP_EOL);
 
         if (curl_errno($ch)) {
             $curl_errno = curl_errno($ch);
-            var_dump($curl_errno);
+            $curl_error = curl_error($ch);
+            var_dump($curl_error);
             curl_close($ch);
-            if ($flag) {
-                //  $responses->responseCode = $this->param['unknow'];
-                $responses->responseMeg = $this->param['unknowMsg'];
-                return $responses;
-            }
-            //$responses->responseCode = $this->param['fail'];
-            $responses->responseMeg = $this->param['failMsg'];
-            return $responses;
+            //超时的处理代码
+            throw new YSNetworkException( PHP_EOL.'请求银盛服务器超时,结果未知' . PHP_EOL. 'errno_code : ' .  $curl_errno
+                . PHP_EOL . 'errorMsg : '. $curl_error ,$curl_errno);
+
         } else {
             curl_close($ch);
-            $response = json_decode($response, true);
-            echo PHP_EOL . "渠道响应报文" . json_encode($response, JSON_UNESCAPED_UNICODE + JSON_UNESCAPED_SLASHES) . PHP_EOL;
+            $response = json_decode($response, JSON_PRESERVE_ZERO_FRACTION);
+            echo PHP_EOL . "渠道响应报文" . json_encode($response, JSON_UNESCAPED_UNICODE + JSON_UNESCAPED_SLASHES + JSON_PRESERVE_ZERO_FRACTION) . PHP_EOL;
 
             var_dump($response);
             if ($response["sign"] != null) {
                 $sign = $response["sign"];
-                $data = json_encode($response[$response_name], JSON_UNESCAPED_UNICODE + JSON_UNESCAPED_SLASHES);
+                $data = json_encode($response[$response_name], JSON_UNESCAPED_UNICODE + JSON_UNESCAPED_SLASHES + JSON_PRESERVE_ZERO_FRACTION);
                 // 验证签名 仅作基础验证
                 if ($this->sign_check($sign, $data) == true) {
                     echo "验证签名成功!";
@@ -204,7 +210,7 @@ class Common
             }
             return $return;
         } catch (Exception $e) {
-            throw new Exception($this->param['sign_fail']);
+            throw new Exception($this->param['sign_fail'].'原因 : '.$e->getMessage());
         }
 
     }
@@ -288,7 +294,7 @@ class Common
         $headParams = array();
         $headParams['method'] = $method;
         $headParams['partner_id'] = $kernel->partner_id;
-        $headParams['timestamp'] = date('Y-m-d H:i:s');;
+        $headParams['timestamp'] = date('Y-m-d H:i:s');
         $headParams['charset'] = $kernel->charset;
         $headParams['sign_type'] = $kernel->sign_type;
         $headParams['notify_url'] = $kernel->notify_url;
