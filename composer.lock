@@ -419,12 +419,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "931b9e71a6274daa2a83371ee14d75d2be5a0e20"
+                "reference": "64bbc0f46e6c7dd8e6a0260c25ba4987937b172d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/931b9e71a6274daa2a83371ee14d75d2be5a0e20",
-                "reference": "931b9e71a6274daa2a83371ee14d75d2be5a0e20",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/64bbc0f46e6c7dd8e6a0260c25ba4987937b172d",
+                "reference": "64bbc0f46e6c7dd8e6a0260c25ba4987937b172d",
                 "shasum": ""
             },
             "require": {
@@ -462,7 +462,7 @@
                 "issues": "https://github.com/phpDocumentor/TypeResolver/issues",
                 "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.x"
             },
-            "time": "2021-08-08T19:44:55+00:00"
+            "time": "2021-08-10T17:52:41+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -855,12 +855,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "512e775d2176a615c9443ec0372448f86059862c"
+                "reference": "5fda795d75f52ab7a217259ccf1c9009c8548592"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/512e775d2176a615c9443ec0372448f86059862c",
-                "reference": "512e775d2176a615c9443ec0372448f86059862c",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5fda795d75f52ab7a217259ccf1c9009c8548592",
+                "reference": "5fda795d75f52ab7a217259ccf1c9009c8548592",
                 "shasum": ""
             },
             "require": {
@@ -950,7 +950,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-08-10T08:41:29+00:00"
+            "time": "2021-08-12T05:36:49+00:00"
         },
         {
             "name": "sebastian/cli-parser",
