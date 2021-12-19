@@ -110,6 +110,9 @@ class TrusteeshipfastPayRequest
     public $return_url;
 
 
+    public $tran_type; #mozic fix
+    public $proxy_password; #mozic fix
+    public $merchant_usercode; #mozic fix
 
 
 

@@ -79,6 +79,11 @@ class TrusteeshipSignRequest
      */
     public $user_id;
 
+    public $tran_type; #mozic fix
+    public $return_url; #mozic fix
+    public $proxy_password; #mozic fix
+    public $merchant_usercode; #mozic fix
+
 
 
 
@@ -181,8 +186,10 @@ class TrusteeshipSignRequest
         if (!isset($input) || !isset($key)) {
             return "";
         }
+        $input = iconv('UTF-8', 'GBK', $input);
         $key = substr($key, 0, 8);
         if (iconv_strlen($key,"UTF-8") < 8) {
+//        if (iconv_strlen($key,"GBK") < 8) {
             $key = sprintf("%+8s", $key);
         }
 

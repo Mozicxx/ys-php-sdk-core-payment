@@ -34,10 +34,10 @@ class MerchantTest extends Base
             $request->out_trade_no = $this->generateOrderNumber(); // "202107121231";
             $request->shopdate = "20210712";
             $request->currency = "CNY";
-            $request->merchant_usercode = "X2107061649551231243";
-            $request->total_amount = "2.01";
+            $request->merchant_usercode = "";
+            $request->total_amount = "";
             $request->subject = "一般消费户提现";
-            $request->bank_account_no = "6217710310182456";
+            $request->bank_account_no = "";
 
 
             $response = Factory::merchantClient()->merchantClass()->merchantWithdraw($request);
@@ -69,10 +69,10 @@ class MerchantTest extends Base
             $request->out_trade_no = $this->generateOrderNumber(); // "202107121232";
             $request->shopdate = "20210712";
             $request->currency = "CNY";
-            $request->merchant_usercode = "X2107061649551231243";
-            $request->total_amount = "20.01";
+            $request->merchant_usercode = "";
+            $request->total_amount = "";
             $request->subject = "待结算账户提现";
-            $request->bank_account_no = "6217710310182456";
+            $request->bank_account_no = "";
 
 
             $response = Factory::merchantClient()->merchantClass()->merchantWithdrawD0($request);

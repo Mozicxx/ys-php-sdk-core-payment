@@ -35,16 +35,16 @@ class PayTest extends Base
         try {
             $request = new BarcodepayRequest();
             $request->out_trade_no = $this->generateOrderNumber(); // "20210712123116";
-            $request->shopdate = "20210712";
+            $request->shopdate = "20211029";
             $request->subject = "标题";
-            $request->total_amount = "0.03";
-            $request->seller_id = "hyfz_test";
+            $request->total_amount = "1";
+            $request->seller_id = "hyfz_test2";
             $request->seller_name = "银盛支付服务股份有限公司行业发展部";
             $request->timeout_express = "30m";
             $request->business_code = "3010002";
             $request->scene = "bar_code";
             $request->bank_type = "1903000";
-            $request->auth_code = "288409611882850720";
+            $request->auth_code = "285451748834555933";
             $response = Factory::payClient()->payClass()->barcodepay($request);
             var_dump($response, true);
             $responseChecker = new ResponseChecker();
@@ -127,7 +127,7 @@ class PayTest extends Base
             $request->out_trade_no = $this->generateOrderNumber(); // "2020525684371184";
             $request->shopdate = "20210712";
             $request->subject = "测试支付宝生活号";
-            $request->total_amount = "0.01";
+            $request->total_amount = "1";
             $request->currency = "CNY";
             $request->seller_id = "hyfz_test";
             $request->seller_name = "银盛支付服务股份有限公司行业发展部";
@@ -171,7 +171,7 @@ class PayTest extends Base
             $request->out_trade_no = $this->generateOrderNumber(); // "2021072421111";
             $request->shopdate = "20210724";
             $request->subject = "测试微信小程序";
-            $request->total_amount = "0.01";
+            $request->total_amount = "1";
             $request->currency = "CNY";
             $request->seller_id = "yangjie";
             $request->seller_name = "汕头市宜麦有道供应链有限公司";
@@ -180,7 +180,7 @@ class PayTest extends Base
             $request->extra_common_param = "extra_common_param";
             $request->business_code = "3010002";
             $request->sub_openid = "oNHjy5AQ32qz7-7-oWVgP9vlyehlQ";
-            $request->is_minipg = "1";
+            $request->is_minipg = "2";
             $request->appid = "wx1529d89448f9985e";
             $request->province = "";
             $request->city = "";
@@ -300,7 +300,7 @@ class PayTest extends Base
             $request->extend_params = "";
             $request->extra_common_param = "";
             $request->business_code = "3010002";
-            $request->bank_type = "1902000";
+            $request->bank_type = "1903000";
             $request->consignee_info = "";
             $request->cross_border_info = "";
             $request->appid = "";

@@ -201,8 +201,8 @@ class OrderTest extends Base
 
         try {
             $request = new TradeOrderQueryRequest();
-            $request->out_trade_no = "202109090312408135";//CommonUtil::generateOrderNumber(); //商户生成的订单号 "2021071212311212";
-            $request->shopdate = "20210909";//CommonUtil::getShopDate(); //商户日期 "20210712";
+            $request->out_trade_no = "";//CommonUtil::generateOrderNumber(); //商户生成的订单号 "2021071212311212";
+            $request->shopdate = "20211029";//CommonUtil::getShopDate(); //商户日期 "20210712";
             $request->trade_no = "";
 
 

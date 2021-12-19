@@ -6,7 +6,7 @@ class NotifyTest
 
 
     /**
-     *商户进件异步通知接口
+     *异步通知接口
      */
     public function notifyTest()
     {

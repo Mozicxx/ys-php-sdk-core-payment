@@ -34,10 +34,10 @@ class WeChatAuthenticateTest extends Base
 
         try {
             $request = new WeChatAuthenticateApplyRequest();
-            $request->usercode = "X2107061649551231243";
-            $request->cust_name = "商户_刘志林";
+            $request->usercode = "";
+            $request->cust_name = "";
             $request->contact_cert_type = "00";
-            $request->contact_cert_no = "360781199608035113";
+            $request->contact_cert_no = "";
             $request->legal_cert_initial = "20180503";
             $request->legal_cert_expire = "20380503";
             $request->bus_license_initial = "";
@@ -97,7 +97,7 @@ class WeChatAuthenticateTest extends Base
 
         try {
             $request = new WeChatUploadPicRequest();
-            $request->superUsercode = "X2107061649551231243";
+            $request->superUsercode = "";
             $request->picType = "34";
             $request->token = "TK20210713163354185OlsfgAkC";
             $request->filePath = "E:/tp/jpg/34.jpg";
@@ -107,7 +107,7 @@ class WeChatAuthenticateTest extends Base
             var_dump($response, true);
 
             $request = new WeChatUploadPicRequest();
-            $request->superUsercode = "X2107061649551231243";
+            $request->superUsercode = "";
             $request->picType = "50";
             $request->token = "TK20210713163354185OlsfgAkC";
             $request->filePath = "E:/tp/jpg/50.jpg";
@@ -188,7 +188,7 @@ class WeChatAuthenticateTest extends Base
 
         try {
             $request = new AuthenticateApplyQueryRequest();
-            $request->usercode = "X2107061649551231243";
+            $request->usercode = "";
 
             $response = Factory::weChatAuthenticateClient()->weChatAuthenticateClass()->authenticateApplyQuery($request);
             var_dump($response, true);

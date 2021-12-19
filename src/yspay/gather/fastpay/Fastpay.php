@@ -10,6 +10,8 @@ use Yspay\SDK\Model\FastpayAuthorizeMsgReq;
 use Yspay\SDK\Model\FastpayAuthorizeRequest;
 use Yspay\SDK\Model\FastpayRequest;
 use Yspay\SDK\Model\TrusteeshipfastPayRequest;
+use Yspay\SDK\Model\TrusteeshipfastPayReachievemsgRequest;
+//use Yspay\SDK\Model\TrusteeshipfastPayRequest;
 use Yspay\SDK\Model\TrusteeshipSignConfirmRequest;
 use Yspay\SDK\Model\TrusteeshipSignRequest;
 
@@ -187,6 +189,63 @@ class Fastpay
             }
             $headParams = $this->common->commonHeads('ysepay.trusteeship.fastPay', $this->kernel, $model);
             $bizReqJson = TrusteeshipfastPayRequest::build($this->kernel, $model);
+
+            $headParams = $this->common->encodeParams($headParams, $bizReqJson);
+            $url = $this->kernel->trusteeshipUrl;
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_trusteeship_fastPay_response", false);
+        } catch (Exception $e) {
+            $responses = new Response();
+            //  $responses->responseCode = $this->common->param['errorCode'];
+            $responses->responseMeg = $e->getMessage();
+            return $responses;
+        }
+    }
+
+
+    /**
+     * lfk
+     * @Desc 快捷协议支付 重新获取短信
+     * @DATA 2021年7月02日下午2:02:09
+     */
+    public function trusteeshipfastPayReachievemsg($model)
+    {
+        try {
+            $check = $this->common->checkFields(TrusteeshipfastPayReachievemsgRequest::getCheckRules()
+                , TrusteeshipfastPayReachievemsgRequest::getParam($model));//数据校验
+            if ($check->checkFlag != true) {
+                return $check;
+            }
+            $headParams = $this->common->commonHeads('ysepay.trusteeship.fastPay.reachievemsg', $this->kernel, $model);
+            $bizReqJson = TrusteeshipfastPayReachievemsgRequest::build($this->kernel, $model);
+
+            $headParams = $this->common->encodeParams($headParams,$bizReqJson);
+            $url = $this->kernel->trusteeshipUrl;
+            var_dump($headParams);
+            return $this->common->post_Url($url, $headParams, "ysepay_trusteeship_fastPay_response", false);
+        } catch (Exception $e) {
+            $responses = new Response();
+            //  $responses->responseCode = $this->common->param['errorCode'];
+            $responses->responseMeg = $e->getMessage();
+            return $responses;
+        }
+    }
+
+    /**
+     * lfk
+     * @Desc 快捷协议支付 支付短信确认
+     * @DATA 2021年7月02日下午2:02:09
+     */
+    public function trusteeshipfastPayConfirm($model)
+    {
+        try {
+            $check = $this->common->checkFields(TrusteeshipfastPayConfirmRequest::getCheckRules()
+                , TrusteeshipfastPayConfirmRequest::getParam($model));//数据校验
+            if ($check->checkFlag != true) {
+                return $check;
+            }
+            $headParams = $this->common->commonHeads('ysepay.trusteeship.fastPay.reachievemsg', $this->kernel, $model);
+            $bizReqJson = TrusteeshipfastPayConfirmRequest::build($this->kernel, $model);
 
             $headParams = $this->common->encodeParams($headParams,$bizReqJson);
             $url = $this->kernel->trusteeshipUrl;

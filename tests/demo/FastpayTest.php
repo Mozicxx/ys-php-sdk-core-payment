@@ -40,28 +40,28 @@ class FastpayTest extends Base
             $request->subject = "测试消费";
             $request->total_amount = "0.01";
             $request->currency = "CNY";
-            $request->seller_id = "X2107061649551231243";
-            $request->seller_name = "刘志林";
+            $request->seller_id = "";
+            $request->seller_name = "";
             $request->timeout_express = "30m";
             $request->extend_params = "";
             $request->extra_common_param = "";
             $request->business_code = "3010002";
-            $request->buyer_name = "刘志林";
-            $request->buyer_card_number = "6217710310182456";
-            $request->buyer_mobile = "18680352162";
+            $request->buyer_name = "";
+            $request->buyer_card_number = "";
+            $request->buyer_mobile = "";
             $request->bank_type = "3021000";
             $request->bank_account_type = "personal";
             $request->support_card_type = "debit";
-            $request->bank_name = "中信银行";
+            $request->bank_name = "";
             $request->cardCvn2 = "";
             $request->cardExprDt = "";
             $request->pyerIDTp = "01";
-            $request->pyerIDNo = "360781199608035113";
+            $request->pyerIDNo = "";
             $request->consignee_info = "";
             $request->cross_border_info = "";
             $request->province = "000659";
             $request->city = "000660";
-            $request->limit_credit_pay = "2010647118";
+            $request->limit_credit_pay = "";
             $request->mccs = "5811";
             $request->mer_no = "";
 
@@ -92,8 +92,8 @@ class FastpayTest extends Base
         try {
             $request = new FastpayAuthorizeRequest();
             $request->out_trade_no = $this->generateOrderNumber(); // "202107131231";
-            $request->buyer_mobile = "18680352162";
-            $request->mobile_verify_code = "089812";
+            $request->buyer_mobile = "";
+            $request->mobile_verify_code = "";
             $request->cardCvn2 = "123";
             $request->cardExprDt = "1234";
 
@@ -154,7 +154,7 @@ class FastpayTest extends Base
         try {
             $request = new TrusteeshipSignRequest();
             $request->out_trade_no = $this->generateOrderNumber(); // "20180525684319228064711813";
-            $request->seller_id = "hyfz_test";
+            $request->seller_id = "hyfz_test2";
             $request->seller_name = "银盛支付服务股份有限公司行业发展部";
             $request->buyer_name = "";
             $request->buyer_card_number = "";
@@ -164,8 +164,8 @@ class FastpayTest extends Base
             $request->pyerIDNo = "";
             $request->imei = "";
             $request->actionScope = "01";
-            $request->user_id = "2021072";
-            $request->total_amount = "0.02";
+            $request->user_id = "12";
+            $request->total_amount = "0.03";
 
             $response = Factory::fastpayClient()->fastpayClass()->trusteeshipSign($request);
             var_dump($response, true);

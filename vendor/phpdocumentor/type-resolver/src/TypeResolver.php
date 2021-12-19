@@ -15,7 +15,9 @@ namespace phpDocumentor\Reflection;
 
 use ArrayIterator;
 use InvalidArgumentException;
+use phpDocumentor\Reflection\PseudoTypes\List_;
 use phpDocumentor\Reflection\Types\Array_;
+use phpDocumentor\Reflection\Types\ArrayKey;
 use phpDocumentor\Reflection\Types\ClassString;
 use phpDocumentor\Reflection\Types\Collection;
 use phpDocumentor\Reflection\Types\Compound;
@@ -102,11 +104,14 @@ final class TypeResolver
         'callable-string' => PseudoTypes\CallableString::class,
         'false' => PseudoTypes\False_::class,
         'true' => PseudoTypes\True_::class,
+        'literal-string' => PseudoTypes\LiteralString::class,
         'self' => Types\Self_::class,
         '$this' => Types\This::class,
         'static' => Types\Static_::class,
         'parent' => Types\Parent_::class,
         'iterable' => Types\Iterable_::class,
+        'never' => Types\Never_::class,
+        'list' => PseudoTypes\List_::class,
     ];
 
     /**
@@ -239,7 +244,7 @@ final class TypeResolver
                 $resolvedType = new Expression($type);
 
                 $types[] = $resolvedType;
-            } elseif ($parserContext === self::PARSER_IN_ARRAY_EXPRESSION && $token[0] === ')') {
+            } elseif ($parserContext === self::PARSER_IN_ARRAY_EXPRESSION && isset($token[0]) && $token[0] === ')') {
                 break;
             } elseif ($token === '<') {
                 if (count($types) === 0) {
@@ -406,7 +411,7 @@ final class TypeResolver
      */
     private function isPartialStructuralElementName(string $type): bool
     {
-        return ($type[0] !== self::OPERATOR_NAMESPACE) && !$this->isKeyword($type);
+        return (isset($type[0]) && $type[0] !== self::OPERATOR_NAMESPACE) && !$this->isKeyword($type);
     }
 
     /**
@@ -518,10 +523,11 @@ final class TypeResolver
     {
         $isArray    = ((string) $classType === 'array');
         $isIterable = ((string) $classType === 'iterable');
+        $isList     = ((string) $classType === 'list');
 
         // allow only "array", "iterable" or class name before "<"
         if (
-            !$isArray && !$isIterable
+            !$isArray && !$isIterable && !$isList
             && (!$classType instanceof Object_ || $classType->getFqsen() === null)
         ) {
             throw new RuntimeException(
@@ -535,13 +541,14 @@ final class TypeResolver
         $keyType   = null;
 
         $token = $tokens->current();
-        if ($token !== null && trim($token) === ',') {
+        if ($token !== null && trim($token) === ',' && !$isList) {
             // if we have a comma, then we just parsed the key type, not the value type
             $keyType = $valueType;
             if ($isArray) {
                 // check the key type for an "array" collection. We allow only
                 // strings or integers.
                 if (
+                    !$keyType instanceof ArrayKey &&
                     !$keyType instanceof String_ &&
                     !$keyType instanceof Integer &&
                     !$keyType instanceof Compound
@@ -554,6 +561,7 @@ final class TypeResolver
                 if ($keyType instanceof Compound) {
                     foreach ($keyType->getIterator() as $item) {
                         if (
+                            !$item instanceof ArrayKey &&
                             !$item instanceof String_ &&
                             !$item instanceof Integer
                         ) {
@@ -589,6 +597,10 @@ final class TypeResolver
 
         if ($isIterable) {
             return new Iterable_($valueType, $keyType);
+        }
+
+        if ($isList) {
+            return new List_($valueType);
         }
 
         if ($classType instanceof Object_) {

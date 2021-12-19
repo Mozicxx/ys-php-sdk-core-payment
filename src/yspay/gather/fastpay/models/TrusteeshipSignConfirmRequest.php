@@ -32,6 +32,10 @@ class TrusteeshipSignConfirmRequest
     public $cardExprDt;
 
 
+    public $tran_type; #mozic fix
+    public $return_url; #mozic fix
+    public $proxy_password; #mozic fix
+    public $merchant_usercode; #mozic fix
 
 
 
@@ -61,12 +65,12 @@ class TrusteeshipSignConfirmRequest
                 'mobile_verify_code' => [
                     Validator::MAX_LEN => 6,
                 ],
-                'cardCvn2' => [
-                    Validator::MAX_LEN => 3,
-                ],
-                'cardExprDt' => [
-                    Validator::MAX_LEN => 4,
-                ],
+//                'cardCvn2' => [
+//                    Validator::MAX_LEN => 3,
+//                ],
+//                'cardExprDt' => [
+//                    Validator::MAX_LEN => 4,
+//                ],
 
 
             ],
@@ -82,10 +86,14 @@ class TrusteeshipSignConfirmRequest
         $bizReqJson = array(
             "out_trade_no" => $model->out_trade_no,
             "mobile_verify_code" => $model->mobile_verify_code,
-            "cardCvn2" => TrusteeshipSignConfirmRequest::encryptDes($model->cardCvn2,$kernel->partner_id),
-            "cardExprDt" => TrusteeshipSignConfirmRequest::encryptDes($model->cardExprDt,$kernel->partner_id),
+//            "cardCvn2" => TrusteeshipSignConfirmRequest::encryptDes($model->cardCvn2,$kernel->partner_id),
+//            "cardExprDt" => TrusteeshipSignConfirmRequest::encryptDes($model->cardExprDt,$kernel->partner_id),
 
         );
+        if ($model->cardCvn2 || $model->cardExprDt) {
+            $bizReqJson['cardCvn2'] = TrusteeshipSignConfirmRequest::encryptDes($model->cardCvn2,$kernel->partner_id);
+            $bizReqJson['cardExprDt'] = TrusteeshipSignConfirmRequest::encryptDes($model->cardExprDt,$kernel->partner_id);
+        }
 
         return $bizReqJson;
     }

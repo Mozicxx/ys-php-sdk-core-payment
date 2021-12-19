@@ -104,7 +104,10 @@ class WeixinPayRequest
      */
     public $fail_notify_url;
 
-
+    public $tran_type; #mozic fix
+    public $return_url; #mozic fix
+    public $proxy_password; #mozic fix
+    public $merchant_usercode; #mozic fix
 
 
 
@@ -132,6 +135,10 @@ class WeixinPayRequest
             'limit_credit_pay' => $model->limit_credit_pay,
             'allow_repeat_pay' => $model->allow_repeat_pay,
             'fail_notify_url' => $model->fail_notify_url,
+            'tran_type' => $model->tran_type, #mozic fix
+            'return_url' => $model->return_url, #mozic fix
+            'proxy_password' => $model->proxy_password, #mozic fix
+            'merchant_usercode' => $model->merchant_usercode, #mozic fix
 
         );
 

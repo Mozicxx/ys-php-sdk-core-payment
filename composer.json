@@ -1,6 +1,6 @@
 {
-  "name": "ys-yzt-sdk/ys-php-sdk-core",
-  "description": "ys-php-sdk-core",
+  "name": "mozic/ys-php-sdk-core-payment",
+  "description": "ys-php-sdk-core-payment",
   "type": "library",
   "license": "MIT",
   "minimum-stability": "dev",

@@ -37,9 +37,9 @@ class Base extends TestCase
         //<-- 环境 prd为生产环境 test测试环境-->;
         $options->postType = 'prd';
         //<-- 加签私钥证书文件路径 -->
-        $options->private_key = dirname(__FILE__).'\certs\hyfz_test2.pfx';
+        $options->private_key = dirname(__FILE__).'\certs\hyfz_test.pfx';
         $options->pfxpassword = "123456";
-        $options->partner_id = "hyfz_test2";
+        $options->partner_id = "hyfz_test";
         $options->notify_url = "http://wiki.easybuycloud.com:8082/ysmp-notify-ci/testnotify";
 
 

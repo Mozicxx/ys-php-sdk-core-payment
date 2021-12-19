@@ -62,8 +62,8 @@ class ReplcepayTest extends Base
         try {
             $request = new DfSingleQuickAcceptRequest();
             $request->out_trade_no = $this->generateOrderNumber(); // "202107141231231";
-            $request->shopdate = "20210714";
-            $request->total_amount = "0.01";
+            $request->shopdate = "20210831";
+            $request->total_amount = "0.02";
             $request->currency = "CNY";
             $request->bank_city = "深圳市";
             $request->bank_province = "广东省";

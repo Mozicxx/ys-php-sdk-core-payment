@@ -5,8 +5,8 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '5a43a62dfc9c9b46594c2e14e8505665d420e11e',
-        'name' => 'ys-yzt-sdk/ys-php-sdk-core',
+        'reference' => '5b6df49d11eff6480f837554201261930c81ead8',
+        'name' => 'mozic/ys-php-sdk-core-payment',
         'dev' => true,
     ),
     'versions' => array(
@@ -17,6 +17,15 @@
             'install_path' => __DIR__ . '/../doctrine/instantiator',
             'aliases' => array(),
             'reference' => '6410c4b8352cb64218641457cef64997e6b784fb',
+            'dev_requirement' => false,
+        ),
+        'mozic/ys-php-sdk-core-payment' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => '5b6df49d11eff6480f837554201261930c81ead8',
             'dev_requirement' => false,
         ),
         'myclabs/deep-copy' => array(
@@ -32,12 +41,12 @@
             ),
         ),
         'nikic/php-parser' => array(
-            'pretty_version' => 'v4.12.0',
-            'version' => '4.12.0.0',
+            'pretty_version' => 'v4.13.2',
+            'version' => '4.13.2.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nikic/php-parser',
             'aliases' => array(),
-            'reference' => '6608f01670c3cc5079e18c1dab1104e002579143',
+            'reference' => '210577fe3cf7badcc5814d99455df46564f3c077',
             'dev_requirement' => false,
         ),
         'phar-io/manifest' => array(
@@ -79,7 +88,7 @@
             'aliases' => array(
                 0 => '5.x-dev',
             ),
-            'reference' => '79d27778136b1aa08533e9e1f3ee3b6910af354a',
+            'reference' => '622548b623e81ca6d78b721c5e029f4ce664f170',
             'dev_requirement' => false,
         ),
         'phpdocumentor/type-resolver' => array(
@@ -88,16 +97,18 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpdocumentor/type-resolver',
             'aliases' => array(),
-            'reference' => '931b9e71a6274daa2a83371ee14d75d2be5a0e20',
+            'reference' => 'f8ec4ab631de5a97769e66b13418c3b8b24e81f4',
             'dev_requirement' => false,
         ),
         'phpspec/prophecy' => array(
-            'pretty_version' => '1.13.0',
-            'version' => '1.13.0.0',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpspec/prophecy',
-            'aliases' => array(),
-            'reference' => 'be1996ed8adc35c3fd795488a653f4b518be70ea',
+            'aliases' => array(
+                0 => '1.x-dev',
+            ),
+            'reference' => 'bbcd7380b0ebf3961ee21409db7b38bc31d69a13',
             'dev_requirement' => false,
         ),
         'phpunit/php-code-coverage' => array(
@@ -106,7 +117,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpunit/php-code-coverage',
             'aliases' => array(),
-            'reference' => '96a79920ea5e52bfabff3eae1ad6b9c5512d7dae',
+            'reference' => '299e0a60b0f5bd3296fd52290a585ac2b2517b65',
             'dev_requirement' => false,
         ),
         'phpunit/php-file-iterator' => array(
@@ -115,7 +126,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpunit/php-file-iterator',
             'aliases' => array(),
-            'reference' => 'd7e633e95043246c5370e96d4cd17aa2cc79ab78',
+            'reference' => 'cf1c2e7c203ac650e352f4cc675a7021e7d1b3cf',
             'dev_requirement' => false,
         ),
         'phpunit/php-invoker' => array(
@@ -151,7 +162,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpunit/phpunit',
             'aliases' => array(),
-            'reference' => '512e775d2176a615c9443ec0372448f86059862c',
+            'reference' => '5d7f8cfe10a9e2f744a46cf3419ba97f1bdf6aa8',
             'dev_requirement' => false,
         ),
         'sebastian/cli-parser' => array(
@@ -218,12 +229,12 @@
             'dev_requirement' => false,
         ),
         'sebastian/exporter' => array(
-            'pretty_version' => '4.0.3',
-            'version' => '4.0.3.0',
+            'pretty_version' => '4.0.x-dev',
+            'version' => '4.0.9999999.9999999-dev',
             'type' => 'library',
             'install_path' => __DIR__ . '/../sebastian/exporter',
             'aliases' => array(),
-            'reference' => 'd89cc98761b8cb5a1a235a6b703ae50d34080e65',
+            'reference' => '65e8b7db476c5dd267e65eea9cab77584d3cfff9',
             'dev_requirement' => false,
         ),
         'sebastian/global-state' => array(
@@ -292,8 +303,8 @@
             'dev_requirement' => false,
         ),
         'sebastian/version' => array(
-            'pretty_version' => '3.0.2',
-            'version' => '3.0.2.0',
+            'pretty_version' => '3.0.x-dev',
+            'version' => '3.0.9999999.9999999-dev',
             'type' => 'library',
             'install_path' => __DIR__ . '/../sebastian/version',
             'aliases' => array(),
@@ -308,7 +319,7 @@
             'aliases' => array(
                 0 => '1.23.x-dev',
             ),
-            'reference' => '46cd95797e9df938fdd2b03693b5fca5e64b01ce',
+            'reference' => '30885182c981ab175d4d034db0f6f469898070ab',
             'dev_requirement' => false,
         ),
         'theseer/tokenizer' => array(
@@ -329,15 +340,6 @@
                 0 => '1.10.x-dev',
             ),
             'reference' => 'b419d648592b0b8911cbbe10d450fe314f4fd262',
-            'dev_requirement' => false,
-        ),
-        'ys-yzt-sdk/ys-php-sdk-core' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../../',
-            'aliases' => array(),
-            'reference' => '5a43a62dfc9c9b46594c2e14e8505665d420e11e',
             'dev_requirement' => false,
         ),
     ),
