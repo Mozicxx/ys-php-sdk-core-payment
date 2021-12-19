@@ -35,8 +35,8 @@ class OrderTest extends Base
             $request = new TradeRefundRequest();
             $request->out_trade_no = $this->generateOrderNumber(); // "20210712123113";
             $request->shopdate = "20210712";
-            $request->trade_no = "";
-            $request->refund_amount = "0.01";
+            $request->trade_no = "202109090312408135";
+            $request->refund_amount = "1";
             $request->refund_reason = "退款";
             $request->out_request_no = "RD2021123";
 
@@ -201,8 +201,8 @@ class OrderTest extends Base
 
         try {
             $request = new TradeOrderQueryRequest();
-            $request->out_trade_no = $this->generateOrderNumber(); // "2021071212311212";
-            $request->shopdate = "20210712";
+            $request->out_trade_no = "202109090312408135";//CommonUtil::generateOrderNumber(); //商户生成的订单号 "2021071212311212";
+            $request->shopdate = "20210909";//CommonUtil::getShopDate(); //商户日期 "20210712";
             $request->trade_no = "";
 
 
